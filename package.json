@@ -1,0 +1,17 @@
+{
+    "name": "com.rhinox.open.unityxr-simulator",
+    "displayName": "UnityXR-Simulator",
+    "author": "Rhinox",
+    "version": "0.0.1",
+    "unity": "2020.2",
+    "description": "Simulator for UnityXR.",
+    "keywords": [
+        "unity",
+		"vr",
+		"xr"
+    ],
+    "category": "Unity",
+    "dependencies": {
+        "com.rhinox.open.utilities": "1.2.1"
+	  }
+}
