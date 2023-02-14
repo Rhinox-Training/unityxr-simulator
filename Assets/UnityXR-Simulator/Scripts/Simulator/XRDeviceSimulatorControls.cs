@@ -10,6 +10,7 @@ using Rhinox.GUIUtils.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 
@@ -91,7 +92,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
                 SubscribeToggleManipulateAction();
             }
         }
-        
+
         [SerializeField]
         [Tooltip("The Input System Action used to toggle keyboard space.")]
         InputActionReference m_ToggleKeyboardSpaceAction;
@@ -569,7 +570,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
             }
         }
 
-        [SerializeField] 
+        [SerializeField]
         private InputActionReference m_ToggleButtonControlTargetAction;
         /// <summary>
         /// The Input System Action used to control the SecondaryTouch control of the manipulated controller device(s).
@@ -585,7 +586,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
                 SubscribeToggleButtonControlTargetAction();
             }
         }
-        
+
         [Tooltip("The desired cursor lock mode to toggle to from None (either Locked or Confined).")]
         public CursorLockMode DesiredCursorLockMode = CursorLockMode.Locked;
 
@@ -603,7 +604,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
 
         [Tooltip("Sensitivity of translation in the y-axis (up/down) when triggered by mouse input.")]
         public float MouseYTranslateSensitivity = 0.0004f;
-        
+
         [Tooltip("Sensitivity of translation in the z-axis (forward/back) when triggered by mouse scroll input.")]
         public float MouseScrollTranslateSensitivity = 0.0002f;
 
@@ -620,13 +621,13 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
                  "\nA false value (default) means typical FPS style where moving the mouse up/down pitches up/down." +
                  "\nA true value means flight control style where moving the mouse up/down pitches down/up.")]
         public bool MouseYRotateInvert;
-        
+
         [Tooltip("The coordinate space in which keyboard translation should operate.")]
         public Space KeyboardTranslateSpace = Space.Local;
 
         [NonSerialized]
         public bool ManipulateRightControllerButtons = true;
-        
+
         /// <summary>
         /// One or more 2D Axis controls that keyboard input should apply to (or none).
         /// </summary>
@@ -657,34 +658,34 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
 
         bool m_ResetInput;
 
-        Vector2 m_Axis2DInput;
-        Vector2 m_RestingHandAxis2DInput;
+        public Vector2 Axis2DInput;
+        public Vector2 RestingHandAxis2DInput;
 
-        bool m_GripInput;
-        bool m_TriggerInput;
-        bool m_PrimaryButtonInput;
-        bool m_SecondaryButtonInput;
-        bool m_MenuInput;
-        bool m_Primary2DAxisClickInput;
-        bool m_Secondary2DAxisClickInput;
-        bool m_Primary2DAxisTouchInput;
-        bool m_Secondary2DAxisTouchInput;
-        bool m_PrimaryTouchInput;
-        bool m_SecondaryTouchInput;
+        public bool GripInput { get; private set; }
+        public bool TriggerInput { get; private set; }
+        public bool PrimaryButtonInput { get; private set; }
+        public bool SecondaryButtonInput { get; private set; }
+        public bool MenuInput { get; private set; }
+        public bool Primary2DAxisClickInput { get; private set; }
+        public bool Secondary2DAxisClickInput { get; private set; }
+        public bool Primary2DAxisTouchInput { get; private set; }
+        public bool Secondary2DAxisTouchInput { get; private set; }
+        public bool PrimaryTouchInput { get; private set; }
+        public bool SecondaryTouchInput { get; private set; }
 
         bool m_ManipulatedRestingHandAxis2D;
 
         Vector3 m_LeftControllerEuler;
         Vector3 m_RightControllerEuler;
         Vector3 m_CenterEyeEuler;
-        
+
         /// <summary>
         /// See <see cref="MonoBehaviour"/>.
         /// </summary>
         protected virtual void OnEnable()
         {
             ManipulationTarget = ManipulationTarget.All;
-            
+
             SubscribeKeyboardXTranslateAction();
             SubscribeKeyboardYTranslateAction();
             SubscribeKeyboardZTranslateAction();
@@ -759,21 +760,21 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
         /// <param name="controllerState">The controller state that will be processed.</param>
         public virtual void ProcessButtonControlInput(ref XRSimulatedControllerState controllerState)
         {
-            controllerState.grip = m_GripInput ? 1f : 0f;
-            controllerState.WithButton(ControllerButton.GripButton, m_GripInput);
-            controllerState.trigger = m_TriggerInput ? 1f : 0f;
-            controllerState.WithButton(ControllerButton.TriggerButton, m_TriggerInput);
-            controllerState.WithButton(ControllerButton.PrimaryButton, m_PrimaryButtonInput);
-            controllerState.WithButton(ControllerButton.SecondaryButton, m_SecondaryButtonInput);
-            controllerState.WithButton(ControllerButton.MenuButton, m_MenuInput);
-            controllerState.WithButton(ControllerButton.Primary2DAxisClick, m_Primary2DAxisClickInput);
-            controllerState.WithButton(ControllerButton.Secondary2DAxisClick, m_Secondary2DAxisClickInput);
-            controllerState.WithButton(ControllerButton.Primary2DAxisTouch, m_Primary2DAxisTouchInput);
-            controllerState.WithButton(ControllerButton.Secondary2DAxisTouch, m_Secondary2DAxisTouchInput);
-            controllerState.WithButton(ControllerButton.PrimaryTouch, m_PrimaryTouchInput);
-            controllerState.WithButton(ControllerButton.SecondaryTouch, m_SecondaryTouchInput);
+            controllerState.grip = GripInput ? 1f : 0f;
+            controllerState.WithButton(ControllerButton.GripButton, GripInput);
+            controllerState.trigger = TriggerInput ? 1f : 0f;
+            controllerState.WithButton(ControllerButton.TriggerButton, TriggerInput);
+            controllerState.WithButton(ControllerButton.PrimaryButton, PrimaryButtonInput);
+            controllerState.WithButton(ControllerButton.SecondaryButton, SecondaryButtonInput);
+            controllerState.WithButton(ControllerButton.MenuButton, MenuInput);
+            controllerState.WithButton(ControllerButton.Primary2DAxisClick, Primary2DAxisClickInput);
+            controllerState.WithButton(ControllerButton.Secondary2DAxisClick, Secondary2DAxisClickInput);
+            controllerState.WithButton(ControllerButton.Primary2DAxisTouch, Primary2DAxisTouchInput);
+            controllerState.WithButton(ControllerButton.Secondary2DAxisTouch, Secondary2DAxisTouchInput);
+            controllerState.WithButton(ControllerButton.PrimaryTouch, PrimaryTouchInput);
+            controllerState.WithButton(ControllerButton.SecondaryTouch, SecondaryTouchInput);
         }
-        
+
         /// <summary>
         /// Gets a <see cref="Vector3"/> that can be multiplied component-wise with another <see cref="Vector3"/>
         /// to reset components of the <see cref="Vector3"/>, based on axis constraint inputs.
@@ -929,7 +930,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
                     break;
             }
         }
-        
+
         void OnChangeKeyboardSpace(InputAction.CallbackContext context)
         {
             switch (KeyboardTranslateSpace)
@@ -956,7 +957,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
                     m_MouseScrollInput.y * MouseScrollTranslateSensitivity);
             return scaledMouseDeltaInput;
         }
-        
+
         public Vector3 GetScaledMouseRotateInput()
         {
             // Mouse rotation
@@ -970,7 +971,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
         public float ScaledKeyboardTranslateX => m_KeyboardXTranslateInput * KeyboardXTranslateSpeed;
         public float ScaledKeyboardTranslateY => m_KeyboardYTranslateInput * KeyboardYTranslateSpeed;
         public float ScaledKeyboardTranslateZ => m_KeyboardZTranslateInput * KeyboardZTranslateSpeed;
-        
+
         //==============================================================================================================
 
         void OnMouseDeltaPerformed(InputAction.CallbackContext context) => m_MouseDeltaInput = context.ReadValue<Vector2>();
@@ -978,7 +979,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
 
         void OnMouseScrollPerformed(InputAction.CallbackContext context) => m_MouseScrollInput = context.ReadValue<Vector2>();
         void OnMouseScrollCanceled(InputAction.CallbackContext context) => m_MouseScrollInput = Vector2.zero;
-        
+
         void OnXConstraintPerformed(InputAction.CallbackContext context) => m_XConstraintInput = true;
         void OnXConstraintCanceled(InputAction.CallbackContext context) => m_XConstraintInput = false;
 
@@ -999,45 +1000,45 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
 
         void OnToggleSecondary2DAxisTargetPerformed(InputAction.CallbackContext context) => axis2DTargets ^= Axis2DTargets.Secondary2DAxis;
 
-        void OnAxis2DPerformed(InputAction.CallbackContext context) => m_Axis2DInput = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
-        void OnAxis2DCanceled(InputAction.CallbackContext context) => m_Axis2DInput = Vector2.zero;
+        void OnAxis2DPerformed(InputAction.CallbackContext context) => Axis2DInput = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
+        void OnAxis2DCanceled(InputAction.CallbackContext context) => Axis2DInput = Vector2.zero;
 
-        void OnRestingHandAxis2DPerformed(InputAction.CallbackContext context) => m_RestingHandAxis2DInput = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
-        void OnRestingHandAxis2DCanceled(InputAction.CallbackContext context) => m_RestingHandAxis2DInput = Vector2.zero;
+        void OnRestingHandAxis2DPerformed(InputAction.CallbackContext context) => RestingHandAxis2DInput = Vector2.ClampMagnitude(context.ReadValue<Vector2>(), 1f);
+        void OnRestingHandAxis2DCanceled(InputAction.CallbackContext context) => RestingHandAxis2DInput = Vector2.zero;
 
-        void OnGripPerformed(InputAction.CallbackContext context) => m_GripInput = true;
-        void OnGripCanceled(InputAction.CallbackContext context) => m_GripInput = false;
+        void OnGripPerformed(InputAction.CallbackContext context) => GripInput = true;
+        void OnGripCanceled(InputAction.CallbackContext context) => GripInput = false;
 
-        void OnTriggerPerformed(InputAction.CallbackContext context) => m_TriggerInput = true;
-        void OnTriggerCanceled(InputAction.CallbackContext context) => m_TriggerInput = false;
+        void OnTriggerPerformed(InputAction.CallbackContext context) => TriggerInput = true;
+        void OnTriggerCanceled(InputAction.CallbackContext context) => TriggerInput = false;
 
-        void OnPrimaryButtonPerformed(InputAction.CallbackContext context) => m_PrimaryButtonInput = true;
-        void OnPrimaryButtonCanceled(InputAction.CallbackContext context) => m_PrimaryButtonInput = false;
+        void OnPrimaryButtonPerformed(InputAction.CallbackContext context) => PrimaryButtonInput = true;
+        void OnPrimaryButtonCanceled(InputAction.CallbackContext context) => PrimaryButtonInput = false;
 
-        void OnSecondaryButtonPerformed(InputAction.CallbackContext context) => m_SecondaryButtonInput = true;
-        void OnSecondaryButtonCanceled(InputAction.CallbackContext context) => m_SecondaryButtonInput = false;
+        void OnSecondaryButtonPerformed(InputAction.CallbackContext context) => SecondaryButtonInput = true;
+        void OnSecondaryButtonCanceled(InputAction.CallbackContext context) => SecondaryButtonInput = false;
 
-        void OnMenuPerformed(InputAction.CallbackContext context) => m_MenuInput = true;
-        void OnMenuCanceled(InputAction.CallbackContext context) => m_MenuInput = false;
+        void OnMenuPerformed(InputAction.CallbackContext context) => MenuInput = true;
+        void OnMenuCanceled(InputAction.CallbackContext context) => MenuInput = false;
 
-        void OnPrimary2DAxisClickPerformed(InputAction.CallbackContext context) => m_Primary2DAxisClickInput = true;
-        void OnPrimary2DAxisClickCanceled(InputAction.CallbackContext context) => m_Primary2DAxisClickInput = false;
+        void OnPrimary2DAxisClickPerformed(InputAction.CallbackContext context) => Primary2DAxisClickInput = true;
+        void OnPrimary2DAxisClickCanceled(InputAction.CallbackContext context) => Primary2DAxisClickInput = false;
 
-        void OnSecondary2DAxisClickPerformed(InputAction.CallbackContext context) => m_Secondary2DAxisClickInput = true;
-        void OnSecondary2DAxisClickCanceled(InputAction.CallbackContext context) => m_Secondary2DAxisClickInput = false;
+        void OnSecondary2DAxisClickPerformed(InputAction.CallbackContext context) => Secondary2DAxisClickInput = true;
+        void OnSecondary2DAxisClickCanceled(InputAction.CallbackContext context) => Secondary2DAxisClickInput = false;
 
-        void OnPrimary2DAxisTouchPerformed(InputAction.CallbackContext context) => m_Primary2DAxisTouchInput = true;
-        void OnPrimary2DAxisTouchCanceled(InputAction.CallbackContext context) => m_Primary2DAxisTouchInput = false;
+        void OnPrimary2DAxisTouchPerformed(InputAction.CallbackContext context) => Primary2DAxisTouchInput = true;
+        void OnPrimary2DAxisTouchCanceled(InputAction.CallbackContext context) => Primary2DAxisTouchInput = false;
 
-        void OnSecondary2DAxisTouchPerformed(InputAction.CallbackContext context) => m_Secondary2DAxisTouchInput = true;
-        void OnSecondary2DAxisTouchCanceled(InputAction.CallbackContext context) => m_Secondary2DAxisTouchInput = false;
+        void OnSecondary2DAxisTouchPerformed(InputAction.CallbackContext context) => Secondary2DAxisTouchInput = true;
+        void OnSecondary2DAxisTouchCanceled(InputAction.CallbackContext context) => Secondary2DAxisTouchInput = false;
 
-        void OnPrimaryTouchPerformed(InputAction.CallbackContext context) => m_PrimaryTouchInput = true;
-        void OnPrimaryTouchCanceled(InputAction.CallbackContext context) => m_PrimaryTouchInput = false;
+        void OnPrimaryTouchPerformed(InputAction.CallbackContext context) => PrimaryTouchInput = true;
+        void OnPrimaryTouchCanceled(InputAction.CallbackContext context) => PrimaryTouchInput = false;
 
-        void OnSecondaryTouchPerformed(InputAction.CallbackContext context) => m_SecondaryTouchInput = true;
-        void OnSecondaryTouchCanceled(InputAction.CallbackContext context) => m_SecondaryTouchInput = false;
-        
+        void OnSecondaryTouchPerformed(InputAction.CallbackContext context) => SecondaryTouchInput = true;
+        void OnSecondaryTouchCanceled(InputAction.CallbackContext context) => SecondaryTouchInput = false;
+
         void OnToggleButtonControlTarget(InputAction.CallbackContext context) => ManipulateRightControllerButtons = !ManipulateRightControllerButtons;
 
         static InputAction GetInputAction(InputActionReference actionReference)
@@ -1051,20 +1052,20 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
         {
             return m_ResetInput;
         }
-        
+
         public virtual XRSimulatedControllerState ProcessAxis2DControlInput(XRSimulatedControllerState controllerState)
         {
             if (ManipulationTarget == ManipulationTarget.Head || ManipulationTarget == ManipulationTarget.All)
                 return controllerState;
-            
+
             if ((axis2DTargets & Axis2DTargets.Primary2DAxis) != 0)
             {
-                controllerState.primary2DAxis = m_Axis2DInput;
+                controllerState.primary2DAxis = Axis2DInput;
 
-                if (m_RestingHandAxis2DInput != Vector2.zero || m_ManipulatedRestingHandAxis2D)
+                if (RestingHandAxis2DInput != Vector2.zero || m_ManipulatedRestingHandAxis2D)
                 {
-                    controllerState.primary2DAxis = m_RestingHandAxis2DInput;
-                    m_ManipulatedRestingHandAxis2D = m_RestingHandAxis2DInput != Vector2.zero;
+                    controllerState.primary2DAxis = RestingHandAxis2DInput;
+                    m_ManipulatedRestingHandAxis2D = RestingHandAxis2DInput != Vector2.zero;
                 }
                 else
                 {
@@ -1074,12 +1075,12 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
 
             if ((axis2DTargets & Axis2DTargets.Secondary2DAxis) != 0)
             {
-                controllerState.secondary2DAxis = m_Axis2DInput;
+                controllerState.secondary2DAxis = Axis2DInput;
 
-                if (m_RestingHandAxis2DInput != Vector2.zero || m_ManipulatedRestingHandAxis2D)
+                if (RestingHandAxis2DInput != Vector2.zero || m_ManipulatedRestingHandAxis2D)
                 {
-                    controllerState.secondary2DAxis = m_RestingHandAxis2DInput;
-                    m_ManipulatedRestingHandAxis2D = m_RestingHandAxis2DInput != Vector2.zero;
+                    controllerState.secondary2DAxis = RestingHandAxis2DInput;
+                    m_ManipulatedRestingHandAxis2D = RestingHandAxis2DInput != Vector2.zero;
                 }
                 else
                 {
@@ -1166,7 +1167,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
 
             return anglesDelta;
         }
-        
+
 #if UNITY_EDITOR
         [ContextMenu("Import InputActionAsset")]
         private void ImportActionAsset()
@@ -1212,7 +1213,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
                                     break;
                                 }
 
-                            }               
+                            }
                         }
                     }
                 })
@@ -1231,7 +1232,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
                     if (refAsset.action.id == action.id)
                         return refAsset;
             }
-            
+
             return InputActionReference.Create(action);
         }
 #endif
