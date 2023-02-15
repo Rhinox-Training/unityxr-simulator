@@ -47,33 +47,28 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
         /// One or more 2D Axis controls that keyboard input should apply to (or none).
         /// </summary>
         /// <remarks>
-        /// Used to control a combination of the position (<see cref="Axis2DTargets.Position"/>),
-        /// primary 2D axis (<see cref="Axis2DTargets.Primary2DAxis"/>), or
-        /// secondary 2D axis (<see cref="Axis2DTargets.Secondary2DAxis"/>) of manipulated device(s).
+        /// Used to control a combination of the position (<see cref="Simulator.Axis2DTargets.Position"/>),
+        /// primary 2D axis (<see cref="Simulator.Axis2DTargets.Primary2DAxis"/>), or
+        /// secondary 2D axis (<see cref="Simulator.Axis2DTargets.Secondary2DAxis"/>) of manipulated device(s).
         /// </remarks>
         /// <seealso cref="keyboardXTranslateAction"/>
         /// <seealso cref="keyboardYTranslateAction"/>
         /// <seealso cref="keyboardZTranslateAction"/>
         /// <seealso cref="axis2DAction"/>
         /// <seealso cref="restingHandAxis2DAction"/>
-        public Axis2DTargets axis2DTargets { get; set; } = Axis2DTargets.Position;
+        public Axis2DTargets Axis2DTargets { get; set; } = Axis2DTargets.Position;
 
-        Vector3 m_LeftControllerEuler;
-        Vector3 m_RightControllerEuler;
-        Vector3 m_CenterEyeEuler;
+        private Vector3 _leftControllerEuler;
+        private Vector3 _rightControllerEuler;
+        private Vector3 _centerEyeEuler;
 
-        XRSimulatedHMDState m_HMDState;
-        XRSimulatedControllerState m_LeftControllerState;
-        XRSimulatedControllerState m_RightControllerState;
+        private XRSimulatedHMDState _hmdState;
+        private XRSimulatedControllerState _leftControllerState;
+        private XRSimulatedControllerState _rightControllerState;
 
-        XRSimulatedHMD m_HMDDevice;
-        public XRSimulatedHMD HMDDevice => m_HMDDevice;
-
-        XRSimulatedController m_LeftControllerDevice;
-        public XRSimulatedController LeftControllerDevice => m_LeftControllerDevice;
-
-        XRSimulatedController m_RightControllerDevice;
-        public XRSimulatedController RightControllerDevice => m_RightControllerDevice;
+        private XRSimulatedHMD _hmdDevice;
+        private XRSimulatedController _leftControllerDevice;
+        private XRSimulatedController _rightControllerDevice;
 
 
 
@@ -93,7 +88,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
         {
             _controls = GetComponent<XRDeviceSimulatorControls>();
 
-            m_HMDState.Reset();
+            _hmdState.Reset();
             ResetControllers();
             XRSimulatedHMD temp;
 
@@ -124,6 +119,9 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
             TryRemoveDevices();
         }
 
+        /// <summary>
+        /// Tries to set the Camera transform to the main camera.
+        /// </summary>
         private void TrySetCamera()
         {
             if (CameraTransform == null)
@@ -145,20 +143,23 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
             ProcessPoseInput();
             ProcessControlInput();
 
-            if (m_HMDDevice != null && m_HMDDevice.added)
-                InputState.Change(m_HMDDevice, m_HMDState);
+            if (_hmdDevice != null && _hmdDevice.added)
+                InputState.Change(_hmdDevice, _hmdState);
 
-            if (m_LeftControllerDevice != null && m_LeftControllerDevice.added)
-                InputState.Change(m_LeftControllerDevice, m_LeftControllerState);
+            if (_leftControllerDevice != null && _leftControllerDevice.added)
+                InputState.Change(_leftControllerDevice, _leftControllerState);
 
-            if (m_RightControllerDevice != null && m_RightControllerDevice.added)
-                InputState.Change(m_RightControllerDevice, m_RightControllerState);
+            if (_rightControllerDevice != null && _rightControllerDevice.added)
+                InputState.Change(_rightControllerDevice, _rightControllerState);
         }
 
+        /// <summary>
+        /// Resets the state and transform of both controllers. Both controllers are positioned relatively to the head/HMD.
+        /// </summary>
         private void ResetControllers()
         {
-            m_LeftControllerState.Reset();
-            m_RightControllerState.Reset();
+            _leftControllerState.Reset();
+            _rightControllerState.Reset();
 
             const float HALF_SHOULDER_WIDTH = 0.18f;
             Vector3 baseHeadOffset = Vector3.forward * 0.25f + Vector3.down * 0.15f;
@@ -166,18 +167,23 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
             Vector3 rightOffset = Vector3.right * HALF_SHOULDER_WIDTH + baseHeadOffset;
 
             var resetScale = _controls.GetResetScale();
-            m_RightControllerEuler = Vector3.Scale(m_RightControllerEuler, resetScale);
-            m_LeftControllerEuler = Vector3.Scale(m_LeftControllerEuler, resetScale);
+            _rightControllerEuler = Vector3.Scale(_rightControllerEuler, resetScale);
+            _leftControllerEuler = Vector3.Scale(_leftControllerEuler, resetScale);
 
-            PositionRelativeToHead(ref m_RightControllerState, rightOffset, Quaternion.Euler(m_RightControllerEuler));
-            PositionRelativeToHead(ref m_LeftControllerState, leftOffset, Quaternion.Euler(m_LeftControllerEuler));
+            PositionRelativeToHead(ref _rightControllerState, rightOffset, Quaternion.Euler(_rightControllerEuler));
+            PositionRelativeToHead(ref _leftControllerState, leftOffset, Quaternion.Euler(_leftControllerEuler));
         }
 
-
+        /// <summary>
+        /// Positions the given simulated controller state relatively to the head.
+        /// </summary>
+        /// <param name="state">Desired controller state to position.</param>
+        /// <param name="position">The relative position.</param>
+        /// <param name="rotation">An optional rotation to add.</param>
         private void PositionRelativeToHead(ref XRSimulatedControllerState state, Vector3 position, Quaternion? rotation = null)
         {
-            Vector3 headPos = m_HMDState.centerEyePosition;
-            Quaternion rot = m_HMDState.centerEyeRotation;
+            Vector3 headPos = _hmdState.centerEyePosition;
+            Quaternion rot = _hmdState.centerEyeRotation;
             var headMatrix = Matrix4x4.TRS(headPos, rot, Vector3.one);
 
             Vector3 realPos = headMatrix * new Vector4(position.x, position.y, position.z, 1);
@@ -204,7 +210,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
             var cameraParentRotation = cameraParent != null ? cameraParent.rotation : Quaternion.identity;
             var inverseCameraParentRotation = Quaternion.Inverse(cameraParentRotation);
 
-            if (axis2DTargets.HasFlag(Axis2DTargets.Position))
+            if (Axis2DTargets.HasFlag(Axis2DTargets.Position))
             {
                 // Determine frame of reference
                 EnumHelper.GetAxes(_controls.KeyboardTranslateSpace, CameraTransform, out var right, out var up, out var forward);
@@ -227,26 +233,26 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
             switch (_controls.ManipulationTarget)
             {
                 case ManipulationTarget.RightHand:
-                    m_RightControllerEuler += anglesDelta;
-                    m_RightControllerState.deviceRotation = Quaternion.Euler(m_RightControllerEuler);
+                    _rightControllerEuler += anglesDelta;
+                    _rightControllerState.deviceRotation = Quaternion.Euler(_rightControllerEuler);
                     break;
                 case ManipulationTarget.LeftHand:
-                    m_LeftControllerEuler += anglesDelta;
-                    m_LeftControllerState.deviceRotation = Quaternion.Euler(m_LeftControllerEuler);
+                    _leftControllerEuler += anglesDelta;
+                    _leftControllerState.deviceRotation = Quaternion.Euler(_leftControllerEuler);
                     break;
                 case ManipulationTarget.Head:
-                    m_CenterEyeEuler += anglesDelta;
-                    m_HMDState.centerEyeRotation = Quaternion.Euler(m_CenterEyeEuler);
-                    m_HMDState.deviceRotation = m_HMDState.centerEyeRotation;
+                    _centerEyeEuler += anglesDelta;
+                    _hmdState.centerEyeRotation = Quaternion.Euler(_centerEyeEuler);
+                    _hmdState.deviceRotation = _hmdState.centerEyeRotation;
                     break;
                 case ManipulationTarget.All:
-                    var matrixL = GetRelativeMatrixFromHead(ref m_LeftControllerState);
-                    var matrixR = GetRelativeMatrixFromHead(ref m_RightControllerState);
-                    m_CenterEyeEuler += anglesDelta;
-                    m_HMDState.centerEyeRotation = Quaternion.Euler(m_CenterEyeEuler);
-                    m_HMDState.deviceRotation = m_HMDState.centerEyeRotation;
-                    PositionRelativeToHead(ref m_LeftControllerState, matrixL.GetColumn(3), matrixL.rotation);
-                    PositionRelativeToHead(ref m_RightControllerState, matrixR.GetColumn(3), matrixR.rotation);
+                    var matrixL = GetRelativeMatrixFromHead(ref _leftControllerState);
+                    var matrixR = GetRelativeMatrixFromHead(ref _rightControllerState);
+                    _centerEyeEuler += anglesDelta;
+                    _hmdState.centerEyeRotation = Quaternion.Euler(_centerEyeEuler);
+                    _hmdState.deviceRotation = _hmdState.centerEyeRotation;
+                    PositionRelativeToHead(ref _leftControllerState, matrixL.GetColumn(3), matrixL.rotation);
+                    PositionRelativeToHead(ref _rightControllerState, matrixR.GetColumn(3), matrixR.rotation);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -255,58 +261,73 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
             if (_controls.ResetInputTriggered())
                 ResetControllers();
         }
-
+        
+        /// <summary>
+        /// Calculates the relative matrix from the head matrix and the given controller states matrix.
+        /// </summary>
+        /// <param name="state">Controller state of which the relative matrix is desired.</param>
+        /// <returns>The calculated relative matrix.</returns>
         private Matrix4x4 GetRelativeMatrixFromHead(ref XRSimulatedControllerState state)
         {
             var controllerTrans = Matrix4x4.TRS(state.devicePosition,
                 state.deviceRotation, Vector3.one);
 
-            var headTrans = Matrix4x4.TRS(m_HMDState.devicePosition,
-                m_HMDState.deviceRotation, Vector3.one);
+            var headTrans = Matrix4x4.TRS(_hmdState.devicePosition,
+                _hmdState.deviceRotation, Vector3.one);
             var matrix = headTrans.inverse * controllerTrans;
             return matrix;
         }
 
+        /// <summary>
+        /// Set the tracking for the devices to true and sets their tracking states to position and rotation.
+        /// </summary>
         private void SetTrackingStates()
         {
-            m_LeftControllerState.isTracked = true;
-            m_RightControllerState.isTracked = true;
-            m_HMDState.isTracked = true;
-            m_LeftControllerState.trackingState = (int)(InputTrackingState.Position | InputTrackingState.Rotation);
-            m_RightControllerState.trackingState = (int)(InputTrackingState.Position | InputTrackingState.Rotation);
-            m_HMDState.trackingState = (int)(InputTrackingState.Position | InputTrackingState.Rotation);
+            _leftControllerState.isTracked = true;
+            _rightControllerState.isTracked = true;
+            _hmdState.isTracked = true;
+            _leftControllerState.trackingState = (int)(InputTrackingState.Position | InputTrackingState.Rotation);
+            _rightControllerState.trackingState = (int)(InputTrackingState.Position | InputTrackingState.Rotation);
+            _hmdState.trackingState = (int)(InputTrackingState.Position | InputTrackingState.Rotation);
         }
 
+        /// <summary>
+        /// Translates and rotates the current targets.
+        /// </summary>
+        /// <param name="manipulationSpace">The desired space for translation.</param>
+        /// <param name="inverseCameraParentRotation">The inverse of the camera parent rotation.</param>
+        /// <param name="deltaPosition">The translation needed.</param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         private void ProcessDevicePositionForTarget(Space manipulationSpace, Quaternion inverseCameraParentRotation, Vector3 deltaPosition)
         {
             Quaternion deltaRotation = Quaternion.identity;
             switch (_controls.ManipulationTarget)
             {
                 case ManipulationTarget.RightHand:
-                    deltaRotation = GetDeltaRotation(manipulationSpace, m_RightControllerState, inverseCameraParentRotation);
-                    m_RightControllerState.devicePosition += deltaRotation * deltaPosition;
+                    deltaRotation = GetDeltaRotation(manipulationSpace, _rightControllerState, inverseCameraParentRotation);
+                    _rightControllerState.devicePosition += deltaRotation * deltaPosition;
                     break;
                 case ManipulationTarget.LeftHand:
-                    deltaRotation = GetDeltaRotation(manipulationSpace, m_LeftControllerState, inverseCameraParentRotation);
-                    m_LeftControllerState.devicePosition += deltaRotation * deltaPosition;
+                    deltaRotation = GetDeltaRotation(manipulationSpace, _leftControllerState, inverseCameraParentRotation);
+                    _leftControllerState.devicePosition += deltaRotation * deltaPosition;
                     break;
                 case ManipulationTarget.Head:
-                    deltaRotation = GetDeltaRotation(manipulationSpace, m_HMDState, inverseCameraParentRotation);
-                    m_HMDState.centerEyePosition += deltaRotation * deltaPosition;
-                    m_HMDState.devicePosition = m_HMDState.centerEyePosition;
+                    deltaRotation = GetDeltaRotation(manipulationSpace, _hmdState, inverseCameraParentRotation);
+                    _hmdState.centerEyePosition += deltaRotation * deltaPosition;
+                    _hmdState.devicePosition = _hmdState.centerEyePosition;
                     break;
                 case ManipulationTarget.All:
 
-                    Vector3 relativeRightPosition = m_RightControllerState.devicePosition - m_HMDState.devicePosition;
-                    Vector3 relativeLeftPosition = m_LeftControllerState.devicePosition - m_HMDState.devicePosition;
+                    Vector3 relativeRightPosition = _rightControllerState.devicePosition - _hmdState.devicePosition;
+                    Vector3 relativeLeftPosition = _leftControllerState.devicePosition - _hmdState.devicePosition;
 
-                    deltaRotation = GetDeltaRotation(manipulationSpace, m_HMDState, inverseCameraParentRotation);
-                    m_HMDState.centerEyePosition += deltaRotation * deltaPosition;
-                    Vector3 newDevicePosition = m_HMDState.centerEyePosition;
-                    m_HMDState.devicePosition = newDevicePosition;
+                    deltaRotation = GetDeltaRotation(manipulationSpace, _hmdState, inverseCameraParentRotation);
+                    _hmdState.centerEyePosition += deltaRotation * deltaPosition;
+                    Vector3 newDevicePosition = _hmdState.centerEyePosition;
+                    _hmdState.devicePosition = newDevicePosition;
 
-                    m_RightControllerState.devicePosition = newDevicePosition + relativeRightPosition;
-                    m_LeftControllerState.devicePosition = newDevicePosition + relativeLeftPosition;
+                    _rightControllerState.devicePosition = newDevicePosition + relativeRightPosition;
+                    _leftControllerState.devicePosition = newDevicePosition + relativeLeftPosition;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -320,41 +341,44 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
         {
             if (!_controls.ManipulateRightControllerButtons)
             {
-                m_LeftControllerState = _controls.ProcessAxis2DControlInput(m_LeftControllerState);
-                _controls.ProcessButtonControlInput(ref m_LeftControllerState);
+                _leftControllerState = _controls.ProcessAxis2DControlInput(_leftControllerState);
+                _controls.ProcessButtonControlInput(ref _leftControllerState);
             }
             else
             {
-                m_RightControllerState = _controls.ProcessAxis2DControlInput(m_RightControllerState);
-                _controls.ProcessButtonControlInput(ref m_RightControllerState);
+                _rightControllerState = _controls.ProcessAxis2DControlInput(_rightControllerState);
+                _controls.ProcessButtonControlInput(ref _rightControllerState);
             }
         }
 
+        /// <summary>
+        /// If the simulator has not yet been loaded, creates the simulated controllers and head mounted display.
+        /// </summary>
         protected virtual void AddDevices()
         {
             if (_simulatorLoaded)
                 return;
 
-            m_HMDDevice = InputSystem.AddDevice<XRSimulatedHMD>();
-            if (m_HMDDevice == null)
+            _hmdDevice = InputSystem.AddDevice<XRSimulatedHMD>();
+            if (_hmdDevice == null)
             {
                 Debug.LogError($"Failed to create {nameof(XRSimulatedHMD)}.");
             }
 
-            m_LeftControllerDevice = InputSystem.AddDevice<XRSimulatedController>($"{nameof(XRSimulatedController)} - {CommonUsages.LeftHand}");
-            if (m_LeftControllerDevice != null)
+            _leftControllerDevice = InputSystem.AddDevice<XRSimulatedController>($"{nameof(XRSimulatedController)} - {CommonUsages.LeftHand}");
+            if (_leftControllerDevice != null)
             {
-                InputSystem.SetDeviceUsage(m_LeftControllerDevice, CommonUsages.LeftHand);
+                InputSystem.SetDeviceUsage(_leftControllerDevice, CommonUsages.LeftHand);
             }
             else
             {
                 Debug.LogError($"Failed to create {nameof(XRSimulatedController)} for {CommonUsages.LeftHand}.", this);
             }
 
-            m_RightControllerDevice = InputSystem.AddDevice<XRSimulatedController>($"{nameof(XRSimulatedController)} - {CommonUsages.RightHand}");
-            if (m_RightControllerDevice != null)
+            _rightControllerDevice = InputSystem.AddDevice<XRSimulatedController>($"{nameof(XRSimulatedController)} - {CommonUsages.RightHand}");
+            if (_rightControllerDevice != null)
             {
-                InputSystem.SetDeviceUsage(m_RightControllerDevice, CommonUsages.RightHand);
+                InputSystem.SetDeviceUsage(_rightControllerDevice, CommonUsages.RightHand);
             }
             else
             {
@@ -365,27 +389,31 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
             SimulatorLoaded?.Invoke();
         }
 
+        /// <summary>
+        /// If the simulator is loaded, removes the current simulated controllers and head mounted device. Unloads the simulator.
+        /// </summary>
         protected virtual void TryRemoveDevices()
         {
             if (!_simulatorLoaded)
                 return;
 
-            if (m_HMDDevice != null && m_HMDDevice.added)
-                InputSystem.RemoveDevice(m_HMDDevice);
-            m_HMDDevice = null;
+            if (_hmdDevice != null && _hmdDevice.added)
+                InputSystem.RemoveDevice(_hmdDevice);
+            _hmdDevice = null;
 
-            if (m_LeftControllerDevice != null && m_LeftControllerDevice.added)
-                InputSystem.RemoveDevice(m_LeftControllerDevice);
-            m_LeftControllerDevice = null;
+            if (_leftControllerDevice != null && _leftControllerDevice.added)
+                InputSystem.RemoveDevice(_leftControllerDevice);
+            _leftControllerDevice = null;
 
-            if (m_RightControllerDevice != null && m_RightControllerDevice.added)
-                InputSystem.RemoveDevice(m_RightControllerDevice);
-            m_RightControllerDevice = null;
+            if (_rightControllerDevice != null && _rightControllerDevice.added)
+                InputSystem.RemoveDevice(_rightControllerDevice);
+            _rightControllerDevice = null;
 
             _simulatorLoaded = false;
             SimulatorUnloaded?.Invoke();
         }
 
+        
         void OnInputDeviceChange(InputDevice device, InputDeviceChange change)
         {
             switch (change)
@@ -409,7 +437,12 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
                     break;
             }
         }
-
+    
+        /// <summary>
+        /// Check if the given device is not simulated and thus a real connected device.
+        /// </summary>
+        /// <param name="device">The device that should get checked.</param>
+        /// <returns></returns>
         private bool IsRealXRDevice(InputDevice device)
         {
             if (device is XRHMD && !(device is XRSimulatedHMD))
@@ -419,13 +452,18 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
             return false;
         }
 
+        /// <summary>
+        /// Check if the given device is simulated and thus not a real connected device.
+        /// </summary>
+        /// <param name="device">The device that should get checked.</param>
+        /// <returns></returns>
         private bool IsSimulatedDevice(InputDevice device)
         {
-            return (m_HMDDevice == device || m_LeftControllerDevice == device || m_RightControllerDevice == device);
+            return (_hmdDevice == device || _leftControllerDevice == device || _rightControllerDevice == device);
         }
 
 
-
+       
         static Quaternion GetDeltaRotation(Space translateSpace, in XRSimulatedControllerState state, in Quaternion inverseCameraParentRotation)
         {
             switch (translateSpace)
@@ -461,7 +499,7 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
 #if UNITY_EDITOR
         private void OnGUI()
         {
-            if (m_HMDDevice == null)
+            if (_hmdDevice == null)
                 return;
 
             GUILayout.Label($"{GetCurrentBindingPrefix(_controls.ToggleManipulateAction)} Mode: {_controls.ManipulationTarget}");
