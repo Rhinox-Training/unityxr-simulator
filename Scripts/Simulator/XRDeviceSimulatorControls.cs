@@ -14,7 +14,7 @@ using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 
-namespace Rhinox.VOLT.XR.UnityXR.Simulator
+namespace Rhinox.XR.UnityXR.Simulator
 {
     [DefaultExecutionOrder(XRInteractionUpdateOrder.k_DeviceSimulator)]
     public class XRDeviceSimulatorControls : MonoBehaviour
