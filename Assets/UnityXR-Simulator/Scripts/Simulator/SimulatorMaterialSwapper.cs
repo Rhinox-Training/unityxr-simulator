@@ -2,7 +2,7 @@
 //using System.Linq;
 //using UnityEngine;
 
-//namespace Rhinox.VOLT.XR.UnityXR.Simulator
+//namespace Rhinox.XR.UnityXR.Simulator
 //{
 //    [DisallowMultipleComponent]
 //    [RequireComponent(typeof(BetterXRDeviceSimulator))]

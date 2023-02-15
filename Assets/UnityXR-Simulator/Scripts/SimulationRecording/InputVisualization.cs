@@ -1,6 +1,8 @@
-using Rhinox.VOLT.XR.UnityXR.Simulator;
+using System;
+using Rhinox.XR.UnityXR.Simulator;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 
 /// <summary>
 /// This component visualizes pressed input.A GUI is used to represent all keys.
@@ -8,21 +10,21 @@ using UnityEngine.Assertions;
 public class InputVisualization : MonoBehaviour
 {
     [Header("Window Parameters")]
-    [Tooltip("The desired position of the bottomLeft vertex of the window.")]
-    [SerializeField] private Vector2Int _windowPos = new Vector2Int(0, 0);
-
     [Tooltip("The desired width and height of the window")]
     [SerializeField] private Vector2Int _windowDimensions = new Vector2Int(150, 180);
 
     [Header("Input parameters")]
     [SerializeField] private XRDeviceSimulatorControls _deviceSimulatorControls = null;
+    [SerializeField] private BetterXRDeviceSimulator _deviceSimulator = null;
 
     /// <summary>
     /// See <see cref="MonoBehaviour"/>
     /// </summary>
     private void OnValidate()
     {
-        Assert.AreNotEqual(_deviceSimulatorControls, null, $"{nameof(InputVisualization)}, device simulator not set!");
+        Assert.AreNotEqual(_deviceSimulatorControls, null,
+            $"{nameof(InputVisualization)}, device simulator controls not set!");
+        Assert.AreNotEqual(_deviceSimulator, null, $"{nameof(InputVisualization)}, device simulator not set!");
     }
 
     /// <summary>
@@ -55,18 +57,38 @@ public class InputVisualization : MonoBehaviour
             }
         };
 
-        //Left controller window
-        var windowRect = new Rect(_windowPos.x, _windowPos.y, _windowDimensions.x,
+        var windowRect = new Rect(Screen.width - _windowDimensions.x, 0, _windowDimensions.x,
             _windowDimensions.y);
 
         GUI.Box(windowRect, "");
         GUILayout.BeginArea(windowRect);
+        
+        
+        //--------------------------
+        // DEVICE POSITIONS
+        //--------------------------
 
-        GUILayout.Label("Used input",titleStyle);
+        GUILayout.Label("Device transforms",titleStyle);
+
+        GUILayout.Label($"HMD position: {_deviceSimulator.HMDState.devicePosition}");
+        GUILayout.Label($"HMD rotation: {_deviceSimulator.HMDState.deviceRotation}");
+
+        GUILayout.Label($"Right controller position: {_deviceSimulator.RightControllerState.devicePosition}");
+        GUILayout.Label($"Right controller rotation: {_deviceSimulator.RightControllerState.deviceRotation}");
+        
+        GUILayout.Label($"Left controller position: {_deviceSimulator.LeftControllerState.devicePosition}");
+        GUILayout.Label($"Left controller rotation: {_deviceSimulator.LeftControllerState.deviceRotation}");
+
+        GUILayout.Space(10);
         GUILayout.Label(
             _deviceSimulatorControls.ManipulateRightControllerButtons
                 ? $"Current manipulated controller: right"
-                : $"Current manipulated controller: left", subTitleStyle);
+                : $"Current manipulated controller: left");
+        
+        //--------------------------
+        // INPUT 
+        //--------------------------
+        GUILayout.Label("Used input",titleStyle);
 
         if(_deviceSimulatorControls.Axis2DInput.x != 0 || _deviceSimulatorControls.Axis2DInput.y != 0)
             GUILayout.Label($"2D axis input: {_deviceSimulatorControls.Axis2DInput.ToString()}");
