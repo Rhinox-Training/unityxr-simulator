@@ -12,11 +12,15 @@ namespace Rhinox.XR.UnityXR.Simulator
     /// </remarks>
     public class SimulationRecorder : MonoBehaviour
     {
+        [Header("Device Transforms")]
         [SerializeField] private Transform _hmdTransform;
         [SerializeField] private Transform _leftHandTransform;
         [SerializeField] private Transform _rightHandTransform;
 
+        [Header("Recording parameters")]
         [SerializeField] private int _desiredFPS = 30;
+
+        [Header("Output parameters")]
         [SerializeField] private string FilePath = "/SimulationRecordings/";
         [SerializeField] private string RecordingName = "NewRecording";
         
@@ -82,7 +86,10 @@ namespace Rhinox.XR.UnityXR.Simulator
         {
             _isRecording = true;
             _intervalTimer = 0;
-            _currentRecording = new SimulationRecording();
+            _currentRecording = new SimulationRecording
+            {
+                FrameRate = _desiredFPS
+            };
         }
 
         /// <summary>
