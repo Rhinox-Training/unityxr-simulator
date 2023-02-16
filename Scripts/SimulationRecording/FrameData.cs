@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Rhinox.XR.UnityXR.Simulator
@@ -14,5 +15,15 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         public Vector3 RightHandPosition;
         public Quaternion RightHandRotation;
+
+        public List<FrameInput> FrameInputs;
+    }
+
+    public struct FrameInput
+    {
+        public string InputActionName;
+        public string InputMapName;
+        public string InputAssetName;
+        
     }
 }

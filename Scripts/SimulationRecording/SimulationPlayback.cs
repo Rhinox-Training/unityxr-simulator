@@ -28,8 +28,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         private float _intervalTimer = 0;
 
         private TrackedPoseDriver _headTrackedPoseDriver;
-        private TrackedPoseDriver _leftHandTrackedPoseDriver;
-        private TrackedPoseDriver _rightHandTrackedPoseDriver;
 
         /// <summary>
         /// See <see cref="MonoBehaviour"/>
@@ -46,8 +44,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         {
             //Get the pose drivers 
             _headTrackedPoseDriver = _hmdTransform.GetComponent<TrackedPoseDriver>();
-            _leftHandTrackedPoseDriver = _leftHandTransform.GetComponent<TrackedPoseDriver>();
-            _rightHandTrackedPoseDriver = _rightHandTransform.GetComponent<TrackedPoseDriver>();
             
         }
 
@@ -94,7 +90,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
 
         /// <summary>
-        /// Enables input and the tracked pose drivers.
+        /// Enables input and the tracked pose driver of the head.
         /// </summary>
         /// <param name="state"></param>
         private void SetInputActive(bool state)
@@ -102,8 +98,6 @@ namespace Rhinox.XR.UnityXR.Simulator
             _deviceSimulator.enabled = state;
             _deviceSimulatorControls.enabled = state;
             _headTrackedPoseDriver.enabled = state;
-            _leftHandTrackedPoseDriver.enabled = state;
-            _rightHandTrackedPoseDriver.enabled = state;
         }
 
         /// <summary>
