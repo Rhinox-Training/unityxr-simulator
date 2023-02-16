@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Rhinox.XR.UnityXR.Simulator
 {
@@ -19,22 +21,19 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         [Header("Recording parameters")]
         [SerializeField] private int _desiredFPS = 30;
-
+        [SerializeField] private List<InputActionReference> _inputToRecord = new List<InputActionReference>();
+        
         [Header("Output parameters")]
         [SerializeField] private string FilePath = "/SimulationRecordings/";
         [SerializeField] private string RecordingName = "NewRecording";
-        
+
         private float _frameInterval;
         private float _intervalTimer;
-        
-        public bool RecordHMDTransform = false;
-        public bool RecordLeftHandTransform = false;
-        public bool RecordRightHandTransform = false;
 
-        private bool _isRecording = false;
+        private bool _isRecording;
 
-        private SimulationRecording _currentRecording = null;
-        
+        private SimulationRecording _currentRecording ;
+        private List<FrameInput> _currentFrameInput = new List<FrameInput>();
         
         /// <summary>
         /// See <see cref="MonoBehaviour"/>
@@ -44,6 +43,49 @@ namespace Rhinox.XR.UnityXR.Simulator
             _frameInterval = 1 / (float)_desiredFPS;
         }
 
+        private void OnEnable()
+        {
+            SubscribeControllerActions();
+        }
+
+        private void OnDisable()
+        {
+            UnSubscribeControllerActions();
+        }
+
+        private void SubscribeControllerActions()
+        {
+            foreach (var actionReference in _inputToRecord)
+            {
+                SimulatorUtils.Subscribe(actionReference,RecordInputAction);
+            }
+        }
+        private void UnSubscribeControllerActions()
+        {
+            foreach (var actionReference in _inputToRecord)
+            {
+                SimulatorUtils.Unsubscribe(actionReference, RecordInputAction);
+            }
+        }
+        
+        private void RecordInputAction(InputAction.CallbackContext ctx)
+        {
+            if (!_isRecording)
+                return;
+            
+            if (ctx.performed)
+            {   
+                Debug.Log($"Performed: {ctx.action.name} with {ctx.action.actionMap.name}, asset = {ctx.action.actionMap.asset}");
+                var inputFrame = new FrameInput()
+                {
+                    InputActionName = ctx.action.name,
+                    InputAssetName = ctx.action.actionMap.name,
+                    InputMapName = ctx.action.actionMap.asset.name
+                };
+                _currentFrameInput.Add(inputFrame);
+            }
+        }
+        
         /// <summary>
         /// See <see cref="MonoBehaviour"/>
         /// </summary>
@@ -56,24 +98,17 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (_intervalTimer >= _frameInterval)
             {
                 _intervalTimer = 0;
-                var newFrame = new FrameData();
-
-                if (RecordHMDTransform)
+                var newFrame = new FrameData
                 {
-                    newFrame.HeadPosition = _hmdTransform.position;
-                    newFrame.HeadRotation = _hmdTransform.rotation;
-                }
-                if (RecordLeftHandTransform)
-                {
-                    newFrame.LeftHandPosition = _leftHandTransform.position;
-                    newFrame.LeftHandRotation = _leftHandTransform.rotation;
-                }
-                if (RecordRightHandTransform)
-                {
-                    newFrame.RightHandPosition = _rightHandTransform.position;
-                    newFrame.RightHandRotation = _rightHandTransform.rotation;
-                }
-                
+                    HeadPosition = _hmdTransform.position,
+                    HeadRotation = _hmdTransform.rotation,
+                    LeftHandPosition = _leftHandTransform.position,
+                    LeftHandRotation = _leftHandTransform.rotation,
+                    RightHandPosition = _rightHandTransform.position,
+                    RightHandRotation = _rightHandTransform.rotation,
+                    FrameInputs = new List<FrameInput>(_currentFrameInput)
+                };
+                Debug.Log("Frame Added");
                 _currentRecording.AddFrame(newFrame);
             }
         }
