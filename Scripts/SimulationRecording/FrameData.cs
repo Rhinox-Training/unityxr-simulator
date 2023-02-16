@@ -22,8 +22,7 @@ namespace Rhinox.XR.UnityXR.Simulator
     public struct FrameInput
     {
         public string InputActionName;
-        public string InputMapName;
-        public string InputAssetName;
-        
+        public bool IsRightControllerInput;
+
     }
 }
