@@ -773,6 +773,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             controllerState.WithButton(ControllerButton.Secondary2DAxisTouch, Secondary2DAxisTouchInput);
             controllerState.WithButton(ControllerButton.PrimaryTouch, PrimaryTouchInput);
             controllerState.WithButton(ControllerButton.SecondaryTouch, SecondaryTouchInput);
+            
         }
 
         /// <summary>

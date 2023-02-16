@@ -21,12 +21,24 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         [Header("Recording parameters")]
         [SerializeField] private int _desiredFPS = 30;
-        [SerializeField] private List<InputActionReference> _inputToRecord = new List<InputActionReference>();
         
         [Header("Output parameters")]
         [SerializeField] private string FilePath = "/SimulationRecordings/";
         [SerializeField] private string RecordingName = "NewRecording";
 
+        [Header("Input actions")] 
+        [SerializeField] private InputActionReference _leftGripInputActionReference;
+        [SerializeField] private InputActionReference _leftTriggerInputActionReference;
+        [SerializeField] private InputActionReference _leftPrimaryButtonInputActionReference;
+        [SerializeField] private InputActionReference _leftSecondaryButtonActionReference;
+        [SerializeField] private InputActionReference _leftMenuButtonInputActionReference;
+        [Space(10)]
+        [SerializeField] private InputActionReference _rightGripInputActionReference;
+        [SerializeField] private InputActionReference _rightTriggerInputActionReference;
+        [SerializeField] private InputActionReference _rightPrimaryButtonInputActionReference;
+        [SerializeField] private InputActionReference _rightSecondaryButtonActionReference;
+        [SerializeField] private InputActionReference _rightMenuButtonInputActionReference;
+        
         private float _frameInterval;
         private float _intervalTimer;
 
@@ -55,37 +67,27 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void SubscribeControllerActions()
         {
-            foreach (var actionReference in _inputToRecord)
-            {
-                SimulatorUtils.Subscribe(actionReference,RecordInputAction);
-            }
+            SimulatorUtils.Subscribe(_leftGripInputActionReference, OnGripPressed);
+            SimulatorUtils.Subscribe(_rightGripInputActionReference, OnGripPressed);
+            
+            SimulatorUtils.Subscribe(_leftTriggerInputActionReference, OnTriggerPressed);
+            SimulatorUtils.Subscribe(_rightTriggerInputActionReference, OnTriggerPressed);
+            
+            SimulatorUtils.Subscribe(_leftPrimaryButtonInputActionReference, OnPrimaryButtonPressed);
+            SimulatorUtils.Subscribe(_rightPrimaryButtonInputActionReference, OnPrimaryButtonPressed);
+            
+            SimulatorUtils.Subscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed);
+            SimulatorUtils.Subscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed);
+
+            SimulatorUtils.Subscribe(_leftMenuButtonInputActionReference, OnMenuButtonPressed);
+            SimulatorUtils.Subscribe(_rightMenuButtonInputActionReference, OnMenuButtonPressed);
         }
         private void UnSubscribeControllerActions()
         {
-            foreach (var actionReference in _inputToRecord)
-            {
-                SimulatorUtils.Unsubscribe(actionReference, RecordInputAction);
-            }
+            SimulatorUtils.Unsubscribe(_leftGripInputActionReference, OnGripPressed);
+            SimulatorUtils.Unsubscribe(_rightGripInputActionReference, OnGripPressed);
         }
-        
-        private void RecordInputAction(InputAction.CallbackContext ctx)
-        {
-            if (!_isRecording)
-                return;
-            
-            if (ctx.performed)
-            {   
-                Debug.Log($"Performed: {ctx.action.name} with {ctx.action.actionMap.name}, asset = {ctx.action.actionMap.asset}");
-                var inputFrame = new FrameInput()
-                {
-                    InputActionName = ctx.action.name,
-                    InputAssetName = ctx.action.actionMap.name,
-                    InputMapName = ctx.action.actionMap.asset.name
-                };
-                _currentFrameInput.Add(inputFrame);
-            }
-        }
-        
+
         /// <summary>
         /// See <see cref="MonoBehaviour"/>
         /// </summary>
@@ -108,7 +110,7 @@ namespace Rhinox.XR.UnityXR.Simulator
                     RightHandRotation = _rightHandTransform.rotation,
                     FrameInputs = new List<FrameInput>(_currentFrameInput)
                 };
-                Debug.Log("Frame Added");
+                _currentFrameInput.Clear();
                 _currentRecording.AddFrame(newFrame);
             }
         }
@@ -143,5 +145,175 @@ namespace Rhinox.XR.UnityXR.Simulator
             stream.Close();
         }
         
+        
+        
+        
+        
+        //-----------------------
+        // INPUT EVENTS
+        //-----------------------
+        private void OnGripPressed(InputAction.CallbackContext ctx)
+        {
+            if(!_isRecording)
+                return;
+
+            if (!ctx.performed)
+                return;
+
+            var frameInput = new FrameInput();
+            frameInput.InputActionName = "grip";
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftGripInputActionReference.action)
+            {
+                //LEFT
+                Debug.Log("Left grip used");
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if(ctx.action == _rightGripInputActionReference.action)
+            {
+                //RIGHT
+                Debug.Log("Right grip used");
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+            {
+                return;
+            }
+            _currentFrameInput.Add(frameInput);
+        }
+
+        private void OnTriggerPressed(InputAction.CallbackContext ctx)
+        {
+            if (!_isRecording)
+                return;
+
+            if (!ctx.performed)
+                return;
+
+            var frameInput = new FrameInput();
+            frameInput.InputActionName = "trigger";
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftTriggerInputActionReference.action)
+            {
+                //LEFT
+                Debug.Log("Left trigger used");
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightTriggerInputActionReference.action)
+            {
+                //RIGHT
+                Debug.Log("Right trigger used");
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+            {
+                return;
+            }
+
+            _currentFrameInput.Add(frameInput);
+        }
+
+        private void OnPrimaryButtonPressed(InputAction.CallbackContext ctx)
+        {
+            if (!_isRecording)
+                return;
+
+            if (!ctx.performed)
+                return;
+
+            var frameInput = new FrameInput();
+            frameInput.InputActionName = "primary button";
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftPrimaryButtonInputActionReference.action)
+            {
+                //LEFT
+                Debug.Log("Left primary button used");
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightPrimaryButtonInputActionReference.action)
+            {
+                //RIGHT
+                Debug.Log("Right primary button used");
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+            {
+                return;
+            }
+
+            _currentFrameInput.Add(frameInput);
+        }
+
+        private void OnSecondaryButtonPressed(InputAction.CallbackContext ctx)
+        {
+            if (!_isRecording)
+                return;
+
+            if (!ctx.performed)
+                return;
+
+            var frameInput = new FrameInput();
+            frameInput.InputActionName = "secondary button";
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftSecondaryButtonActionReference.action)
+            {
+                //LEFT
+                Debug.Log("Left secondary button used");
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightSecondaryButtonActionReference.action)
+            {
+                //RIGHT
+                Debug.Log("Right secondary button used");
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+            {
+                return;
+            }
+
+            _currentFrameInput.Add(frameInput);
+        }
+
+        private void OnMenuButtonPressed(InputAction.CallbackContext ctx)
+        {
+            if (!_isRecording)
+                return;
+
+            if (!ctx.performed)
+                return;
+
+            var frameInput = new FrameInput();
+            frameInput.InputActionName = "menu button";
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftMenuButtonInputActionReference.action)
+            {
+                //LEFT
+                Debug.Log("Left primary menu used");
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightMenuButtonInputActionReference.action)
+            {
+                //RIGHT
+                Debug.Log("Right menu button used");
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+            {
+                return;
+            }
+
+            _currentFrameInput.Add(frameInput);
+        }
     }
 }

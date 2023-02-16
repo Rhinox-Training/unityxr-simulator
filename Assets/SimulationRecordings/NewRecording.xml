@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <SimulationRecording xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <FrameRate>10</FrameRate>
+  <FrameRate>5</FrameRate>
   <Frames>
     <FrameData>
       <FrameNumber>0</FrameNumber>
@@ -10,110 +10,49 @@
         <z>0</z>
       </HeadPosition>
       <HeadRotation>
-        <x>0.02058237</x>
-        <y>0.9742986</y>
-        <z>0.200881183</z>
-        <w>-0.09982704</w>
+        <x>0.09331012</x>
+        <y>0.9043742</y>
+        <z>-0.258471131</z>
+        <w>0.3264862</w>
         <eulerAngles>
-          <x>336.699982</x>
-          <y>191.700272</y>
+          <x>31.8999882</x>
+          <y>140.300034</y>
           <z>0</z>
         </eulerAngles>
       </HeadRotation>
       <LeftHandPosition>
-        <x>0.117662705</x>
-        <y>1.32255375</y>
-        <z>-0.3194385</z>
+        <x>0.223433912</x>
+        <y>1.1019845</y>
+        <z>0.0126670413</z>
       </LeftHandPosition>
       <LeftHandRotation>
-        <x>0.0205825418</x>
-        <y>0.974298537</y>
-        <z>0.200881138</z>
-        <w>-0.0998276</w>
+        <x>0.09331011</x>
+        <y>0.904373944</y>
+        <z>-0.258471459</z>
+        <w>0.3264866</w>
         <eulerAngles>
-          <x>336.699982</x>
-          <y>191.700333</y>
-          <z>7.436678E-06</z>
+          <x>31.9000225</x>
+          <y>140.299988</y>
+          <z>-3.117535E-05</z>
         </eulerAngles>
       </LeftHandRotation>
       <RightHandPosition>
-        <x>-0.234857231</x>
-        <y>1.32255781</y>
-        <z>-0.246436477</z>
+        <x>-0.05355061</x>
+        <y>1.101985</y>
+        <z>-0.217290148</z>
       </RightHandPosition>
       <RightHandRotation>
-        <x>0.0205825418</x>
-        <y>0.974298537</y>
-        <z>0.200881138</z>
-        <w>-0.0998276</w>
+        <x>0.09331011</x>
+        <y>0.904373944</y>
+        <z>-0.258471459</z>
+        <w>0.3264866</w>
         <eulerAngles>
-          <x>336.699982</x>
-          <y>191.700333</y>
-          <z>7.436678E-06</z>
+          <x>31.9000225</x>
+          <y>140.299988</y>
+          <z>-3.117535E-05</z>
         </eulerAngles>
       </RightHandRotation>
-      <FrameInputs>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-      </FrameInputs>
+      <FrameInputs />
     </FrameData>
     <FrameData>
       <FrameNumber>1</FrameNumber>
@@ -123,125 +62,49 @@
         <z>0</z>
       </HeadPosition>
       <HeadRotation>
-        <x>0.0204952452</x>
-        <y>0.974473536</y>
-        <z>0.200030863</z>
-        <w>-0.09984496</w>
+        <x>0.09331012</x>
+        <y>0.9043742</y>
+        <z>-0.258471131</z>
+        <w>0.3264862</w>
         <eulerAngles>
-          <x>336.8</x>
-          <y>191.700272</y>
+          <x>31.8999882</x>
+          <y>140.300034</y>
           <z>0</z>
         </eulerAngles>
       </HeadRotation>
       <LeftHandPosition>
-        <x>0.117676504</x>
-        <y>1.3220495</y>
-        <z>-0.319371432</z>
+        <x>0.223433912</x>
+        <y>1.1019845</y>
+        <z>0.0126670413</z>
       </LeftHandPosition>
       <LeftHandRotation>
-        <x>0.0204954315</x>
-        <y>0.9744735</y>
-        <z>0.200030819</z>
-        <w>-0.09984552</w>
+        <x>0.09331011</x>
+        <y>0.904373944</y>
+        <z>-0.258471459</z>
+        <w>0.3264866</w>
         <eulerAngles>
-          <x>336.8</x>
-          <y>191.700333</y>
-          <z>9.056657E-06</z>
+          <x>31.9000225</x>
+          <y>140.299988</y>
+          <z>-3.117535E-05</z>
         </eulerAngles>
       </LeftHandRotation>
       <RightHandPosition>
-        <x>-0.234728128</x>
-        <y>1.32211316</y>
-        <z>-0.246368378</z>
+        <x>-0.05355061</x>
+        <y>1.101985</y>
+        <z>-0.217290148</z>
       </RightHandPosition>
       <RightHandRotation>
-        <x>0.0204954315</x>
-        <y>0.9744735</y>
-        <z>0.200030819</z>
-        <w>-0.09984552</w>
+        <x>0.09331011</x>
+        <y>0.904373944</y>
+        <z>-0.258471459</z>
+        <w>0.3264866</w>
         <eulerAngles>
-          <x>336.8</x>
-          <y>191.700333</y>
-          <z>9.056657E-06</z>
+          <x>31.9000225</x>
+          <y>140.299988</y>
+          <z>-3.117535E-05</z>
         </eulerAngles>
       </RightHandRotation>
-      <FrameInputs>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-      </FrameInputs>
+      <FrameInputs />
     </FrameData>
     <FrameData>
       <FrameNumber>2</FrameNumber>
@@ -251,123 +114,52 @@
         <z>0</z>
       </HeadPosition>
       <HeadRotation>
-        <x>0.0015831769</x>
-        <y>0.998362</y>
-        <z>0.0348636732</z>
-        <w>-0.0453361161</w>
+        <x>0.09414869</x>
+        <y>0.9031658</y>
+        <z>-0.257273465</z>
+        <w>0.330511659</w>
         <eulerAngles>
-          <x>356</x>
-          <y>185.200089</y>
-          <z>1.33727882E-08</z>
+          <x>31.7999916</x>
+          <y>139.800018</y>
+          <z>-1.00456623E-06</z>
         </eulerAngles>
       </HeadRotation>
       <LeftHandPosition>
-        <x>0.15568386</x>
-        <y>1.22969294</y>
-        <z>-0.275320441</z>
+        <x>0.223582968</x>
+        <y>1.10221672</y>
+        <z>0.0146624353</z>
       </LeftHandPosition>
       <LeftHandRotation>
-        <x>0.00162302586</x>
-        <y>0.9983311</y>
-        <z>0.035735026</z>
-        <w>-0.0453359224</w>
+        <x>0.09437317</x>
+        <y>0.9028768</y>
+        <z>-0.257191539</z>
+        <w>0.33130008</w>
         <eulerAngles>
-          <x>355.899963</x>
-          <y>185.200226</y>
-          <z>2.72169873E-05</z>
+          <x>31.80003</x>
+          <y>139.699951</y>
+          <z>-3.11415679E-05</z>
         </eulerAngles>
       </LeftHandRotation>
       <RightHandPosition>
-        <x>-0.202719852</x>
-        <y>1.22975993</y>
-        <z>-0.242703527</z>
+        <x>-0.0509793945</x>
+        <y>1.10221744</y>
+        <z>-0.218184158</z>
       </RightHandPosition>
       <RightHandRotation>
-        <x>0.00162302586</x>
-        <y>0.9983311</y>
-        <z>0.035735026</z>
-        <w>-0.0453359224</w>
+        <x>0.09437317</x>
+        <y>0.9028768</y>
+        <z>-0.257191539</z>
+        <w>0.33130008</w>
         <eulerAngles>
-          <x>355.899963</x>
-          <y>185.200226</y>
-          <z>2.72169873E-05</z>
+          <x>31.80003</x>
+          <y>139.699951</y>
+          <z>-3.11415679E-05</z>
         </eulerAngles>
       </RightHandRotation>
       <FrameInputs>
         <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
+          <InputActionName>grip</InputActionName>
+          <IsRightControllerInput>true</IsRightControllerInput>
         </FrameInput>
       </FrameInputs>
     </FrameData>
@@ -379,140 +171,49 @@
         <z>0</z>
       </HeadPosition>
       <HeadRotation>
-        <x>0.00643448252</x>
-        <y>0.992575347</y>
-        <z>0.105199881</z>
-        <w>-0.0607102327</w>
+        <x>0.113147274</x>
+        <y>0.852778554</y>
+        <z>-0.207096636</z>
+        <w>0.46591568</w>
         <eulerAngles>
-          <x>347.9</x>
-          <y>187.0002</y>
-          <z>-5.45733059E-08</z>
+          <x>27.299984</x>
+          <y>122.70002</y>
+          <z>0</z>
         </eulerAngles>
       </HeadRotation>
       <LeftHandPosition>
-        <x>0.144515619</x>
-        <y>1.26717091</y>
-        <z>-0.296014339</z>
+        <x>0.226054057</x>
+        <y>1.11375272</y>
+        <z>0.0703672841</z>
       </LeftHandPosition>
       <LeftHandRotation>
-        <x>0.00652644876</x>
-        <y>0.992521942</y>
-        <z>0.105194174</z>
-        <w>-0.06157745</w>
+        <x>0.113639995</x>
+        <y>0.8509173</y>
+        <z>-0.205858633</z>
+        <w>0.469731748</w>
         <eulerAngles>
-          <x>347.9</x>
-          <y>187.100311</y>
-          <z>6.385076E-06</z>
+          <x>27.2</x>
+          <y>122.199982</y>
+          <z>-1.24790349E-05</z>
         </eulerAngles>
       </LeftHandRotation>
       <RightHandPosition>
-        <x>-0.212607831</x>
-        <y>1.26723731</y>
-        <z>-0.2515226</z>
+        <x>0.034217272</x>
+        <y>1.11375344</y>
+        <z>-0.234265134</z>
       </RightHandPosition>
       <RightHandRotation>
-        <x>0.00652644876</x>
-        <y>0.992521942</y>
-        <z>0.105194174</z>
-        <w>-0.06157745</w>
+        <x>0.113639995</x>
+        <y>0.8509173</y>
+        <z>-0.205858633</z>
+        <w>0.469731748</w>
         <eulerAngles>
-          <x>347.9</x>
-          <y>187.100311</y>
-          <z>6.385076E-06</z>
+          <x>27.2</x>
+          <y>122.199982</y>
+          <z>-1.24790349E-05</z>
         </eulerAngles>
       </RightHandRotation>
-      <FrameInputs>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-      </FrameInputs>
+      <FrameInputs />
     </FrameData>
     <FrameData>
       <FrameNumber>4</FrameNumber>
@@ -522,140 +223,49 @@
         <z>0</z>
       </HeadPosition>
       <HeadRotation>
-        <x>0.0123769371</x>
-        <y>0.987525642</y>
-        <z>0.117755532</z>
-        <w>-0.103795908</w>
+        <x>0.108994745</x>
+        <y>0.6329811</y>
+        <z>-0.0906500146</z>
+        <w>0.7610767</w>
         <eulerAngles>
-          <x>346.399963</x>
-          <y>192.00032</y>
+          <x>16.29997</x>
+          <y>79.50003</y>
           <z>0</z>
         </eulerAngles>
       </HeadRotation>
       <LeftHandPosition>
-        <x>0.115537964</x>
-        <y>1.27394187</y>
-        <z>-0.3104662</z>
+        <x>0.158332437</x>
+        <y>1.1483407</y>
+        <z>0.21661149</z>
       </LeftHandPosition>
       <LeftHandRotation>
-        <x>0.0127965221</x>
-        <y>0.98716563</y>
-        <z>0.116839528</z>
-        <w>-0.108114913</w>
+        <x>0.107928082</x>
+        <y>0.6252085</y>
+        <z>-0.08786734</z>
+        <w>0.767948747</w>
         <eulerAngles>
-          <x>346.4999</x>
-          <y>192.5003</y>
-          <z>2.26093762E-05</z>
+          <x>15.9999962</x>
+          <y>78.2999954</y>
+          <z>-7.105442E-06</z>
         </eulerAngles>
       </LeftHandRotation>
       <RightHandPosition>
-        <x>-0.235816047</x>
-        <y>1.27400815</y>
-        <z>-0.232561052</z>
+        <x>0.231336758</x>
+        <y>1.14834154</y>
+        <z>-0.135911793</z>
       </RightHandPosition>
       <RightHandRotation>
-        <x>0.0127965221</x>
-        <y>0.98716563</y>
-        <z>0.116839528</z>
-        <w>-0.108114913</w>
+        <x>0.107928082</x>
+        <y>0.6252085</y>
+        <z>-0.08786734</z>
+        <w>0.767948747</w>
         <eulerAngles>
-          <x>346.4999</x>
-          <y>192.5003</y>
-          <z>2.26093762E-05</z>
+          <x>15.9999962</x>
+          <y>78.2999954</y>
+          <z>-7.105442E-06</z>
         </eulerAngles>
       </RightHandRotation>
-      <FrameInputs>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-      </FrameInputs>
+      <FrameInputs />
     </FrameData>
     <FrameData>
       <FrameNumber>5</FrameNumber>
@@ -665,155 +275,49 @@
         <z>0</z>
       </HeadPosition>
       <HeadRotation>
-        <x>0.0461490229</x>
-        <y>0.912172735</y>
-        <z>0.107155889</z>
-        <w>-0.392847121</w>
+        <x>0.0973508358</x>
+        <y>0.484062225</y>
+        <z>-0.05429613</z>
+        <w>0.867904663</w>
         <eulerAngles>
-          <x>346.599976</x>
-          <y>226.600372</y>
-          <z>0</z>
+          <x>12.7999649</x>
+          <y>58.3000145</y>
+          <z>-4.377655E-07</z>
         </eulerAngles>
       </HeadRotation>
       <LeftHandPosition>
-        <x>-0.07827289</x>
-        <y>1.27345586</y>
-        <z>-0.3217545</z>
+        <x>0.08455524</x>
+        <y>1.15977979</y>
+        <z>0.2637889</z>
       </LeftHandPosition>
       <LeftHandRotation>
-        <x>0.046149563</x>
-        <y>0.912172735</y>
-        <z>0.107156262</z>
-        <w>-0.392846942</w>
+        <x>0.09735106</x>
+        <y>0.484062</y>
+        <z>-0.0542962626</z>
+        <w>0.8679048</w>
         <eulerAngles>
-          <x>346.5999</x>
-          <y>226.600342</y>
-          <z>4.25668841E-05</z>
+          <x>12.7999945</x>
+          <y>58.2999878</y>
+          <z>-4.815421E-06</z>
         </eulerAngles>
       </LeftHandRotation>
       <RightHandPosition>
-        <x>-0.325541317</x>
-        <y>1.27352309</y>
-        <z>-0.0602614768</z>
+        <x>0.27372697</x>
+        <y>1.15978074</y>
+        <z>-0.0425057</z>
       </RightHandPosition>
       <RightHandRotation>
-        <x>0.046149563</x>
-        <y>0.912172735</y>
-        <z>0.107156262</z>
-        <w>-0.392846942</w>
+        <x>0.09735106</x>
+        <y>0.484062</y>
+        <z>-0.0542962626</z>
+        <w>0.8679048</w>
         <eulerAngles>
-          <x>346.5999</x>
-          <y>226.600342</y>
-          <z>4.25668841E-05</z>
+          <x>12.7999945</x>
+          <y>58.2999878</y>
+          <z>-4.815421E-06</z>
         </eulerAngles>
       </RightHandRotation>
-      <FrameInputs>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-      </FrameInputs>
+      <FrameInputs />
     </FrameData>
     <FrameData>
       <FrameNumber>6</FrameNumber>
@@ -823,156 +327,2955 @@
         <z>0</z>
       </HeadPosition>
       <HeadRotation>
-        <x>0.1573497</x>
-        <y>0.4346622</y>
-        <z>0.07742528</z>
-        <w>-0.883354545</w>
+        <x>0.0973508358</x>
+        <y>0.484062225</y>
+        <z>-0.05429613</z>
+        <w>0.867904663</w>
         <eulerAngles>
-          <x>339.799957</x>
-          <y>307.60022</y>
-          <z>-9.09728442E-07</z>
+          <x>12.7999649</x>
+          <y>58.3000145</y>
+          <z>-4.377655E-07</z>
         </eulerAngles>
       </HeadRotation>
       <LeftHandPosition>
-        <x>-0.336196184</x>
-        <y>1.30698431</y>
-        <z>0.0374231748</z>
+        <x>0.08455532</x>
+        <y>1.15977979</y>
+        <z>0.2637889</z>
       </LeftHandPosition>
       <LeftHandRotation>
-        <x>0.15795356</x>
-        <y>0.427711</y>
-        <z>0.0761869848</z>
-        <w>-0.886741042</w>
+        <x>0.09735106</x>
+        <y>0.484062</y>
+        <z>-0.0542962626</z>
+        <w>0.8679048</w>
         <eulerAngles>
-          <x>339.7999</x>
-          <y>308.5002</y>
-          <z>4.275725E-05</z>
+          <x>12.7999945</x>
+          <y>58.2999878</y>
+          <z>-4.815421E-06</z>
         </eulerAngles>
       </LeftHandRotation>
       <RightHandPosition>
-        <x>-0.112146765</x>
-        <y>1.30705035</y>
-        <z>0.319065541</z>
+        <x>0.27372697</x>
+        <y>1.15978074</y>
+        <z>-0.0425057</z>
       </RightHandPosition>
       <RightHandRotation>
-        <x>0.15795356</x>
-        <y>0.427711</y>
-        <z>0.0761869848</z>
-        <w>-0.886741042</w>
+        <x>0.09735106</x>
+        <y>0.484062</y>
+        <z>-0.0542962626</z>
+        <w>0.8679048</w>
         <eulerAngles>
-          <x>339.7999</x>
-          <y>308.5002</y>
-          <z>4.275725E-05</z>
+          <x>12.7999945</x>
+          <y>58.2999878</y>
+          <z>-4.815421E-06</z>
         </eulerAngles>
       </RightHandRotation>
       <FrameInputs>
         <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Activate Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Select Value</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip</InputActionName>
-          <InputMapName>XRI Default Input Actions</InputMapName>
-          <InputAssetName>XRI RightHand Interaction</InputAssetName>
+          <InputActionName>trigger</InputActionName>
+          <IsRightControllerInput>true</IsRightControllerInput>
         </FrameInput>
       </FrameInputs>
     </FrameData>
+    <FrameData>
+      <FrameNumber>7</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.0511434227</x>
+        <y>0.111321293</y>
+        <z>-0.00573665742</z>
+        <w>0.9924511</w>
+        <eulerAngles>
+          <x>5.899964</x>
+          <y>12.8000088</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.123852529</x>
+        <y>1.1865356</y>
+        <z>0.267338961</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.0511436537</x>
+        <y>0.111321047</y>
+        <z>-0.005736686</z>
+        <w>0.9924511</w>
+        <eulerAngles>
+          <x>5.89999151</x>
+          <y>12.79998</y>
+          <z>-1.71664055E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.227204621</x>
+        <y>1.18653655</y>
+        <z>0.187580943</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.0511436537</x>
+        <y>0.111321047</y>
+        <z>-0.005736686</z>
+        <w>0.9924511</w>
+        <eulerAngles>
+          <x>5.89999151</x>
+          <y>12.79998</y>
+          <z>-1.71664055E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>8</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.0389953628</x>
+        <y>0.115714781</y>
+        <z>-0.004546409</z>
+        <w>0.9925063</w>
+        <eulerAngles>
+          <x>4.49996328</x>
+          <y>13.3000088</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.118433706</x>
+        <y>1.19645679</y>
+        <z>0.2759622</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.0303236023</x>
+        <y>0.118348576</y>
+        <z>-0.00361591764</z>
+        <w>0.992502451</w>
+        <eulerAngles>
+          <x>3.4999907</x>
+          <y>13.59998</y>
+          <z>-5.96085238E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.231475621</x>
+        <y>1.19645774</y>
+        <z>0.191310376</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.0303236023</x>
+        <y>0.118348576</y>
+        <z>-0.00361591764</z>
+        <w>0.992502451</w>
+        <eulerAngles>
+          <x>3.4999907</x>
+          <y>13.59998</y>
+          <z>-5.96085238E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>9</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00348921376</x>
+        <y>0.0253044851</y>
+        <z>-8.83215762E-05</z>
+        <w>0.9996737</w>
+        <eulerAngles>
+          <x>0.399963349</x>
+          <y>2.90000772</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.16716443</x>
+        <y>1.21013188</y>
+        <z>0.2579991</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261705113</x>
+        <y>0.0253042635</y>
+        <z>-6.628248E-05</z>
+        <w>0.9996764</w>
+        <eulerAngles>
+          <x>0.2999885</x>
+          <y>2.89997435</y>
+          <z>-4.409834E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.192377836</x>
+        <y>1.210133</y>
+        <z>0.239785492</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261705113</x>
+        <y>0.0253042635</y>
+        <z>-6.628248E-05</z>
+        <w>0.9996764</w>
+        <eulerAngles>
+          <x>0.2999885</x>
+          <y>2.89997435</y>
+          <z>-4.409834E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>10</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.1676139</x>
+        <y>1.21013188</y>
+        <z>0.257706881</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261711935</x>
+        <y>0.0244318731</y>
+        <z>-6.399894E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.29998982</x>
+          <y>2.79997444</y>
+          <z>-4.41066777E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261711935</x>
+        <y>0.0244318731</y>
+        <z>-6.399894E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.29998982</x>
+          <y>2.79997444</y>
+          <z>-4.41066777E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs>
+        <FrameInput>
+          <InputActionName>menu button</InputActionName>
+          <IsRightControllerInput>true</IsRightControllerInput>
+        </FrameInput>
+      </FrameInputs>
+    </FrameData>
+    <FrameData>
+      <FrameNumber>11</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167613029</x>
+        <y>1.21013188</y>
+        <z>0.257706821</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261713285</x>
+        <y>0.0244318731</y>
+        <z>-6.3999265E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299991369</x>
+          <y>2.79997444</y>
+          <z>-4.41066777E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261713285</x>
+        <y>0.0244318731</y>
+        <z>-6.3999265E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299991369</x>
+          <y>2.79997444</y>
+          <z>-4.41066777E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>12</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.002617147</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299992979</x>
+          <y>2.79997444</y>
+          <z>-4.403164E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.002617147</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299992979</x>
+          <y>2.79997444</y>
+          <z>-4.403164E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>13</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>14</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>15</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>16</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>17</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>18</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs>
+        <FrameInput>
+          <InputActionName>primary button</InputActionName>
+          <IsRightControllerInput>true</IsRightControllerInput>
+        </FrameInput>
+      </FrameInputs>
+    </FrameData>
+    <FrameData>
+      <FrameNumber>19</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>20</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>21</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs>
+        <FrameInput>
+          <InputActionName>secondary button</InputActionName>
+          <IsRightControllerInput>true</IsRightControllerInput>
+        </FrameInput>
+      </FrameInputs>
+    </FrameData>
+    <FrameData>
+      <FrameNumber>22</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>23</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>24</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>25</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>26</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>27</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>28</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs>
+        <FrameInput>
+          <InputActionName>grip</InputActionName>
+          <IsRightControllerInput>false</IsRightControllerInput>
+        </FrameInput>
+      </FrameInputs>
+    </FrameData>
+    <FrameData>
+      <FrameNumber>29</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>30</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>31</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs>
+        <FrameInput>
+          <InputActionName>trigger</InputActionName>
+          <IsRightControllerInput>false</IsRightControllerInput>
+        </FrameInput>
+      </FrameInputs>
+    </FrameData>
+    <FrameData>
+      <FrameNumber>32</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>33</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>34</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>35</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>36</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs>
+        <FrameInput>
+          <InputActionName>menu button</InputActionName>
+          <IsRightControllerInput>false</IsRightControllerInput>
+        </FrameInput>
+      </FrameInputs>
+    </FrameData>
+    <FrameData>
+      <FrameNumber>37</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>38</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>39</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs>
+        <FrameInput>
+          <InputActionName>primary button</InputActionName>
+          <IsRightControllerInput>false</IsRightControllerInput>
+        </FrameInput>
+      </FrameInputs>
+    </FrameData>
+    <FrameData>
+      <FrameNumber>40</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>41</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>42</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs>
+        <FrameInput>
+          <InputActionName>secondary button</InputActionName>
+          <IsRightControllerInput>false</IsRightControllerInput>
+        </FrameInput>
+      </FrameInputs>
+    </FrameData>
+    <FrameData>
+      <FrameNumber>43</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>44</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>45</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>46</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00261688931</x>
+        <y>0.0244321637</y>
+        <z>-6.395558E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.299963325</x>
+          <y>2.80000758</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.167612612</x>
+        <y>1.21013188</y>
+        <z>0.2577068</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.1919592</x>
+        <y>1.210133</y>
+        <z>0.240120888</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00261714915</x>
+        <y>0.0244318731</y>
+        <z>-6.3999556E-05</z>
+        <w>0.9996981</w>
+        <eulerAngles>
+          <x>0.2999932</x>
+          <y>2.79997444</y>
+          <z>-4.39732776E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>47</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.00432516448</x>
+        <y>0.131390169</y>
+        <z>-0.0005732593</z>
+        <w>0.991321146</w>
+        <eulerAngles>
+          <x>0.499963343</x>
+          <y>15.10001</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.107499532</x>
+        <y>1.20926285</y>
+        <z>0.28755337</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.00432390068</x>
+        <y>0.133984655</y>
+        <z>-0.0005846527</z>
+        <w>0.99097383</w>
+        <eulerAngles>
+          <x>0.499993026</x>
+          <y>15.39997</y>
+          <z>-4.489152E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.239576325</x>
+        <y>1.2092638</y>
+        <z>0.191952735</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.00432390068</x>
+        <y>0.133984655</y>
+        <z>-0.0005846527</z>
+        <w>0.99097383</w>
+        <eulerAngles>
+          <x>0.499993026</x>
+          <y>15.39997</y>
+          <z>-4.489152E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>48</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>-3.04272078E-07</x>
+        <y>0.3098469</y>
+        <z>9.915766E-08</z>
+        <w>0.9507865</w>
+        <eulerAngles>
+          <x>-3.667176E-05</x>
+          <y>36.10001</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.00362787582</x>
+        <y>1.2118752</y>
+        <z>0.308250427</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>-0.000829076045</x>
+        <y>0.312334567</y>
+        <z>0.000272550125</z>
+        <w>0.9499718</w>
+        <eulerAngles>
+          <x>359.9</x>
+          <y>36.39997</y>
+          <z>-3.91869344E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.293391</x>
+        <y>1.21187615</y>
+        <z>0.09461853</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>-0.000829076045</x>
+        <y>0.312334567</y>
+        <z>0.000272550125</z>
+        <w>0.9499718</w>
+        <eulerAngles>
+          <x>359.9</x>
+          <y>36.39997</y>
+          <z>-3.91869344E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>49</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>-0.03464939</x>
+        <y>0.58513</y>
+        <z>0.02503593</z>
+        <w>0.809812</w>
+        <eulerAngles>
+          <x>355.099976</x>
+          <y>71.70001</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.19717209</x>
+        <y>1.2337985</y>
+        <z>0.24946335</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>-0.0351090245</x>
+        <y>0.592854</y>
+        <z>0.0258845985</z>
+        <w>0.8041278</w>
+        <eulerAngles>
+          <x>355</x>
+          <y>72.79999</y>
+          <z>-2.14258733E-07</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.303627282</x>
+        <y>1.23379934</y>
+        <z>-0.09443877</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>-0.0351090245</x>
+        <y>0.592854</y>
+        <z>0.0258845985</z>
+        <w>0.8041278</w>
+        <eulerAngles>
+          <x>355</x>
+          <y>72.79999</y>
+          <z>-2.14258733E-07</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>50</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>-0.0276411865</x>
+        <y>0.862969</y>
+        <z>0.0474923141</z>
+        <w>0.50225997</w>
+        <eulerAngles>
+          <x>353.699951</x>
+          <y>119.6</y>
+          <z>2.1474024E-07</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.319284022</x>
+        <y>1.239778</y>
+        <z>0.02564014</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>-0.0276410859</x>
+        <y>0.8629688</y>
+        <z>0.04749211</z>
+        <w>0.502260268</w>
+        <eulerAngles>
+          <x>353.699982</x>
+          <y>119.59996</y>
+          <z>4.2948048E-07</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.141463563</x>
+        <y>1.23977888</y>
+        <z>-0.287379622</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>-0.0276410859</x>
+        <y>0.8629688</y>
+        <z>0.04749211</z>
+        <w>0.502260268</w>
+        <eulerAngles>
+          <x>353.699982</x>
+          <y>119.59996</y>
+          <z>4.2948048E-07</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>51</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>-0.00928293448</x>
+        <y>0.886428952</y>
+        <z>0.01779442</z>
+        <w>0.462429374</w>
+        <eulerAngles>
+          <x>357.699951</x>
+          <y>124.899994</y>
+          <z>1.06807747E-07</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.312797874</x>
+        <y>1.22159231</y>
+        <z>0.001262902</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>-0.009282853</x>
+        <y>0.8864288</y>
+        <z>0.0177942049</z>
+        <w>0.4624297</w>
+        <eulerAngles>
+          <x>357.699982</x>
+          <y>124.899956</y>
+          <z>-2.24296286E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.106822863</x>
+        <y>1.22159314</y>
+        <z>-0.2939935</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>-0.009282853</x>
+        <y>0.8864288</y>
+        <z>0.0177942049</z>
+        <w>0.4624297</w>
+        <eulerAngles>
+          <x>357.699982</x>
+          <y>124.899956</y>
+          <z>-2.24296286E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>52</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>-0.008997994</x>
+        <y>0.8831942</y>
+        <z>0.0169584565</z>
+        <w>0.46861437</w>
+        <eulerAngles>
+          <x>357.799957</x>
+          <y>124.100014</y>
+          <z>1.06800435E-07</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.312547147</x>
+        <y>1.22114658</y>
+        <z>0.0057670353</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>-0.008997845</x>
+        <y>0.883194</y>
+        <z>0.0169582441</z>
+        <w>0.468614727</w>
+        <eulerAngles>
+          <x>357.8</x>
+          <y>124.09996</y>
+          <z>4.59241846E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.110714182</x>
+        <y>1.22114742</y>
+        <z>-0.2923366</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>-0.008997845</x>
+        <y>0.883194</y>
+        <z>0.0169582441</z>
+        <w>0.468614727</w>
+        <eulerAngles>
+          <x>357.8</x>
+          <y>124.09996</y>
+          <z>4.59241846E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>53</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>-0.0314258523</x>
+        <y>0.7826899</y>
+        <z>0.0396495722</z>
+        <w>0.620352149</w>
+        <eulerAngles>
+          <x>354.199982</x>
+          <y>103.200027</y>
+          <z>-2.14541728E-07</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.2948911</x>
+        <y>1.23839307</y>
+        <z>0.123693056</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>-0.0331132</x>
+        <y>0.7733313</y>
+        <z>0.04052862</z>
+        <w>0.631838262</w>
+        <eulerAngles>
+          <x>354</x>
+          <y>101.499992</y>
+          <z>6.867812E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.223116487</x>
+        <y>1.2383939</y>
+        <z>-0.229082972</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>-0.0331132</x>
+        <y>0.7733313</y>
+        <z>0.04052862</z>
+        <w>0.631838262</w>
+        <eulerAngles>
+          <x>354</x>
+          <y>101.499992</y>
+          <z>6.867812E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>54</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>-0.0457943752</x>
+        <y>0.693249643</y>
+        <z>0.0442231521</z>
+        <w>0.717880368</w>
+        <eulerAngles>
+          <x>352.699982</x>
+          <y>88.00005</y>
+          <z>-4.30375252E-07</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.260259241</x>
+        <y>1.244421</y>
+        <z>0.189665869</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>-0.0458327159</x>
+        <y>0.692622662</y>
+        <z>0.04418301</z>
+        <w>0.7184853</w>
+        <eulerAngles>
+          <x>352.7</x>
+          <y>87.90002</y>
+          <z>7.316379E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.273449421</x>
+        <y>1.24442208</y>
+        <z>-0.170096114</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>-0.0458327159</x>
+        <y>0.692622662</y>
+        <z>0.04418301</z>
+        <w>0.7184853</w>
+        <eulerAngles>
+          <x>352.7</x>
+          <y>87.90002</y>
+          <z>7.316379E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>55</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>-0.0170835126</x>
+        <y>0.657863557</y>
+        <z>0.0149291847</z>
+        <w>0.7527953</w>
+        <eulerAngles>
+          <x>357.399963</x>
+          <y>82.30005</y>
+          <z>-1.06831692E-07</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.230116352</x>
+        <y>1.2229346</y>
+        <z>0.212752387</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>-0.0170832835</x>
+        <y>0.6578633</y>
+        <z>0.0149290217</z>
+        <w>0.7527955</w>
+        <eulerAngles>
+          <x>357.4</x>
+          <y>82.30002</y>
+          <z>3.95277129E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.278350949</x>
+        <y>1.22293556</y>
+        <z>-0.144005358</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>-0.0170832835</x>
+        <y>0.6578633</y>
+        <z>0.0149290217</z>
+        <w>0.7527955</w>
+        <eulerAngles>
+          <x>357.4</x>
+          <y>82.30002</y>
+          <z>3.95277129E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>56</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>-0.0383385047</x>
+        <y>0.6797883</y>
+        <z>0.0356263742</z>
+        <w>0.731538653</w>
+        <eulerAngles>
+          <x>353.999969</x>
+          <y>85.80005</y>
+          <z>4.29238241E-07</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.2522257</x>
+        <y>1.239317</y>
+        <z>0.19715108</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>-0.0394862667</x>
+        <y>0.682274</y>
+        <z>0.0369506739</z>
+        <w>0.7290938</w>
+        <eulerAngles>
+          <x>353.8</x>
+          <y>86.2000046</y>
+          <z>6.44097554E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>0.276084334</x>
+        <y>1.23931754</y>
+        <z>-0.16206117</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>-0.0394862667</x>
+        <y>0.682274</y>
+        <z>0.0369506739</z>
+        <w>0.7290938</w>
+        <eulerAngles>
+          <x>353.8</x>
+          <y>86.2000046</y>
+          <z>6.44097554E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>57</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>-0.023271298</x>
+        <y>0.9702015</y>
+        <z>0.10368488</z>
+        <w>0.217754483</w>
+        <eulerAngles>
+          <x>347.799957</x>
+          <y>154.700043</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.273037672</x>
+        <y>1.26862276</y>
+        <z>-0.1850291</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>-0.0213467944</x>
+        <y>0.974537551</y>
+        <z>0.10586872</z>
+        <w>0.196501419</w>
+        <eulerAngles>
+          <x>347.6</x>
+          <y>157.199982</y>
+          <z>1.18012395E-05</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>-0.0588364452</x>
+        <y>1.26862323</y>
+        <z>-0.324535877</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>-0.0213467944</x>
+        <y>0.974537551</y>
+        <z>0.10586872</z>
+        <w>0.196501419</w>
+        <eulerAngles>
+          <x>347.6</x>
+          <y>157.199982</y>
+          <z>1.18012395E-05</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>58</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.0372855477</x>
+        <y>0.962495148</y>
+        <z>0.179257125</z>
+        <w>-0.200199351</w>
+        <eulerAngles>
+          <x>338.899963</x>
+          <y>203.500015</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>0.02959402</x>
+        <y>1.30899131</y>
+        <z>-0.337303549</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.041892413</x>
+        <y>0.956499457</y>
+        <z>0.173825473</z>
+        <w>-0.230517879</w>
+        <eulerAngles>
+          <x>339.4</x>
+          <y>207.09996</y>
+          <z>2.371443E-05</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>-0.290885776</x>
+        <y>1.30899167</y>
+        <z>-0.173305586</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.041892413</x>
+        <y>0.956499457</y>
+        <z>0.173825473</z>
+        <w>-0.230517879</w>
+        <eulerAngles>
+          <x>339.4</x>
+          <y>207.09996</y>
+          <z>2.371443E-05</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>59</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.0656919</x>
+        <y>0.899095356</y>
+        <z>0.144816771</z>
+        <w>-0.407848358</w>
+        <eulerAngles>
+          <x>341.699982</x>
+          <y>228.800064</y>
+          <z>4.49626526E-07</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.101942949</x>
+        <y>1.29603553</y>
+        <z>-0.320515662</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.06611216</x>
+        <y>0.8951495</y>
+        <z>0.141777739</z>
+        <w>-0.41741547</w>
+        <eulerAngles>
+          <x>342</x>
+          <y>230.000031</y>
+          <z>5.83511928E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>-0.333348572</x>
+        <y>1.29603589</y>
+        <z>-0.0447366759</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.06611216</x>
+        <y>0.8951495</y>
+        <z>0.141777739</z>
+        <w>-0.41741547</w>
+        <eulerAngles>
+          <x>342</x>
+          <y>230.000031</y>
+          <z>5.83511928E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>60</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.06714909</x>
+        <y>0.8822761</y>
+        <z>0.132644445</z>
+        <w>-0.4466379</w>
+        <eulerAngles>
+          <x>342.899963</x>
+          <y>233.700134</y>
+          <z>0</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.122103572</x>
+        <y>1.2915808</y>
+        <z>-0.3124271</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.06726472</x>
+        <y>0.8818862</y>
+        <z>0.132585585</z>
+        <w>-0.4474073</w>
+        <eulerAngles>
+          <x>342.9</x>
+          <y>233.8001</y>
+          <z>8.039357E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>-0.334723175</x>
+        <y>1.29158115</y>
+        <z>-0.02191813</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.06726472</x>
+        <y>0.8818862</y>
+        <z>0.132585585</z>
+        <w>-0.4474073</w>
+        <eulerAngles>
+          <x>342.9</x>
+          <y>233.8001</y>
+          <z>8.039357E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
+    <FrameData>
+      <FrameNumber>61</FrameNumber>
+      <HeadPosition>
+        <x>0</x>
+        <y>1.36144</y>
+        <z>0</z>
+      </HeadPosition>
+      <HeadRotation>
+        <x>0.0672648</x>
+        <y>0.881886</y>
+        <z>0.1325858</z>
+        <w>-0.4474076</w>
+        <eulerAngles>
+          <x>342.899963</x>
+          <y>233.80014</y>
+          <z>-4.46631049E-07</z>
+        </eulerAngles>
+      </HeadRotation>
+      <LeftHandPosition>
+        <x>-0.122103281</x>
+        <y>1.2915808</y>
+        <z>-0.312427163</z>
+      </LeftHandPosition>
+      <LeftHandRotation>
+        <x>0.06726472</x>
+        <y>0.8818862</y>
+        <z>0.132585585</z>
+        <w>-0.4474073</w>
+        <eulerAngles>
+          <x>342.9</x>
+          <y>233.8001</y>
+          <z>8.039357E-06</z>
+        </eulerAngles>
+      </LeftHandRotation>
+      <RightHandPosition>
+        <x>-0.334723175</x>
+        <y>1.29158115</y>
+        <z>-0.02191812</z>
+      </RightHandPosition>
+      <RightHandRotation>
+        <x>0.06726472</x>
+        <y>0.8818862</y>
+        <z>0.132585585</z>
+        <w>-0.4474073</w>
+        <eulerAngles>
+          <x>342.9</x>
+          <y>233.8001</y>
+          <z>8.039357E-06</z>
+        </eulerAngles>
+      </RightHandRotation>
+      <FrameInputs />
+    </FrameData>
   </Frames>
-  <RecordingLength>7</RecordingLength>
+  <RecordingLength>62</RecordingLength>
 </SimulationRecording>

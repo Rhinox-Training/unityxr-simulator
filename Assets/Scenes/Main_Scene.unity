@@ -638,24 +638,19 @@ MonoBehaviour:
   _hmdTransform: {fileID: 1950015283}
   _leftHandTransform: {fileID: 2014453122}
   _rightHandTransform: {fileID: 684185051}
-  _desiredFPS: 1
-  _inputToRecord:
-  - {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: -5952763304763810824, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: -136597607583354346, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: -2857637710643994626, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: 8919385125143020261, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _desiredFPS: 5
   FilePath: /SimulationRecordings/
   RecordingName: NewRecording
-  LeftController: {fileID: 2014453124}
-  RightController: {fileID: 684185052}
+  _leftGripInputActionReference: {fileID: -136597607583354346, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftTriggerInputActionReference: {fileID: -5952763304763810824, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftPrimaryButtonInputActionReference: {fileID: 6186978847385010408, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftSecondaryButtonActionReference: {fileID: 7399129515099858902, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftMenuButtonInputActionReference: {fileID: -6091187634073918400, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightGripInputActionReference: {fileID: -2857637710643994626, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightTriggerInputActionReference: {fileID: 8919385125143020261, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightPrimaryButtonInputActionReference: {fileID: 8825329060996655173, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightSecondaryButtonActionReference: {fileID: 7821812841033530177, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightMenuButtonInputActionReference: {fileID: -1359806654796310005, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!4 &769959906
 Transform:
   m_ObjectHideFlags: 0
