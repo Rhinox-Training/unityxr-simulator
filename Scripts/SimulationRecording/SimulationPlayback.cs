@@ -1,7 +1,9 @@
+using System;
 using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 
 namespace Rhinox.XR.UnityXR.Simulator
@@ -17,8 +19,9 @@ namespace Rhinox.XR.UnityXR.Simulator
         private string FilePath = "/SimulationRecordings/";
 
         [SerializeField] private string _recordingName = "NewRecording";
-        [SerializeField] private BetterXRDeviceSimulator _deviceSimulator;
-        [SerializeField] private XRDeviceSimulatorControls _deviceSimulatorControls;
+
+        [Header("Playback Controls")] 
+        [SerializeField] private InputActionReference _startPlaybackActionReference;
 
         private SimulationRecording _currentRecording;
         private bool _isPlaying;
@@ -29,13 +32,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         
         private TrackedPoseDriver _headTrackedPoseDriver;
 
-        /// <summary>
-        /// See <see cref="MonoBehaviour"/>
-        /// </summary>
-        private void OnValidate()
-        {
-            Assert.AreNotEqual(_deviceSimulator,null,$"{nameof(SimulationPlayback)}, device simulator not linked!");
-        }
+        private PlaybackDeviceState _playbackDeviceState;
+        private PlaybackInputDevice _playbackInputDevice;
 
         /// <summary>
         /// See <see cref="MonoBehaviour"/>
@@ -45,12 +43,33 @@ namespace Rhinox.XR.UnityXR.Simulator
             //Get the pose drivers 
             _headTrackedPoseDriver = _hmdTransform.GetComponent<TrackedPoseDriver>();
             
+            //-----------------------------
+            //Set up fake input device
+            //-----------------------------
+            InputSystem.FlushDisconnectedDevices();
+
+            var prevFake = InputSystem.GetDevice("PlaybackInputDevice");
+            if (prevFake != null)
+                _playbackInputDevice = prevFake as PlaybackInputDevice;
+
+            _playbackInputDevice ??= InputSystem.AddDevice<PlaybackInputDevice>("PlaybackInputDevice");
+
         }
-        
+
+
+        private void OnEnable()
+        {
+            SimulatorUtils.Subscribe(_startPlaybackActionReference,StartPlayback);
+        }
+
+        private void OnDisable()
+        {
+            SimulatorUtils.Unsubscribe(_startPlaybackActionReference, StartPlayback);
+        }
+
         /// <summary>
         /// Imports a recording.
         /// </summary>
-        [ContextMenu("Import recording")]
         private void ImportRecording()
         {
             //Read XML
@@ -75,8 +94,11 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// If there is no current recording, the function returns early.
         /// </summary>
         [ContextMenu("Start Playback")]
-        private void StartPlayback()
+        private void StartPlayback(InputAction.CallbackContext ctx)
         {
+            if (!ctx.performed)
+                return;
+            
             if (_currentRecording == null)
             {
                 ImportRecording();
@@ -112,6 +134,9 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void Update()
         {
+            
+            InputSystem.QueueStateEvent(_playbackInputDevice,_playbackDeviceState);
+            
             if (!_isPlaying)
                 return;
 
@@ -147,39 +172,43 @@ namespace Rhinox.XR.UnityXR.Simulator
         // }
         //
 
-        private void Reset()
-        {
-            _deviceSimulatorControls.GripInput = false;
-            _deviceSimulatorControls.TriggerInput = false;
-            _deviceSimulatorControls.PrimaryButtonInput = false;
-            _deviceSimulatorControls.SecondaryButtonInput = false;
-        }
-
-        private void LateUpdate()
-        {
-            // _deviceSimulatorControls.GripInput = true;
-        }
-
+        // private void Reset()
+        // {
+        //     _deviceSimulatorControls.GripInput = false;
+        //     _deviceSimulatorControls.TriggerInput = false;
+        //     _deviceSimulatorControls.PrimaryButtonInput = false;
+        //     _deviceSimulatorControls.SecondaryButtonInput = false;
+        // }
+        
         private void ProcessFrameInput(FrameInput input)
         {
-            //_deviceSimulatorControls.ManipulateRightControllerButtons = input.IsRightControllerInput;
             
+            float inputStartFloat = input.IsInputStart ? 1f : 0f;
             switch (input.InputActionName)
             {
                 case "grip":
-                    if (input.IsInputStart)
-                        _deviceSimulatorControls.GripInput = true;
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightGrip = inputStartFloat;
                     else
-                        _deviceSimulatorControls.GripInput = false;
+                        _playbackDeviceState.LeftGrip = inputStartFloat;
                     break;
                 case "trigger":
-                    _deviceSimulatorControls.TriggerInput = input.IsInputStart;
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightTrigger = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftTrigger = inputStartFloat;
                     break;
                 case "primary button":
-                    _deviceSimulatorControls.PrimaryButtonInput = input.IsInputStart;
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightPrimaryButton = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftPrimaryButton = inputStartFloat;
                     break;
                 case "secondary button":
-                    _deviceSimulatorControls.SecondaryButtonInput = input.IsInputStart;
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.LeftSecondaryButton = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftPrimaryButton = inputStartFloat;
                     break;
                 default:
                     Debug.Log($"{nameof(SimulationPlayback)} - ProcessFrameInput, input action *{input.InputActionName}* not found.");                    

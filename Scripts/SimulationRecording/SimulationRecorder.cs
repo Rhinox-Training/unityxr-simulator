@@ -28,6 +28,9 @@ namespace Rhinox.XR.UnityXR.Simulator
         [SerializeField] private string RecordingName = "NewRecording";
 
         [Header("Input actions")] 
+        [SerializeField] private InputActionReference _beginRecordingActionReference;
+        [SerializeField] private InputActionReference _endRecordingActionReference;
+        [Space(15)]
         [SerializeField] private InputActionReference _leftGripInputActionReference;
         [SerializeField] private InputActionReference _leftTriggerInputActionReference;
         [SerializeField] private InputActionReference _leftPrimaryButtonInputActionReference;
@@ -56,13 +59,26 @@ namespace Rhinox.XR.UnityXR.Simulator
         private void OnEnable()
         {
             SubscribeControllerActions();
+            SubscribeRecorderActions();
         }
 
         private void OnDisable()
         {
             UnSubscribeControllerActions();
+            UnsubscribeRecorderActions();
         }
 
+        private void SubscribeRecorderActions()
+        {
+            SimulatorUtils.Subscribe(_beginRecordingActionReference, StartRecording);
+            SimulatorUtils.Subscribe(_endRecordingActionReference, EndRecording);
+        }
+        private void UnsubscribeRecorderActions()
+        {
+            SimulatorUtils.Unsubscribe(_beginRecordingActionReference, StartRecording);
+            SimulatorUtils.Unsubscribe(_endRecordingActionReference, EndRecording);
+        }
+        
         private void SubscribeControllerActions()
         {
             SimulatorUtils.Subscribe(_leftGripInputActionReference, OnGripPressed,OnGripCancelled);
@@ -87,8 +103,11 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// Creates the recording and starts frame capturing.
         /// </summary>
         [ContextMenu("Start Recording")]
-        private void StartRecording()
+        private void StartRecording(InputAction.CallbackContext ctx)
         {
+            if (!ctx.performed)
+                return;
+            
             _isRecording = true;
             _currentRecording = new SimulationRecording
             {
@@ -124,8 +143,11 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// End frame capturing and writes the recording to an XML file.
         /// </summary>
         [ContextMenu("End Recording")]
-        private void EndRecording()
+        private void EndRecording(InputAction.CallbackContext ctx)
         {
+            if (!ctx.performed || !_isRecording)
+                return;
+            
             _isRecording = false;
             
             //Write to XML
@@ -135,9 +157,6 @@ namespace Rhinox.XR.UnityXR.Simulator
             serializer.Serialize(stream, _currentRecording);
             stream.Close();
         }
-        
-        
-        
         
         
         //-----------------------

@@ -763,7 +763,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <param name="controllerState">The controller state that will be processed.</param>
         public virtual void ProcessButtonControlInput(ref XRSimulatedControllerState controllerState)
         {
-            Debug.Log(GripInput);
             controllerState.grip = GripInput ? 1f : 0f;
             controllerState.WithButton(ControllerButton.GripButton, GripInput);
             controllerState.trigger = TriggerInput ? 1f : 0f;
