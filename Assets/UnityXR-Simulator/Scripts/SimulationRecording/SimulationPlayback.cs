@@ -1,3 +1,4 @@
+using System.Collections;
 using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
@@ -16,16 +17,15 @@ namespace Rhinox.XR.UnityXR.Simulator
         [Header("Input parameters")] [SerializeField]
         private string FilePath = "/SimulationRecordings/";
 
-        [SerializeField] private string RecordingName = "NewRecording";
+        [SerializeField] private string _recordingName = "NewRecording";
         [SerializeField] private BetterXRDeviceSimulator _deviceSimulator;
         [SerializeField] private XRDeviceSimulatorControls _deviceSimulatorControls;
 
         private SimulationRecording _currentRecording;
-        private bool _isPlaying = false;
-        private int _currentFrame = 0;
+        private bool _isPlaying;
+        private int _currentFrame;
 
         private float _frameInterval = float.MaxValue;
-        private float _intervalTimer = 0;
 
         private TrackedPoseDriver _headTrackedPoseDriver;
 
@@ -53,9 +53,9 @@ namespace Rhinox.XR.UnityXR.Simulator
         [ContextMenu("Import recording")]
         private void ImportRecording()
         {
-            //Write to XML
+            //Read XML
             var serializer = new XmlSerializer(typeof(SimulationRecording));
-            var stream = new FileStream(Path.Combine(Application.dataPath + FilePath, $"{RecordingName}.xml"),
+            var stream = new FileStream(Path.Combine(Application.dataPath + FilePath, $"{_recordingName}.xml"),
                 FileMode.Open);
             _currentRecording = (SimulationRecording)serializer.Deserialize(stream);
             stream.Close();
@@ -72,20 +72,21 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <summary>
         /// Disables input and the tracked pose drivers and starts the playback of the current recording.
         /// <br />
-        /// If there is no current recording, the function returns ealy.
+        /// If there is no current recording, the function returns early.
         /// </summary>
         [ContextMenu("Start Playback")]
         private void StartPlayback()
         {
             if (_currentRecording == null)
             {
-                Debug.Log("Import a recording, before playing it.");
-                return;
+                ImportRecording();
             }
 
             //Disable the device simulator and simulator controls, so no input is processed while the simulation plays.
             SetInputActive(false);
             _isPlaying = true;
+
+            StartCoroutine(PlaybackCoroutine());
             _currentFrame = 0;
         }
 
@@ -95,8 +96,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <param name="state"></param>
         private void SetInputActive(bool state)
         {
-            _deviceSimulator.enabled = state;
-            _deviceSimulatorControls.enabled = state;
+            // _deviceSimulator.enabled = state;
+            // _deviceSimulatorControls.enabl   ed = state;
             _headTrackedPoseDriver.enabled = state;
         }
 
@@ -109,19 +110,10 @@ namespace Rhinox.XR.UnityXR.Simulator
             SetInputActive(true);
         }
 
-        /// <summary>
-        /// See <see cref="MonoBehaviour"/>
-        /// </summary>
-        private void Update()
+        private IEnumerator PlaybackCoroutine()
         {
-            if (!_isPlaying)
-                return;
-
-            _intervalTimer += Time.deltaTime;
-            if (_intervalTimer >= _frameInterval)
+            while (_currentFrame < _currentRecording.RecordingLength)
             {
-                _intervalTimer = 0;
-
                 var frame = _currentRecording.Frames[_currentFrame];
 
                 _hmdTransform.position = frame.HeadPosition;
@@ -132,11 +124,55 @@ namespace Rhinox.XR.UnityXR.Simulator
 
                 _rightHandTransform.position = frame.RightHandPosition;
                 _rightHandTransform.rotation = frame.RightHandRotation;
-                
+
+                // Reset();
+                foreach (var input in frame.FrameInputs)
+                    ProcessFrameInput(input);
                 _currentFrame++;
-                if (_currentFrame >= _currentRecording.RecordingLength)
-                    EndPlayBack();
+                
+                yield return new WaitForSecondsRealtime(_frameInterval);
+            }
+
+            EndPlayBack();
+        }
+        
+
+        // private void Reset()
+        // {
+        //     _deviceSimulatorControls.GripInput = false;
+        //     _deviceSimulatorControls.TriggerInput = false;
+        //     _deviceSimulatorControls.PrimaryButtonInput = false;
+        //     _deviceSimulatorControls.SecondaryButtonInput = false;
+        // }
+        
+
+        private void ProcessFrameInput(FrameInput input)
+        {
+            _deviceSimulatorControls.ManipulateRightControllerButtons = input.IsRightControllerInput;
+            
+            switch (input.InputActionName)
+            {
+                case "grip":
+                    Debug.Log("Grip");
+                    _deviceSimulatorControls.GripInput = input.IsInputStart;
+                    break;
+                case "trigger":
+                    Debug.Log("trigger");
+                    _deviceSimulatorControls.TriggerInput = input.IsInputStart;
+                    break;
+                case "primary button":
+                    Debug.Log("Primary Button");
+                    _deviceSimulatorControls.PrimaryButtonInput = input.IsInputStart;
+                    break;
+                case "secondary button":
+                    Debug.Log("Secondary Button");
+                    _deviceSimulatorControls.SecondaryButtonInput = input.IsInputStart;
+                    break;
+                default:
+                    Debug.Log($"{nameof(SimulationPlayback)} - ProcessFrameInput, input action not found.");                    
+                    return;
             }
         }
+        
     }
 }

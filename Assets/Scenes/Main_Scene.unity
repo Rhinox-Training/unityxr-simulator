@@ -983,6 +983,16 @@ MonoBehaviour:
   _windowDimensions: {x: 280, y: 400}
   _deviceSimulatorControls: {fileID: 247644074}
   _deviceSimulator: {fileID: 1176542678}
+  _leftGripInputActionReference: {fileID: -136597607583354346, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftTriggerInputActionReference: {fileID: -5952763304763810824, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftPrimaryButtonInputActionReference: {fileID: 6186978847385010408, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftSecondaryButtonActionReference: {fileID: 7399129515099858902, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftMenuButtonInputActionReference: {fileID: -6091187634073918400, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightGripInputActionReference: {fileID: -2857637710643994626, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightTriggerInputActionReference: {fileID: 8919385125143020261, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightPrimaryButtonInputActionReference: {fileID: 8825329060996655173, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightSecondaryButtonActionReference: {fileID: 7821812841033530177, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightMenuButtonInputActionReference: {fileID: -1359806654796310005, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!4 &1408917094
 Transform:
   m_ObjectHideFlags: 0

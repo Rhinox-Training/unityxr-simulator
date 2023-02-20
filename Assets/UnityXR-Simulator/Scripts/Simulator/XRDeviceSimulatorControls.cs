@@ -10,7 +10,6 @@ using Rhinox.GUIUtils.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
-using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 
@@ -661,11 +660,11 @@ namespace Rhinox.XR.UnityXR.Simulator
         public Vector2 Axis2DInput;
         public Vector2 RestingHandAxis2DInput;
 
-        public bool GripInput { get; private set; }
-        public bool TriggerInput { get; private set; }
-        public bool PrimaryButtonInput { get; private set; }
-        public bool SecondaryButtonInput { get; private set; }
-        public bool MenuInput { get; private set; }
+        public bool GripInput { get; set; }
+        public bool TriggerInput { get; set; }
+        public bool PrimaryButtonInput { get; set; }
+        public bool SecondaryButtonInput { get; set; }
+        public bool MenuInput { get; set; }
         public bool Primary2DAxisClickInput { get; private set; }
         public bool Secondary2DAxisClickInput { get; private set; }
         public bool Primary2DAxisTouchInput { get; private set; }
@@ -773,7 +772,6 @@ namespace Rhinox.XR.UnityXR.Simulator
             controllerState.WithButton(ControllerButton.Secondary2DAxisTouch, Secondary2DAxisTouchInput);
             controllerState.WithButton(ControllerButton.PrimaryTouch, PrimaryTouchInput);
             controllerState.WithButton(ControllerButton.SecondaryTouch, SecondaryTouchInput);
-            
         }
 
         /// <summary>

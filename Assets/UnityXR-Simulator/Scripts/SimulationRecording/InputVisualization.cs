@@ -1,8 +1,8 @@
-using System;
-using Rhinox.XR.UnityXR.Simulator;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
+using UnityEngine.InputSystem;
+using Rhinox.XR.UnityXR.Simulator;
+
 
 /// <summary>
 /// This component visualizes pressed input.A GUI is used to represent all keys.
@@ -14,9 +14,28 @@ public class InputVisualization : MonoBehaviour
     [SerializeField] private Vector2Int _windowDimensions = new Vector2Int(150, 180);
 
     [Header("Input parameters")]
-    [SerializeField] private XRDeviceSimulatorControls _deviceSimulatorControls = null;
-    [SerializeField] private BetterXRDeviceSimulator _deviceSimulator = null;
+    [SerializeField] private XRDeviceSimulatorControls _deviceSimulatorControls;
+    [SerializeField] private BetterXRDeviceSimulator _deviceSimulator;
+    [Space(10)]
+    [SerializeField] private InputActionReference _leftGripInputActionReference;
+    [SerializeField] private InputActionReference _leftTriggerInputActionReference;
+    [SerializeField] private InputActionReference _leftPrimaryButtonInputActionReference;
+    [SerializeField] private InputActionReference _leftSecondaryButtonActionReference;
+    [Space(10)] 
+    [SerializeField] private InputActionReference _rightGripInputActionReference;
+    [SerializeField] private InputActionReference _rightTriggerInputActionReference;
+    [SerializeField] private InputActionReference _rightPrimaryButtonInputActionReference;
+    [SerializeField] private InputActionReference _rightSecondaryButtonActionReference;
 
+    private bool _leftGripPressed = false;
+    private bool _rightGripPressed = false;
+    private bool _leftTriggerPressed = false;
+    private bool _rightTriggerPressed = false;
+    private bool _leftPrimaryButtonPressed = false;
+    private bool _rightPrimaryButtonPressed = false;
+    private bool _leftSecondaryButtonPressed = false;
+    private bool _rightSecondaryButtonPressed = false;
+    
     /// <summary>
     /// See <see cref="MonoBehaviour"/>
     /// </summary>
@@ -88,44 +107,145 @@ public class InputVisualization : MonoBehaviour
         //--------------------------
         // INPUT 
         //--------------------------
-        GUILayout.Label("Used input",titleStyle);
-
-        if(_deviceSimulatorControls.Axis2DInput.x != 0 || _deviceSimulatorControls.Axis2DInput.y != 0)
-            GUILayout.Label($"2D axis input: {_deviceSimulatorControls.Axis2DInput.ToString()}");
+        GUILayout.Label("Used input", titleStyle);
         
-        if (_deviceSimulatorControls.RestingHandAxis2DInput.x != 0 || _deviceSimulatorControls.RestingHandAxis2DInput.y != 0)
-            GUILayout.Label($"Resting hand 2D axis input: {_deviceSimulatorControls.RestingHandAxis2DInput.ToString()}");
-
-        if (_deviceSimulatorControls.GripInput)
-            GUILayout.Label($"Grip pressed.");
+        if(_leftGripPressed)
+            GUILayout.Label("Left GRIP pressed.");
+        if (_rightGripPressed)
+            GUILayout.Label("Right GRIP pressed.");
         
-        if(_deviceSimulatorControls.TriggerInput)
-            GUILayout.Label($"Trigger pressed.");
-
-        if (_deviceSimulatorControls.PrimaryButtonInput)
-            GUILayout.Label($"Primary button pressed.");
-
-        if (_deviceSimulatorControls.SecondaryButtonInput)
-            GUILayout.Label($"Secondary button pressed.");
-
-        if (_deviceSimulatorControls.MenuInput)
-            GUILayout.Label($"Menu button pressed.");
-
-        if (_deviceSimulatorControls.Primary2DAxisClickInput)
-            GUILayout.Label($"Primary 2D axis clicked.");
-        if (_deviceSimulatorControls.Secondary2DAxisClickInput)
-            GUILayout.Label($"Secondary 2D axis clicked.");
+        if(_leftTriggerPressed)
+            GUILayout.Label("Left TRIGGER pressed.");
+        if (_rightTriggerPressed)
+            GUILayout.Label("Right TRIGGER pressed.");
         
-        if (_deviceSimulatorControls.Primary2DAxisTouchInput)
-            GUILayout.Label($"Primary 2D axis touched.");
-        if (_deviceSimulatorControls.Secondary2DAxisTouchInput)
-            GUILayout.Label($"Secondary 2D axis touched.");
-
-        if (_deviceSimulatorControls.PrimaryTouchInput)
-            GUILayout.Label($"Primary touch pressed.");
-        if (_deviceSimulatorControls.SecondaryTouchInput)
-            GUILayout.Label($"Secondary touch pressed.");
+        if(_leftPrimaryButtonPressed)
+            GUILayout.Label("Left PRIMARY BUTTON pressed.");
+        if (_rightPrimaryButtonPressed)
+            GUILayout.Label("Right PRIMARY BUTTON pressed.");
+        
+        if(_leftSecondaryButtonPressed)
+            GUILayout.Label("Left SECONDARY BUTTON pressed.");
+        if(_rightSecondaryButtonPressed)
+            GUILayout.Label("Right SECONDARY BUTTON pressed.");
         
         GUILayout.EndArea();
     }
+
+    private void OnEnable()
+    {
+        SimulatorUtils.Subscribe(_leftGripInputActionReference, OnGripPressed, OnGripCancelled);
+        SimulatorUtils.Subscribe(_rightGripInputActionReference, OnGripPressed, OnGripCancelled);
+        
+        SimulatorUtils.Subscribe(_leftTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
+        SimulatorUtils.Subscribe(_rightTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
+
+        SimulatorUtils.Subscribe(_leftPrimaryButtonInputActionReference, OnPrimaryButtonPressed, OnPrimaryButtonCancelled);
+        SimulatorUtils.Subscribe(_rightPrimaryButtonInputActionReference, OnPrimaryButtonPressed, OnPrimaryButtonCancelled);
+
+
+        SimulatorUtils.Subscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
+        SimulatorUtils.Subscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
+
+    }
+
+    private void OnDisable()
+    {
+        SimulatorUtils.Unsubscribe(_leftGripInputActionReference, OnGripPressed, OnGripCancelled);
+        SimulatorUtils.Unsubscribe(_rightGripInputActionReference, OnGripPressed, OnGripCancelled);
+
+        SimulatorUtils.Unsubscribe(_leftTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
+        SimulatorUtils.Unsubscribe(_rightTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
+
+        SimulatorUtils.Unsubscribe(_leftPrimaryButtonInputActionReference, OnPrimaryButtonPressed,
+            OnPrimaryButtonCancelled);
+        SimulatorUtils.Unsubscribe(_rightPrimaryButtonInputActionReference, OnPrimaryButtonPressed,
+            OnPrimaryButtonCancelled);
+
+        SimulatorUtils.Unsubscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed,
+            OnSecondaryButtonCancelled);
+        SimulatorUtils.Unsubscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed,
+            OnSecondaryButtonCancelled);
+    }
+
+    private void OnGripPressed(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+
+        //Check if the used controller was the left or right controller
+        if (ctx.action == _leftGripInputActionReference.action)
+            _leftGripPressed = true;
+        else if (ctx.action == _rightGripInputActionReference.action)
+            _rightGripPressed = true;
+    }
+    private void OnGripCancelled(InputAction.CallbackContext ctx)
+    {
+        //Check if the used controller was the left or right controller
+        if (ctx.action == _leftGripInputActionReference.action)
+            _leftGripPressed = false;
+        else if (ctx.action == _rightGripInputActionReference.action)
+            _rightGripPressed = false;
+    }
+
+    private void OnTriggerPressed(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+
+        //Check if the used controller was the left or right controller
+        if (ctx.action == _leftTriggerInputActionReference.action)
+            _leftTriggerPressed = true;
+        else if (ctx.action == _rightTriggerInputActionReference.action)
+            _rightTriggerPressed = true;
+    }
+    private void OnTriggerCancelled(InputAction.CallbackContext ctx)
+    {
+        //Check if the used controller was the left or right controller
+        if (ctx.action == _leftTriggerInputActionReference.action)
+            _leftTriggerPressed = false;
+        else if (ctx.action == _rightTriggerInputActionReference.action)
+            _rightTriggerPressed = false;
+    }
+
+    private void OnPrimaryButtonPressed(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+
+        //Check if the used controller was the left or right controller
+        if (ctx.action == _leftPrimaryButtonInputActionReference.action)
+            _leftPrimaryButtonPressed = true;
+        else if (ctx.action == _rightPrimaryButtonInputActionReference.action)
+            _rightPrimaryButtonPressed = true;
+    }
+    private void OnPrimaryButtonCancelled(InputAction.CallbackContext ctx)
+    {
+        //Check if the used controller was the left or right controller
+        if (ctx.action == _leftPrimaryButtonInputActionReference.action)
+            _leftPrimaryButtonPressed = false;
+        else if (ctx.action == _rightPrimaryButtonInputActionReference.action)
+            _rightPrimaryButtonPressed = false;
+    }
+
+    private void OnSecondaryButtonPressed(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+
+        //Check if the used controller was the left or right controller
+        if (ctx.action == _leftSecondaryButtonActionReference.action)
+            _leftSecondaryButtonPressed = true;
+        else if (ctx.action == _rightSecondaryButtonActionReference.action)
+            _rightSecondaryButtonPressed = true;
+    }
+    private void OnSecondaryButtonCancelled(InputAction.CallbackContext ctx)
+    {
+        //Check if the used controller was the left or right controller
+        if (ctx.action == _leftSecondaryButtonActionReference.action)
+            _leftSecondaryButtonPressed = false;
+        else if (ctx.action == _rightSecondaryButtonActionReference.action)
+            _rightSecondaryButtonPressed = false;
+    }
+
 }

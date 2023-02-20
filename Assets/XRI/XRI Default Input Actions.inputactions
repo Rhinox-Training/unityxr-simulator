@@ -314,15 +314,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Menu Button",
-                    "type": "Button",
-                    "id": "cd735f53-321c-4ddc-b06e-8d526ccc728d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -543,17 +534,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Secondary Button",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "558288c8-3bf1-483e-9a81-2443d0f22a9a",
-                    "path": "<XRController>{LeftHand}/menuButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Menu Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -932,15 +912,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Menu Button",
-                    "type": "Button",
-                    "id": "ae7dcc3a-ab64-4e96-8d33-0d5011c38c82",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1139,17 +1110,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Trigger",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "459f4bc5-5b27-412d-b278-5b7b9de8b301",
-                    "path": "<XRController>{RightHand}/menuButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Menu Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
