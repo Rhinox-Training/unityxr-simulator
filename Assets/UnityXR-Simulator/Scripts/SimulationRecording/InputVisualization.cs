@@ -146,7 +146,6 @@ public class InputVisualization : MonoBehaviour
 
         SimulatorUtils.Subscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
         SimulatorUtils.Subscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
-
     }
 
     private void OnDisable()

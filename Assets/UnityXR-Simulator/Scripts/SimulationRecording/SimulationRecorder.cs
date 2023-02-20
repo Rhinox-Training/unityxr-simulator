@@ -39,7 +39,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         [SerializeField] private InputActionReference _rightSecondaryButtonActionReference;
         
         private float _frameInterval;
-        private float _intervalTimer;
 
         private bool _isRecording;
 
@@ -91,7 +90,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         private void StartRecording()
         {
             _isRecording = true;
-            _intervalTimer = 0;
             _currentRecording = new SimulationRecording
             {
                 FrameRate = _desiredFPS
@@ -99,7 +97,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             StartCoroutine(RecordingCoroutine());
         }
-
 
         private IEnumerator RecordingCoroutine()
         {
