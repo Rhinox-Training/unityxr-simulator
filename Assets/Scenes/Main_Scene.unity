@@ -659,6 +659,8 @@ MonoBehaviour:
   _desiredFPS: 120
   FilePath: /SimulationRecordings/
   RecordingName: NewRecording
+  _beginRecordingActionReference: {fileID: 6122326531011543821, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
+  _endRecordingActionReference: {fileID: -3003799356916955773, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   _leftGripInputActionReference: {fileID: -136597607583354346, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _leftTriggerInputActionReference: {fileID: -5952763304763810824, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _leftPrimaryButtonInputActionReference: {fileID: 6186978847385010408, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -1442,8 +1444,7 @@ MonoBehaviour:
   _rightHandTransform: {fileID: 684185051}
   FilePath: /SimulationRecordings/
   _recordingName: NewRecording
-  _deviceSimulator: {fileID: 1176542678}
-  _deviceSimulatorControls: {fileID: 247644074}
+  _startPlaybackActionReference: {fileID: 2468127893294578634, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
 --- !u!4 &1752292047
 Transform:
   m_ObjectHideFlags: 0

@@ -314,6 +314,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "c49c54c5-31d2-461d-9d61-8d115ca3a525",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -341,6 +350,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a00e8f4a-50f1-47a2-8de6-aa8ffac1a6a7",
+                    "path": "<PlaybackInputDevice>/LeftGrip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "487f4f2e-9e9b-49aa-b0f2-4037a24624f5",
                     "path": "<XRController>{LeftHand}/triggerPressed",
                     "interactions": "",
@@ -357,6 +377,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
+                    "action": "Activate Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b50889f5-e356-4024-bcbd-99561a720bbb",
+                    "path": "<PlaybackInputDevice>/LeftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Activate Value",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -506,11 +537,33 @@
                 },
                 {
                     "name": "",
+                    "id": "4bbe082d-0ad2-4cc5-97c1-15fd1cc8010d",
+                    "path": "<PlaybackInputDevice>/LeftGrip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e4a47c43-6e5c-4615-989b-306fe4492d23",
                     "path": "<XRController>{LeftHand}/trigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
+                    "action": "Trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "14503a3f-51dd-45e7-8319-c13a996557de",
+                    "path": "<PlaybackInputDevice>/LeftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Trigger",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -528,12 +581,45 @@
                 },
                 {
                     "name": "",
+                    "id": "743175c6-4b65-4afe-88ec-b5d0561605b5",
+                    "path": "<PlaybackInputDevice>/LeftPrimaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "fbb1c306-4868-4853-8bfb-3b6164b62839",
                     "path": "<XRController>{LeftHand}/secondaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Secondary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d794087-d408-4a6f-aba8-4c1177b0b3ac",
+                    "path": "<PlaybackInputDevice>/LeftSecondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc345583-635d-4e21-a672-185ef67c6da6",
+                    "path": "<XRController>{LeftHand}/menuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -603,11 +689,33 @@
                 },
                 {
                     "name": "",
+                    "id": "290177f7-db4e-4471-9c00-d8a4c630a74d",
+                    "path": "<PlaybackInputDevice>/LeftPrimaryAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8da6ed3a-f621-49fe-8c76-1f6b7d7754d6",
                     "path": "<XRController>{LeftHand}/Primary2DAxis",
                     "interactions": "Sector(directions=1)",
                     "processors": "",
                     "groups": "Noncontinuous Move",
+                    "action": "Teleport Mode Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0935e574-54e5-44dc-83b2-e0d20ab72793",
+                    "path": "<PlaybackInputDevice>/LeftPrimaryAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Teleport Mode Activate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -636,11 +744,33 @@
                 },
                 {
                     "name": "",
+                    "id": "3ef8e371-f63a-4015-a192-d4e07fb03beb",
+                    "path": "<PlaybackInputDevice>/LeftPrimaryAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8e383b1a-270f-4c20-819b-89a59cffb498",
                     "path": "<XRController>{LeftHand}/Primary2DAxis",
                     "interactions": "",
                     "processors": "StickDeadzone",
                     "groups": "Continuous Move",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ab3746a-3c25-46a6-bb65-52622e85f1eb",
+                    "path": "<PlaybackInputDevice>/LeftPrimaryAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -912,6 +1042,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Menu Button",
+                    "type": "Button",
+                    "id": "753ff69c-20b5-4c86-a09b-e66a6e3a7b7f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -939,6 +1078,17 @@
                 },
                 {
                     "name": "",
+                    "id": "15a5e078-a700-4abf-99e2-e0e501b1681d",
+                    "path": "<PlaybackInputDevice>/RightGrip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "fa59aed1-ae0b-4074-a58c-294b85f46228",
                     "path": "<XRController>{RightHand}/triggerPressed",
                     "interactions": "",
@@ -955,6 +1105,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
+                    "action": "Activate Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71c5c3de-abd6-4030-b27d-47dd69f0cba9",
+                    "path": "<PlaybackInputDevice>/RightGrip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Activate Value",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1104,8 +1265,30 @@
                 },
                 {
                     "name": "",
+                    "id": "ed4e242b-4040-48f2-bd4a-b81310b04488",
+                    "path": "<PlaybackInputDevice>/RightGrip",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "429e5677-0a97-418f-8152-bbf1c18843f2",
                     "path": "<XRController>{RightHand}/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be75dc67-92bb-4f50-9765-feff01f033ea",
+                    "path": "<PlaybackInputDevice>/RightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1126,12 +1309,45 @@
                 },
                 {
                     "name": "",
+                    "id": "cb1df39a-0f07-4873-8e13-4f8b959783b8",
+                    "path": "<PlaybackInputDevice>/RightSecondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "37ffc9bc-64de-4fe3-a085-ae920b4470d4",
                     "path": "<XRController>{RightHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Primary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "939a9308-80bb-4cf8-8b66-bd9227150f44",
+                    "path": "<PlaybackInputDevice>/RightPrimaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a830d11-0d8d-445b-ac74-bfea6cf4ed4d",
+                    "path": "<PlaybackInputDevice>/RightMenuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
