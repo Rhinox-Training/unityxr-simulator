@@ -91,6 +91,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             HMDState.Reset();
             ResetControllers();
             XRSimulatedHMD temp;
+            
 
         }
 
