@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.InputSystem;
 
@@ -41,6 +42,21 @@ namespace Rhinox.XR.UnityXR.Simulator
             return actionReference != null ? actionReference.action : null;
 #pragma warning restore IDE0031
         }
+        public static string GetCurrentBindingPrefix(InputActionReference actionRef)
+        {
+            if (actionRef == null || actionRef.action == null)
+                return string.Empty;
+
+            var firstBinding = actionRef.action.bindings.FirstOrDefault();
+            if (firstBinding == default)
+                return string.Empty;
+
+            string answer = firstBinding.effectivePath.Split('/').LastOrDefault();
+            if (answer != null)
+                return "[" + answer.ToUpperInvariant() + "]";
+            return "";
+        }
+        
         
     }
 }

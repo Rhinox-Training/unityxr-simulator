@@ -28,8 +28,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         [SerializeField] private string RecordingName = "NewRecording";
 
         [Header("Input actions")] 
-        [SerializeField] private InputActionReference _beginRecordingActionReference;
-        [SerializeField] private InputActionReference _endRecordingActionReference;
+        public InputActionReference BeginRecordingActionReference;
+        public InputActionReference EndRecordingActionReference;
         [Space(15)]
         [SerializeField] private InputActionReference _leftGripInputActionReference;
         [SerializeField] private InputActionReference _leftTriggerInputActionReference;
@@ -43,7 +43,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         
         private float _frameInterval;
 
-        private bool _isRecording;
+        [HideInInspector]
+        public bool IsRecording;
 
         private SimulationRecording _currentRecording ;
         private List<FrameInput> _currentFrameInput = new List<FrameInput>();
@@ -70,13 +71,13 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void SubscribeRecorderActions()
         {
-            SimulatorUtils.Subscribe(_beginRecordingActionReference, StartRecording);
-            SimulatorUtils.Subscribe(_endRecordingActionReference, EndRecording);
+            SimulatorUtils.Subscribe(BeginRecordingActionReference, StartRecording);
+            SimulatorUtils.Subscribe(EndRecordingActionReference, EndRecording);
         }
         private void UnsubscribeRecorderActions()
         {
-            SimulatorUtils.Unsubscribe(_beginRecordingActionReference, StartRecording);
-            SimulatorUtils.Unsubscribe(_endRecordingActionReference, EndRecording);
+            SimulatorUtils.Unsubscribe(BeginRecordingActionReference, StartRecording);
+            SimulatorUtils.Unsubscribe(EndRecordingActionReference, EndRecording);
         }
         
         private void SubscribeControllerActions()
@@ -108,7 +109,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (!ctx.performed)
                 return;
             
-            _isRecording = true;
+            IsRecording = true;
             _currentRecording = new SimulationRecording
             {
                 FrameRate = _desiredFPS
@@ -119,7 +120,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private IEnumerator RecordingCoroutine()
         {
-            while (_isRecording)
+            while (IsRecording)
             {
                 var newFrame = new FrameData
                             {
@@ -145,10 +146,10 @@ namespace Rhinox.XR.UnityXR.Simulator
         [ContextMenu("End Recording")]
         private void EndRecording(InputAction.CallbackContext ctx)
         {
-            if (!ctx.performed || !_isRecording)
+            if (!ctx.performed || !IsRecording)
                 return;
             
-            _isRecording = false;
+            IsRecording = false;
             
             //Write to XML
             var serializer = new XmlSerializer(typeof(SimulationRecording));
@@ -164,7 +165,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         //-----------------------
         private void OnGripPressed(InputAction.CallbackContext ctx)
         {
-            if(!_isRecording)
+            if(!IsRecording)
                 return;
 
             var frameInput = new FrameInput();
@@ -191,7 +192,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
         private void OnGripCancelled(InputAction.CallbackContext ctx)
         {
-            if (!_isRecording)
+            if (!IsRecording)
                 return;
 
             var frameInput = new FrameInput();
@@ -220,7 +221,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void OnTriggerPressed(InputAction.CallbackContext ctx)
         {
-            if (!_isRecording)
+            if (!IsRecording)
                 return;
 
             var frameInput = new FrameInput();
@@ -248,7 +249,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
         private void OnTriggerCancelled(InputAction.CallbackContext ctx)
         {
-            if (!_isRecording)
+            if (!IsRecording)
                 return;
 
             var frameInput = new FrameInput();
@@ -277,7 +278,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void OnPrimaryButtonPressed(InputAction.CallbackContext ctx)
         {
-            if (!_isRecording)
+            if (!IsRecording)
                 return;
 
             var frameInput = new FrameInput();
@@ -307,7 +308,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
         private void OnPrimaryButtonCanceled(InputAction.CallbackContext ctx)
         {
-            if (!_isRecording)
+            if (!IsRecording)
                 return;
 
             var frameInput = new FrameInput();
@@ -338,7 +339,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void OnSecondaryButtonPressed(InputAction.CallbackContext ctx)
         {
-            if (!_isRecording)
+            if (!IsRecording)
                 return;
 
             var frameInput = new FrameInput();
@@ -366,7 +367,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
         private void OnSecondaryButtonCancelled(InputAction.CallbackContext ctx)
         {
-            if (!_isRecording)
+            if (!IsRecording)
                 return;
 
             var frameInput = new FrameInput();
@@ -393,4 +394,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             _currentFrameInput.Add(frameInput);
         }
     }
+    
+    
+
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
@@ -9,13 +10,11 @@ using Rhinox.XR.UnityXR.Simulator;
 /// </summary>
 public class InputVisualization : MonoBehaviour
 {
-    [Header("Window Parameters")]
-    [Tooltip("The desired width and height of the window")]
-    [SerializeField] private Vector2Int _windowDimensions = new Vector2Int(150, 180);
-
     [Header("Input parameters")]
     [SerializeField] private XRDeviceSimulatorControls _deviceSimulatorControls;
     [SerializeField] private BetterXRDeviceSimulator _deviceSimulator;
+    [SerializeField] private SimulationRecorder _recorder;
+    [SerializeField] private SimulationPlayback _playback;
     [Space(10)]
     [SerializeField] private InputActionReference _leftGripInputActionReference;
     [SerializeField] private InputActionReference _leftTriggerInputActionReference;
@@ -51,7 +50,6 @@ public class InputVisualization : MonoBehaviour
     /// </summary>
     private void OnGUI()
     {
-
         var titleStyle = new GUIStyle()
         {
             fontStyle = FontStyle.Bold,
@@ -76,17 +74,37 @@ public class InputVisualization : MonoBehaviour
             }
         };
 
-        var windowRect = new Rect(Screen.width - _windowDimensions.x, 0, _windowDimensions.x,
-            _windowDimensions.y);
+        var windowRect = new Rect(Screen.width - 300, 0, 300, Screen.height);
 
         GUI.Box(windowRect, "");
         GUILayout.BeginArea(windowRect);
-        
-        
+
+        //--------------------------
+        // Simulator Controls
+        //--------------------------
+        GUILayout.Label(
+            $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.ToggleManipulateAction)} Mode: {_deviceSimulatorControls.ManipulationTarget}");
+        GUILayout.Label(
+            $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.ToggleKeyboardSpaceAction)} Keyboard Space: {_deviceSimulatorControls.KeyboardTranslateSpace}");
+        GUILayout.Label(
+            $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.ToggleButtonControlTargetAction)} Controller Buttons: {(_deviceSimulatorControls.ManipulateRightControllerButtons ? "Right" : "Left")}");
+        GUILayout.Label(
+            $"{SimulatorUtils.GetCurrentBindingPrefix(_recorder.BeginRecordingActionReference)} to start recording");
+        GUILayout.Label(
+            $"{SimulatorUtils.GetCurrentBindingPrefix(_recorder.EndRecordingActionReference)} to end recording");
+        GUILayout.Label(
+            $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.StartPlaybackActionReference)} to start playback");
+
+        //--------------------------
+        // Simulator Info
+        //--------------------------
+        if(_recorder.IsRecording)
+            GUILayout.Label("Currently recording.");
+        if (_playback.IsPlaying)
+            GUILayout.Label("Currently playing back.");
         //--------------------------
         // DEVICE POSITIONS
         //--------------------------
-
         GUILayout.Label("Device transforms",titleStyle);
 
         GUILayout.Label($"HMD position: {_deviceSimulator.HMDState.devicePosition}");

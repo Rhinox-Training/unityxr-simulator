@@ -500,32 +500,5 @@ namespace Rhinox.XR.UnityXR.Simulator
                     return Quaternion.identity;
             }
         }
-
-#if UNITY_EDITOR
-        private void OnGUI()
-        {
-            if (_hmdDevice == null)
-                return;
-
-            GUILayout.Label($"{GetCurrentBindingPrefix(_controls.ToggleManipulateAction)} Mode: {_controls.ManipulationTarget}");
-            GUILayout.Label($"{GetCurrentBindingPrefix(_controls.ToggleKeyboardSpaceAction)} Keyboard Space: {_controls.KeyboardTranslateSpace}");
-            GUILayout.Label($"{GetCurrentBindingPrefix(_controls.ToggleButtonControlTargetAction)} Controller Buttons: {(_controls.ManipulateRightControllerButtons ? "Right" : "Left")}");
-        }
-
-        private static string GetCurrentBindingPrefix(InputActionReference actionRef)
-        {
-            if (actionRef == null || actionRef.action == null)
-                return string.Empty;
-
-            var firstBinding = actionRef.action.bindings.FirstOrDefault();
-            if (firstBinding == default)
-                return string.Empty;
-
-            string answer = firstBinding.effectivePath.Split('/').LastOrDefault();
-            if (answer != null)
-                return "[" + answer.ToUpperInvariant() + "]";
-            return "";
-        }
-#endif
     }
 }

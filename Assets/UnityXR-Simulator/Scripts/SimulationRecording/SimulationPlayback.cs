@@ -1,8 +1,6 @@
-using System;
 using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 
@@ -21,16 +19,19 @@ namespace Rhinox.XR.UnityXR.Simulator
         [SerializeField] private string _recordingName = "NewRecording";
 
         [Header("Playback Controls")] 
-        [SerializeField] private InputActionReference _startPlaybackActionReference;
-
+        public InputActionReference StartPlaybackActionReference;
         private SimulationRecording _currentRecording;
-        private bool _isPlaying;
+
+        [HideInInspector] public bool IsPlaying;
+
         private int _currentFrame;
         
         private float _frameInterval = float.MaxValue;
         private float _timer = 0;
-        
+
         private TrackedPoseDriver _headTrackedPoseDriver;
+        private TrackedPoseDriver _leftHandTrackedPoseDriver;
+        private TrackedPoseDriver _rightHandTrackedPoseDriver;
 
         private PlaybackDeviceState _playbackDeviceState;
         private PlaybackInputDevice _playbackInputDevice;
@@ -42,6 +43,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         {
             //Get the pose drivers 
             _headTrackedPoseDriver = _hmdTransform.GetComponent<TrackedPoseDriver>();
+            _leftHandTrackedPoseDriver = _leftHandTransform.GetComponent<TrackedPoseDriver>();
+            _rightHandTrackedPoseDriver = _rightHandTransform.GetComponent<TrackedPoseDriver>();
             
             //-----------------------------
             //Set up fake input device
@@ -59,12 +62,12 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void OnEnable()
         {
-            SimulatorUtils.Subscribe(_startPlaybackActionReference,StartPlayback);
+            SimulatorUtils.Subscribe(StartPlaybackActionReference,StartPlayback);
         }
 
         private void OnDisable()
         {
-            SimulatorUtils.Unsubscribe(_startPlaybackActionReference, StartPlayback);
+            SimulatorUtils.Unsubscribe(StartPlaybackActionReference, StartPlayback);
         }
 
         /// <summary>
@@ -105,7 +108,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             }
 
             SetInputActive(false);
-            _isPlaying = true;
+            IsPlaying = true;
 
             _timer = 0;
             _currentFrame = 0;
@@ -121,6 +124,8 @@ namespace Rhinox.XR.UnityXR.Simulator
             // _deviceSimulator.enabled = state;
             // _deviceSimulatorControls.enabled = state;
             _headTrackedPoseDriver.enabled = state;
+            _leftHandTrackedPoseDriver.enabled = state;
+            _rightHandTrackedPoseDriver.enabled = state;
         }
 
         /// <summary>
@@ -128,7 +133,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// </summary>
         private void EndPlayBack()
         {
-            _isPlaying = false;
+            IsPlaying = false;
             SetInputActive(true);
         }
 
@@ -137,12 +142,14 @@ namespace Rhinox.XR.UnityXR.Simulator
             
             InputSystem.QueueStateEvent(_playbackInputDevice,_playbackDeviceState);
             
-            if (!_isPlaying)
+            if (!IsPlaying)
                 return;
 
             _timer += Time.unscaledDeltaTime;
             if(_timer>= _frameInterval)
             {
+                _timer = 0;
+                
                 var frame = _currentRecording.Frames[_currentFrame];
 
                 _hmdTransform.position = frame.HeadPosition;
@@ -172,14 +179,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         // }
         //
 
-        // private void Reset()
-        // {
-        //     _deviceSimulatorControls.GripInput = false;
-        //     _deviceSimulatorControls.TriggerInput = false;
-        //     _deviceSimulatorControls.PrimaryButtonInput = false;
-        //     _deviceSimulatorControls.SecondaryButtonInput = false;
-        // }
-        
         private void ProcessFrameInput(FrameInput input)
         {
             

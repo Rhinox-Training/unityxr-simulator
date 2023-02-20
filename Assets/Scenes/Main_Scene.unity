@@ -423,6 +423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 684185051}
+  - component: {fileID: 684185053}
   - component: {fileID: 684185052}
   m_Layer: 0
   m_Name: RightHand
@@ -463,12 +464,12 @@ MonoBehaviour:
   m_EnableInputActions: 1
   m_ModelPrefab: {fileID: 0}
   m_ModelParent: {fileID: 0}
-  m_Model: {fileID: 450219283}
+  m_Model: {fileID: 0}
   m_AnimateModel: 0
   m_ModelSelectTransition: 
   m_ModelDeSelectTransition: 
   m_PositionAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Position
       m_Type: 0
@@ -480,7 +481,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_RotationAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Rotation
       m_Type: 0
@@ -492,7 +493,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 5101698808175986029, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_TrackingStateAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Tracking State
       m_Type: 0
@@ -624,6 +625,63 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_ButtonPressPoint: 0.5
+--- !u!114 &684185053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684185050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackingType: 0
+  m_UpdateType: 0
+  m_PositionInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Position Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: adf305ec-6302-461c-b892-8d7d152c2975
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_RotationInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Rotation Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 0de652a3-1407-40a3-98db-12cf652b8472
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5101698808175986029, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_PositionAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_RotationAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_HasMigratedActions: 1
 --- !u!1 &769959904
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,11 +714,11 @@ MonoBehaviour:
   _hmdTransform: {fileID: 1950015283}
   _leftHandTransform: {fileID: 2014453122}
   _rightHandTransform: {fileID: 684185051}
-  _desiredFPS: 120
+  _desiredFPS: 1
   FilePath: /SimulationRecordings/
   RecordingName: NewRecording
-  _beginRecordingActionReference: {fileID: 6122326531011543821, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
-  _endRecordingActionReference: {fileID: -3003799356916955773, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
+  BeginRecordingActionReference: {fileID: 6122326531011543821, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
+  EndRecordingActionReference: {fileID: -3003799356916955773, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   _leftGripInputActionReference: {fileID: -136597607583354346, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _leftTriggerInputActionReference: {fileID: -5952763304763810824, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _leftPrimaryButtonInputActionReference: {fileID: 6186978847385010408, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -669,6 +727,7 @@ MonoBehaviour:
   _rightTriggerInputActionReference: {fileID: 8919385125143020261, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _rightPrimaryButtonInputActionReference: {fileID: 8825329060996655173, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _rightSecondaryButtonActionReference: {fileID: 7821812841033530177, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  IsRecording: 0
 --- !u!4 &769959906
 Transform:
   m_ObjectHideFlags: 0
@@ -989,9 +1048,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1166cfdd38e28de4d8b852d3a51aa1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _windowDimensions: {x: 280, y: 400}
   _deviceSimulatorControls: {fileID: 247644074}
   _deviceSimulator: {fileID: 1176542678}
+  _recorder: {fileID: 769959905}
+  _playback: {fileID: 1752292046}
   _leftGripInputActionReference: {fileID: -136597607583354346, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _leftTriggerInputActionReference: {fileID: -5952763304763810824, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _leftPrimaryButtonInputActionReference: {fileID: 6186978847385010408, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -1444,7 +1504,8 @@ MonoBehaviour:
   _rightHandTransform: {fileID: 684185051}
   FilePath: /SimulationRecordings/
   _recordingName: NewRecording
-  _startPlaybackActionReference: {fileID: 2468127893294578634, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
+  StartPlaybackActionReference: {fileID: 2468127893294578634, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
+  IsPlaying: 0
 --- !u!4 &1752292047
 Transform:
   m_ObjectHideFlags: 0
@@ -1770,6 +1831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2014453122}
+  - component: {fileID: 2014453123}
   - component: {fileID: 2014453124}
   m_Layer: 0
   m_Name: LeftHand
@@ -1793,6 +1855,63 @@ Transform:
   m_Father: {fileID: 1931729225}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014453123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014453121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackingType: 0
+  m_UpdateType: 0
+  m_PositionInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Position Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: cb829908-95b9-4dfc-b43c-c8dc7d764412
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_RotationInput:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Rotation Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 25106cd0-d952-486d-bc9c-633c3f1e3f41
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 8248158260566104461, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_PositionAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_RotationAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_HasMigratedActions: 1
 --- !u!114 &2014453124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1810,12 +1929,12 @@ MonoBehaviour:
   m_EnableInputActions: 1
   m_ModelPrefab: {fileID: 0}
   m_ModelParent: {fileID: 0}
-  m_Model: {fileID: 600034680}
+  m_Model: {fileID: 0}
   m_AnimateModel: 0
   m_ModelSelectTransition: 
   m_ModelDeSelectTransition: 
   m_PositionAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Position
       m_Type: 0
@@ -1827,7 +1946,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_RotationAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Rotation
       m_Type: 0
@@ -1839,7 +1958,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 8248158260566104461, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_TrackingStateAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Tracking State
       m_Type: 0
