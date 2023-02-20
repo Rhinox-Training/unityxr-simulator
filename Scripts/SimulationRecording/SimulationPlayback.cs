@@ -1,4 +1,3 @@
-using System.Collections;
 using System.IO;
 using System.Xml.Serialization;
 using UnityEngine;
@@ -24,9 +23,10 @@ namespace Rhinox.XR.UnityXR.Simulator
         private SimulationRecording _currentRecording;
         private bool _isPlaying;
         private int _currentFrame;
-
+        
         private float _frameInterval = float.MaxValue;
-
+        private float _timer = 0;
+        
         private TrackedPoseDriver _headTrackedPoseDriver;
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             _headTrackedPoseDriver = _hmdTransform.GetComponent<TrackedPoseDriver>();
             
         }
-
+        
         /// <summary>
         /// Imports a recording.
         /// </summary>
@@ -82,12 +82,12 @@ namespace Rhinox.XR.UnityXR.Simulator
                 ImportRecording();
             }
 
-            //Disable the device simulator and simulator controls, so no input is processed while the simulation plays.
             SetInputActive(false);
             _isPlaying = true;
 
-            StartCoroutine(PlaybackCoroutine());
+            _timer = 0;
             _currentFrame = 0;
+            // StartCoroutine(PlaybackCoroutine());
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         private void SetInputActive(bool state)
         {
             // _deviceSimulator.enabled = state;
-            // _deviceSimulatorControls.enabl   ed = state;
+            // _deviceSimulatorControls.enabled = state;
             _headTrackedPoseDriver.enabled = state;
         }
 
@@ -110,9 +110,13 @@ namespace Rhinox.XR.UnityXR.Simulator
             SetInputActive(true);
         }
 
-        private IEnumerator PlaybackCoroutine()
+        private void Update()
         {
-            while (_currentFrame < _currentRecording.RecordingLength)
+            if (!_isPlaying)
+                return;
+
+            _timer += Time.unscaledDeltaTime;
+            if(_timer>= _frameInterval)
             {
                 var frame = _currentRecording.Frames[_currentFrame];
 
@@ -125,51 +129,60 @@ namespace Rhinox.XR.UnityXR.Simulator
                 _rightHandTransform.position = frame.RightHandPosition;
                 _rightHandTransform.rotation = frame.RightHandRotation;
 
-                // Reset();
                 foreach (var input in frame.FrameInputs)
                     ProcessFrameInput(input);
                 _currentFrame++;
-                
-                yield return new WaitForSecondsRealtime(_frameInterval);
+
+                // yield return new WaitForSecondsRealtime(_frameInterval);
+
+                if (_currentFrame >= _currentRecording.RecordingLength)
+                    EndPlayBack();
+
             }
-
-            EndPlayBack();
         }
-        
 
-        // private void Reset()
+        // private IEnumerator PlaybackCoroutine()
         // {
-        //     _deviceSimulatorControls.GripInput = false;
-        //     _deviceSimulatorControls.TriggerInput = false;
-        //     _deviceSimulatorControls.PrimaryButtonInput = false;
-        //     _deviceSimulatorControls.SecondaryButtonInput = false;
+        //
         // }
-        
+        //
+
+        private void Reset()
+        {
+            _deviceSimulatorControls.GripInput = false;
+            _deviceSimulatorControls.TriggerInput = false;
+            _deviceSimulatorControls.PrimaryButtonInput = false;
+            _deviceSimulatorControls.SecondaryButtonInput = false;
+        }
+
+        private void LateUpdate()
+        {
+            // _deviceSimulatorControls.GripInput = true;
+        }
 
         private void ProcessFrameInput(FrameInput input)
         {
-            _deviceSimulatorControls.ManipulateRightControllerButtons = input.IsRightControllerInput;
+            //_deviceSimulatorControls.ManipulateRightControllerButtons = input.IsRightControllerInput;
             
             switch (input.InputActionName)
             {
                 case "grip":
-                    Debug.Log("Grip");
-                    _deviceSimulatorControls.GripInput = input.IsInputStart;
+                    if (input.IsInputStart)
+                        _deviceSimulatorControls.GripInput = true;
+                    else
+                        _deviceSimulatorControls.GripInput = false;
                     break;
                 case "trigger":
-                    Debug.Log("trigger");
                     _deviceSimulatorControls.TriggerInput = input.IsInputStart;
                     break;
                 case "primary button":
-                    Debug.Log("Primary Button");
                     _deviceSimulatorControls.PrimaryButtonInput = input.IsInputStart;
                     break;
                 case "secondary button":
-                    Debug.Log("Secondary Button");
                     _deviceSimulatorControls.SecondaryButtonInput = input.IsInputStart;
                     break;
                 default:
-                    Debug.Log($"{nameof(SimulationPlayback)} - ProcessFrameInput, input action not found.");                    
+                    Debug.Log($"{nameof(SimulationPlayback)} - ProcessFrameInput, input action *{input.InputActionName}* not found.");                    
                     return;
             }
         }
