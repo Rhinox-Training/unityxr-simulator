@@ -714,7 +714,7 @@ MonoBehaviour:
   _hmdTransform: {fileID: 1950015283}
   _leftHandTransform: {fileID: 2014453122}
   _rightHandTransform: {fileID: 684185051}
-  _desiredFPS: 120
+  _desiredFPS: 30
   FilePath: /SimulationRecordings/
   RecordingName: NewRecording
   BeginRecordingActionReference: {fileID: 6122326531011543821, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
@@ -753,12 +753,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769959904}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.57838297, y: -0.30578023, z: 0.9852216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 984757392}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &862559822
 PrefabInstance:
@@ -873,6 +873,38 @@ PrefabInstance:
       objectReference: {fileID: 1950015283}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 421f52bb4c469404792810f221510d28, type: 3}
+--- !u!1 &984757391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 984757392}
+  m_Layer: 0
+  m_Name: Record/Playback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &984757392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984757391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.57838297, y: 0.30578023, z: -0.9852216}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 769959906}
+  - {fileID: 1752292047}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1176542678 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7041692109847791290, guid: 421f52bb4c469404792810f221510d28, type: 3}
@@ -1048,7 +1080,7 @@ GameObject:
   - component: {fileID: 1408917093}
   - component: {fileID: 1408917095}
   m_Layer: 0
-  m_Name: InputVisualization
+  m_Name: Input Visualization
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,7 +1191,7 @@ Transform:
   - {fileID: 1407119383}
   - {fileID: 2033349571}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1470714911
 GameObject:
@@ -1539,8 +1571,10 @@ MonoBehaviour:
   _leftHandTransform: {fileID: 2014453122}
   _rightHandTransform: {fileID: 684185051}
   FilePath: /SimulationRecordings/
+  _simulator: {fileID: 1176542678}
   _recordingName: NewRecording
   StartPlaybackActionReference: {fileID: 2468127893294578634, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
+  ReimportRecordingActionReference: {fileID: 4759847013449698904, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   IsPlaying: 0
 --- !u!4 &1752292047
 Transform:
@@ -1549,12 +1583,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752292045}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.012693649, y: 1.216125, z: 0.7058962}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5910766, y: 0.9103448, z: 1.6911178}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 984757392}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1831280604
 GameObject:

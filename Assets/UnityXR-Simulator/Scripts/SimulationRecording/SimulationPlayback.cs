@@ -1,8 +1,12 @@
+using System.Collections;
+using System.Diagnostics;
 using System.IO;
+using System.Timers;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using Debug = UnityEngine.Debug;
 
 namespace Rhinox.XR.UnityXR.Simulator
 {
@@ -15,17 +19,19 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         [Header("Input parameters")] [SerializeField]
         private string FilePath = "/SimulationRecordings/";
-
+        [SerializeField] private BetterXRDeviceSimulator _simulator;
         [SerializeField] private string _recordingName = "NewRecording";
 
         [Header("Playback Controls")] 
         public InputActionReference StartPlaybackActionReference;
+        public InputActionReference ReimportRecordingActionReference;
+
         private SimulationRecording _currentRecording;
 
         [HideInInspector] public bool IsPlaying;
 
+        private Stopwatch _playbackStopwatch = new Stopwatch();
         private int _currentFrame;
-        
         private float _frameInterval = float.MaxValue;
         private float _timer = 0;
 
@@ -62,9 +68,9 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void OnEnable()
         {
-            SimulatorUtils.Subscribe(StartPlaybackActionReference,StartPlayback);
+            SimulatorUtils.Subscribe(StartPlaybackActionReference, StartPlayback);
+            SimulatorUtils.Subscribe(ReimportRecordingActionReference, ImportRecording);
         }
-
         private void OnDisable()
         {
             SimulatorUtils.Unsubscribe(StartPlaybackActionReference, StartPlayback);
@@ -73,6 +79,24 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <summary>
         /// Imports a recording.
         /// </summary>
+        private void ImportRecording(InputAction.CallbackContext ctx)
+        {
+            //Read XML
+            var serializer = new XmlSerializer(typeof(SimulationRecording));
+            var stream = new FileStream(Path.Combine(Application.dataPath + FilePath, $"{_recordingName}.xml"),
+                FileMode.Open);
+            _currentRecording = (SimulationRecording)serializer.Deserialize(stream);
+            stream.Close();
+
+            if (_currentRecording == null)
+            {
+                Debug.Log($"{nameof(SimulationPlayback)}, could not loud recording from XML file");
+                return;
+            }
+            Debug.Log($"Imported recording of {_currentRecording.RecordingLength}");
+
+            _frameInterval = 1.0f / _currentRecording.FrameRate;
+        }
         private void ImportRecording()
         {
             //Read XML
@@ -88,9 +112,12 @@ namespace Rhinox.XR.UnityXR.Simulator
                 return;
             }
 
+            Debug.Log($"Imported recording of {_currentRecording.RecordingLength}");
+
             _frameInterval = 1.0f / _currentRecording.FrameRate;
         }
 
+        
         /// <summary>
         /// Disables input and the tracked pose drivers and starts the playback of the current recording.
         /// <br />
@@ -105,6 +132,8 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (_currentRecording == null)
             {
                 ImportRecording();
+                if (_currentRecording == null)
+                    return;
             }
 
             SetInputActive(false);
@@ -112,42 +141,17 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _timer = 0;
             _currentFrame = 0;
-            // StartCoroutine(PlaybackCoroutine());
+            Debug.Log("Started playback.");
+
+            _playbackStopwatch.Restart();
+
+            StartCoroutine(PlaybackRoutine());
         }
 
-        /// <summary>
-        /// Enables input and the tracked pose driver of the head.
-        /// </summary>
-        /// <param name="state"></param>
-        private void SetInputActive(bool state)
+        private IEnumerator PlaybackRoutine()
         {
-            // _deviceSimulator.enabled = state;
-            // _deviceSimulatorControls.enabled = state;
-            _headTrackedPoseDriver.enabled = state;
-            _leftHandTrackedPoseDriver.enabled = state;
-            _rightHandTrackedPoseDriver.enabled = state;
-        }
-
-        /// <summary>
-        /// Stops the current playback and re-enables input.
-        /// </summary>
-        private void EndPlayBack()
-        {
-            IsPlaying = false;
-            SetInputActive(true);
-        }
-
-        private void Update()
-        {
-            
-            if (!IsPlaying)
-                return;
-
-            _timer += Time.unscaledDeltaTime;
-            if(_timer>= _frameInterval)
+            while (_currentFrame < _currentRecording.AmountOfFrames)
             {
-                _timer = 0;
-                
                 var frame = _currentRecording.Frames[_currentFrame];
 
                 _hmdTransform.position = frame.HeadPosition;
@@ -162,21 +166,81 @@ namespace Rhinox.XR.UnityXR.Simulator
                 foreach (var input in frame.FrameInputs)
                     ProcessFrameInput(input);
                 _currentFrame++;
-                
+
                 InputSystem.QueueStateEvent(_playbackInputDevice, _playbackDeviceState);
 
-                if (_currentFrame >= _currentRecording.RecordingLength)
-                    EndPlayBack();
-
-
+                yield return new WaitForSecondsRealtime(_frameInterval);
             }
+
+            EndPlayBack();
+
+        }
+        
+        /// <summary>
+        /// Enables input and the tracked pose driver of the head.
+        /// </summary>
+        /// <param name="state"></param>
+        private void SetInputActive(bool state)
+        {
+            _headTrackedPoseDriver.enabled = state;
+            _leftHandTrackedPoseDriver.enabled = state;
+            _rightHandTrackedPoseDriver.enabled = state;
         }
 
-        // private IEnumerator PlaybackCoroutine()
+        /// <summary>
+        /// Stops the current playback and re-enables input.
+        /// </summary>
+        private void EndPlayBack()
+        {
+            //----------------------------
+            // CALCULATE LENGTH
+            //----------------------------
+            _playbackStopwatch.Stop();
+            RecordingTime temp;
+            temp.Milliseconds = _playbackStopwatch.Elapsed.Milliseconds;
+            temp.Seconds = _playbackStopwatch.Elapsed.Seconds;
+            temp.Minutes = _playbackStopwatch.Elapsed.Minutes;
+            Debug.Log($"Ended playback of {temp}");
+
+
+            IsPlaying = false;
+            SetInputActive(true);
+        }
+
+        // private void Update()
         // {
+        //     
+        //     if (!IsPlaying)
+        //         return;
         //
+        //     _timer += Time.unscaledDeltaTime;
+        //     if(_timer>= _frameInterval)
+        //     {
+        //         _timer = 0;
+        //         
+        //         var frame = _currentRecording.Frames[_currentFrame];
+        //
+        //         _hmdTransform.position = frame.HeadPosition;
+        //         _hmdTransform.rotation = frame.HeadRotation;
+        //
+        //         _leftHandTransform.position = frame.LeftHandPosition;
+        //         _leftHandTransform.rotation = frame.LeftHandRotation;
+        //
+        //         _rightHandTransform.position = frame.RightHandPosition;
+        //         _rightHandTransform.rotation = frame.RightHandRotation;
+        //
+        //         foreach (var input in frame.FrameInputs)
+        //             ProcessFrameInput(input);
+        //         _currentFrame++;
+        //         
+        //         InputSystem.QueueStateEvent(_playbackInputDevice, _playbackDeviceState);
+        //
+        //         if (_currentFrame >= _currentRecording.AmountOfFrames)
+        //             EndPlayBack();
+        //
+        //
+        //     }
         // }
-        //
 
         private void ProcessFrameInput(FrameInput input)
         {

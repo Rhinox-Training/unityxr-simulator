@@ -150,7 +150,6 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (_leftControllerDevice != null && _leftControllerDevice.added)
                 InputState.Change(_leftControllerDevice, LeftControllerState);
     
-            
             if (_rightControllerDevice != null && _rightControllerDevice.added)
                 InputState.Change(_rightControllerDevice, RightControllerState);
 

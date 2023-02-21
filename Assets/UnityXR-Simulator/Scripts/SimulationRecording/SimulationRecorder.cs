@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Timers;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Debug = UnityEngine.Debug;
 
 namespace Rhinox.XR.UnityXR.Simulator
 {
@@ -65,6 +68,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         [HideInInspector]
         public bool IsRecording;
 
+        private Stopwatch _recordingStopwatch = new Stopwatch();
         private SimulationRecording _currentRecording ;
         private List<FrameInput> _currentFrameInput = new List<FrameInput>();
         
@@ -81,7 +85,6 @@ namespace Rhinox.XR.UnityXR.Simulator
             SubscribeControllerActions();
             SubscribeRecorderActions();
         }
-
         private void OnDisable()
         {
             UnSubscribeControllerActions();
@@ -134,7 +137,6 @@ namespace Rhinox.XR.UnityXR.Simulator
             SimulatorUtils.Subscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
             SimulatorUtils.Subscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
         }
-
         private void UnSubscribeControllerActions()
         {
             SimulatorUtils.Unsubscribe(_leftGripInputActionReference, OnGripPressed, OnGripCancelled);
@@ -186,7 +188,8 @@ namespace Rhinox.XR.UnityXR.Simulator
             {
                 FrameRate = _desiredFPS
             };
-
+            Debug.Log("Started recording.");
+            _recordingStopwatch.Restart();
             StartCoroutine(RecordingCoroutine());
         }
 
@@ -221,15 +224,29 @@ namespace Rhinox.XR.UnityXR.Simulator
         {
             if (!ctx.performed || !IsRecording)
                 return;
+
+            //----------------------------
+            // CALCULATE LENGTH
+            //----------------------------
+            RecordingTime temp;
+            _recordingStopwatch.Stop();
+            temp.Milliseconds = _recordingStopwatch.Elapsed.Milliseconds;
+            temp.Seconds = _recordingStopwatch.Elapsed.Seconds;
+            temp.Minutes = _recordingStopwatch.Elapsed.Minutes;
+            _currentRecording.RecordingLength = temp;
+            Debug.Log($"Ended recording of {_currentRecording.RecordingLength}");
+
             
-            IsRecording = false;
-            
+            //----------------------------
             //Write to XML
+            //----------------------------
             var serializer = new XmlSerializer(typeof(SimulationRecording));
             var stream = new FileStream(Path.Combine(Application.dataPath + FilePath, $"{RecordingName}.xml"),
                 FileMode.Create);
             serializer.Serialize(stream, _currentRecording);
             stream.Close();
+
+            IsRecording = false;
         }
         
         
@@ -326,7 +343,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _currentFrameInput.Add(frameInput);
         }
-
         private void OnPrimaryAxis2DClickCancelled(InputAction.CallbackContext ctx)
         {
             if (!IsRecording)
@@ -388,7 +404,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _currentFrameInput.Add(frameInput);
         }
-
         private void OnPrimaryAxis2DTouchCancelled(InputAction.CallbackContext ctx)
         {
             if (!IsRecording)
@@ -435,14 +450,12 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (ctx.action == _leftPrimaryButtonInputActionReference.action)
             {
                 //LEFT
-                Debug.Log("Left primary button used");
                 frameInput.IsRightControllerInput = false;
 
             }
             else if (ctx.action == _rightPrimaryButtonInputActionReference.action)
             {
                 //RIGHT
-                Debug.Log("Right primary button used");
                 frameInput.IsRightControllerInput = true;
             }
             else
@@ -467,14 +480,12 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (ctx.action == _leftPrimaryButtonInputActionReference.action)
             {
                 //LEFT
-                Debug.Log("Left primary button used");
                 frameInput.IsRightControllerInput = false;
 
             }
             else if (ctx.action == _rightPrimaryButtonInputActionReference.action)
             {
                 //RIGHT
-                Debug.Log("Right primary button used");
                 frameInput.IsRightControllerInput = true;
             }
             else
@@ -515,7 +526,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _currentFrameInput.Add(frameInput);
         }
-
         private void OnPrimaryTouchCancelled(InputAction.CallbackContext ctx)
         {
             if (!IsRecording)
@@ -577,7 +587,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _currentFrameInput.Add(frameInput);
         }
-
         private void OnSecondaryAxis2DClickCancelled(InputAction.CallbackContext ctx)
         {
             if (!IsRecording)
@@ -639,7 +648,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _currentFrameInput.Add(frameInput);
         }
-
         private void OnSecondaryAxis2DTouchCancelled(InputAction.CallbackContext ctx)
         {
             if (!IsRecording)
@@ -701,7 +709,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _currentFrameInput.Add(frameInput);
         }
-
         private void OnSecondaryTouchCancelled(InputAction.CallbackContext ctx)
         {
             if (!IsRecording)
@@ -763,7 +770,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _currentFrameInput.Add(frameInput);
         }
-
         private void OnSecondaryButtonCancelled(InputAction.CallbackContext ctx)
         {
             if (!IsRecording)
