@@ -856,6 +856,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ReimportRecording",
+                    "type": "Button",
+                    "id": "b8b45333-a562-4e54-ad6d-06c50b046fa5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -889,6 +898,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "StartPlayback",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a7fe283-4039-4d7b-8d26-cc0fa8574f89",
+                    "path": "<Keyboard>/f4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReimportRecording",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

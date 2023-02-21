@@ -138,7 +138,8 @@ public class InputVisualization : MonoBehaviour
             $"{SimulatorUtils.GetCurrentBindingPrefix(_recorder.EndRecordingActionReference)} to end recording");
         GUILayout.Label(
             $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.StartPlaybackActionReference)} to start playback");
-
+        GUILayout.Label(
+            $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.ReimportRecordingActionReference)} to (re)import recording");
         //--------------------------
         // Simulator Info
         //--------------------------
@@ -299,6 +300,11 @@ public class InputVisualization : MonoBehaviour
 
         SimulatorUtils.Unsubscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
         SimulatorUtils.Unsubscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
+    }
+
+    private void Update()
+    {
+        // Debug.Log(Time.deltaTime);
     }
 
     private void OnGripPressed(InputAction.CallbackContext ctx)
