@@ -70,7 +70,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         private XRSimulatedController _leftControllerDevice;
         private XRSimulatedController _rightControllerDevice;
 
-
+        public bool InputEnabled { get; set; } = true;
 
         private XRDeviceSimulatorControls _controls;
         private bool _simulatorLoaded;
@@ -141,8 +141,11 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (_controls.DesiredCursorLockMode != Cursor.lockState)
                 Cursor.lockState = _controls.DesiredCursorLockMode;
 
-            ProcessPoseInput();
-            ProcessControlInput();
+            if (InputEnabled)
+            {
+                ProcessPoseInput();
+                ProcessControlInput();
+            }
 
             if (_hmdDevice != null && _hmdDevice.added)
                 InputState.Change(_hmdDevice, HMDState);
@@ -152,9 +155,26 @@ namespace Rhinox.XR.UnityXR.Simulator
     
             if (_rightControllerDevice != null && _rightControllerDevice.added)
                 InputState.Change(_rightControllerDevice, RightControllerState);
+            
+        }
 
+        public void SetDeviceTransforms(Vector3 hmdPos, Quaternion hmdRot, Vector3 leftPos, Quaternion leftRot,
+            Vector3 rightPos, Quaternion rightRot)
+        {
+            HMDState.devicePosition = hmdPos;
+            HMDState.deviceRotation = hmdRot;
+            HMDState.centerEyePosition = hmdPos;
+            HMDState.centerEyeRotation = hmdRot;
+            
+            LeftControllerState.devicePosition = leftPos;
+            LeftControllerState.deviceRotation = leftRot;
+
+            RightControllerState.devicePosition = rightPos;
+            RightControllerState.deviceRotation = rightRot;
+
+            InputSystem.QueueStateEvent(_hmdDevice, HMDState);
+            InputSystem.QueueStateEvent(_leftControllerDevice, LeftControllerState);
             InputSystem.QueueStateEvent(_rightControllerDevice, RightControllerState);
-
         }
 
         /// <summary>
