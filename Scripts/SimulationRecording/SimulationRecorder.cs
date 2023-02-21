@@ -19,9 +19,7 @@ namespace Rhinox.XR.UnityXR.Simulator
     public class SimulationRecorder : MonoBehaviour
     {
         [Header("Device Transforms")]
-        [SerializeField] private Transform _hmdTransform;
-        [SerializeField] private Transform _leftHandTransform;
-        [SerializeField] private Transform _rightHandTransform;
+        [SerializeField] private BetterXRDeviceSimulator _simulator;
 
         [Header("Recording parameters")]
         [SerializeField] private int _desiredFPS = 30;
@@ -200,14 +198,15 @@ namespace Rhinox.XR.UnityXR.Simulator
                 
                 var newFrame = new FrameData
                             {
-                                HeadPosition = _hmdTransform.position,
-                                HeadRotation = _hmdTransform.rotation,
-                                LeftHandPosition = _leftHandTransform.position,
-                                LeftHandRotation = _leftHandTransform.rotation,
-                                RightHandPosition = _rightHandTransform.position,
-                                RightHandRotation = _rightHandTransform.rotation,
+                                HeadPosition = _simulator.HMDState.devicePosition,
+                                HeadRotation = _simulator.HMDState.deviceRotation,
+                                LeftHandPosition = _simulator.LeftControllerState.devicePosition,
+                                LeftHandRotation = _simulator.LeftControllerState.deviceRotation,
+                                RightHandPosition = _simulator.RightControllerState.devicePosition,
+                                RightHandRotation = _simulator.RightControllerState.deviceRotation,
                                 FrameInputs = new List<FrameInput>(_currentFrameInput)
                             };
+                
                 _currentFrameInput.Clear();
                 _currentRecording.AddFrame(newFrame);
 
@@ -246,6 +245,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             serializer.Serialize(stream, _currentRecording);
             stream.Close();
 
+            _simulator.InputEnabled = true;
             IsRecording = false;
         }
         
