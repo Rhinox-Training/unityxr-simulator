@@ -316,9 +316,63 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Menu",
+                    "name": "Menu Button",
                     "type": "Button",
                     "id": "c49c54c5-31d2-461d-9d61-8d115ca3a525",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Primary Touch",
+                    "type": "Button",
+                    "id": "3d57d4e8-2cc2-4e83-915b-21cfbb3dba95",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Primary Axis 2D Click",
+                    "type": "Button",
+                    "id": "667cdc09-fb7c-42b1-a93b-c1197217fd62",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Primary Axis 2D Touch",
+                    "type": "Button",
+                    "id": "632a784e-f11b-485d-b07c-3976f69d7996",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Secondary Touch",
+                    "type": "Button",
+                    "id": "370bd26a-a3d6-4ed2-914c-d68bb59d08ab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Secondary Axis 2D Click",
+                    "type": "Button",
+                    "id": "13039354-563d-4980-8d3f-c34546bce974",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Secondary Axis 2D Touch",
+                    "type": "Button",
+                    "id": "350825a8-4e37-49e0-bada-ce09358b1379",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -614,12 +668,155 @@
                 },
                 {
                     "name": "",
-                    "id": "fc345583-635d-4e21-a672-185ef67c6da6",
+                    "id": "5a13ef00-2bea-461e-84ec-ab035315bf44",
                     "path": "<XRController>{LeftHand}/menuButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Menu",
+                    "action": "Menu Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a534aa9-5fb0-4213-95b4-54db21b294d7",
+                    "path": "<XRController>{LeftHand}/primary2DAxisClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Axis 2D Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3cc6466-238a-46b1-8823-8dc6a8d957c7",
+                    "path": "<PlaybackInputDevice>/LeftPrimaryAxis2DClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Axis 2D Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc3c224c-de70-4b52-85e1-68a0c795f780",
+                    "path": "<XRController>{LeftHand}/primary2DAxisTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Axis 2D Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f901fe8-e846-4b17-a403-a68b736f132a",
+                    "path": "<PlaybackInputDevice>/LeftPrimaryAxis2DTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Axis 2D Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38a8a889-7e68-49fa-8c01-3c689ae2a3a3",
+                    "path": "<XRController>{LeftHand}/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "20d76fd7-b353-443e-8999-1ccef365755e",
+                    "path": "<PlaybackInputDevice>/LeftPrimaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03cecea2-8df9-4f13-a4de-5351ffe1cd70",
+                    "path": "<XRController>{LeftHand}/secondaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "078847d7-910c-49c2-ae5b-baccfe46a3a8",
+                    "path": "<PlaybackInputDevice>/LeftSecondaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "64f95b9b-d448-478d-93a0-b25c8de2752a",
+                    "path": "<XRController>{LeftHand}/secondary2DAxisClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Axis 2D Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb8a99fc-4e36-4512-a60a-3a16d820a0c7",
+                    "path": "<PlaybackInputDevice>/LeftSecondaryAxis2DClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Axis 2D Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "232cbc3b-63cb-4a84-b3ab-85270bd2b703",
+                    "path": "<XRController>{LeftHand}/secondary2DAxisTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Axis 2D Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d0cb75e-736a-42af-83c4-ca175b014735",
+                    "path": "<PlaybackInputDevice>/LeftSecondaryAxis2DTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Axis 2D Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "79294f68-674e-488d-8832-6c1c4f105936",
+                    "path": "<PlaybackInputDevice>/LeftMenuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -722,28 +919,6 @@
                 },
                 {
                     "name": "",
-                    "id": "b8aebee7-fa03-43d4-bfb7-77a3f87452cc",
-                    "path": "<XRController>{LeftHand}/gripPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Teleport Mode Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "99cb7ad1-51ec-4611-af68-92a85f2c17d6",
-                    "path": "<XRController>{LeftHand}/Primary2DAxis",
-                    "interactions": "Sector(directions=12,sweepBehavior=1),Sector(directions=2,sweepBehavior=2)",
-                    "processors": "",
-                    "groups": "Noncontinuous Move",
-                    "action": "Turn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3ef8e371-f63a-4015-a192-d4e07fb03beb",
                     "path": "<PlaybackInputDevice>/LeftPrimaryAxis",
                     "interactions": "",
@@ -772,6 +947,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8aebee7-fa03-43d4-bfb7-77a3f87452cc",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Teleport Mode Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99cb7ad1-51ec-4611-af68-92a85f2c17d6",
+                    "path": "<XRController>{LeftHand}/Primary2DAxis",
+                    "interactions": "Sector(directions=12,sweepBehavior=1),Sector(directions=2,sweepBehavior=2)",
+                    "processors": "",
+                    "groups": "Noncontinuous Move",
+                    "action": "Turn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1047,6 +1244,60 @@
                     "name": "Menu Button",
                     "type": "Button",
                     "id": "753ff69c-20b5-4c86-a09b-e66a6e3a7b7f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Primary Touch",
+                    "type": "Button",
+                    "id": "423ab998-7a3e-4f35-b2f5-f681755ed3c5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Primary Axis 2D Click",
+                    "type": "Button",
+                    "id": "41c4668e-f8c3-47ea-9ff7-fd79799e53a3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Primary Axis 2D Touch",
+                    "type": "Button",
+                    "id": "1d70efd6-900d-4cbe-8ad1-af51a5f0b405",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Secondary Axis 2D Touch",
+                    "type": "Button",
+                    "id": "1a1d4b5e-b899-4a1b-bbc5-f3bcab05aae9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Secondary Axis 2D Click",
+                    "type": "Button",
+                    "id": "84e0c1e1-4903-4544-a6ff-e20a8a9703cf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Secondary Touch",
+                    "type": "Button",
+                    "id": "77d7b49e-0a71-47f7-a3b6-dba1d068a19b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1348,6 +1599,149 @@
                     "processors": "",
                     "groups": "",
                     "action": "Menu Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4665e528-9bc4-44ea-8f2d-17b53e41d3c4",
+                    "path": "<XRController>{RightHand}/menuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "abd4aef6-838d-4d9d-b8e7-7f973f34eb38",
+                    "path": "<XRController>{RightHand}/secondaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eae3b38c-9030-41aa-b568-46373fad2010",
+                    "path": "<PlaybackInputDevice>/RightSecondaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "131dd20d-bc0a-468e-b155-e8f2baf931bd",
+                    "path": "<XRController>{RightHand}/secondary2DAxisClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Axis 2D Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1df2ba6a-06b3-414c-961f-f375e0a1bde1",
+                    "path": "<PlaybackInputDevice>/RightSecondaryAxis2DClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Axis 2D Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49d32e30-cd28-4cbd-8f0b-c93d472c0b3f",
+                    "path": "<XRController>{RightHand}/secondary2DAxisTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Axis 2D Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc769b57-8663-4859-85c7-027f28985418",
+                    "path": "<PlaybackInputDevice>/RightSecondaryAxis2DTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary Axis 2D Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1421965c-56e0-4775-80ad-e1d6b1e69604",
+                    "path": "<XRController>{RightHand}/primary2DAxisTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Axis 2D Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd548317-c913-42c8-b5af-4b4dc2b4cc02",
+                    "path": "<PlaybackInputDevice>/RightPrimaryAxis2DTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Axis 2D Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2d8e959-b29e-43f4-aae7-34e669c2f34c",
+                    "path": "<XRController>{RightHand}/primary2DAxisClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Axis 2D Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ba3a828-b15d-4e6e-8855-09b724284522",
+                    "path": "<PlaybackInputDevice>/RightPrimaryAxis2DClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Axis 2D Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16b6d3a2-933d-43db-8adc-5478c90b6d14",
+                    "path": "<XRController>{RightHand}/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6fb9a1f5-c34c-4a4c-9275-71c978193bb6",
+                    "path": "<PlaybackInputDevice>/RightPrimaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Primary Touch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
