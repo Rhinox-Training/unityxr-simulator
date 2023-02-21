@@ -140,8 +140,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         private void Update()
         {
             
-            InputSystem.QueueStateEvent(_playbackInputDevice,_playbackDeviceState);
-            
             if (!IsPlaying)
                 return;
 
@@ -164,11 +162,12 @@ namespace Rhinox.XR.UnityXR.Simulator
                 foreach (var input in frame.FrameInputs)
                     ProcessFrameInput(input);
                 _currentFrame++;
-
-                // yield return new WaitForSecondsRealtime(_frameInterval);
+                
+                InputSystem.QueueStateEvent(_playbackInputDevice, _playbackDeviceState);
 
                 if (_currentFrame >= _currentRecording.RecordingLength)
                     EndPlayBack();
+
 
             }
         }
@@ -181,8 +180,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void ProcessFrameInput(FrameInput input)
         {
-            
-            float inputStartFloat = input.IsInputStart ? 1f : 0f;
+            var inputStartFloat = input.IsInputStart ? 1f : 0f;
             switch (input.InputActionName)
             {
                 case "grip":
@@ -191,17 +189,60 @@ namespace Rhinox.XR.UnityXR.Simulator
                     else
                         _playbackDeviceState.LeftGrip = inputStartFloat;
                     break;
-                case "trigger":
+                case "primary axis 2D click":
                     if (input.IsRightControllerInput)
-                        _playbackDeviceState.RightTrigger = inputStartFloat;
+                        _playbackDeviceState.RightPrimaryAxis2DClick = inputStartFloat;
                     else
-                        _playbackDeviceState.LeftTrigger = inputStartFloat;
+                        _playbackDeviceState.LeftPrimaryAxis2DClick = inputStartFloat;
+                    break;
+                case "primary axis 2D touch":
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightPrimaryAxis2DTouch = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftPrimaryAxis2DTouch = inputStartFloat;
                     break;
                 case "primary button":
                     if (input.IsRightControllerInput)
                         _playbackDeviceState.RightPrimaryButton = inputStartFloat;
                     else
                         _playbackDeviceState.LeftPrimaryButton = inputStartFloat;
+                    break;
+                case "primary touch":
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightPrimaryTouch = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftPrimaryTouch = inputStartFloat;
+                    break;
+                case "secondary axis 2D click":
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightSecondaryAxis2DClick = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftSecondaryAxis2DClick = inputStartFloat;
+                    break;
+                case "secondary axis 2D touch":
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightSecondaryAxis2DTouch = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftSecondaryAxis2DTouch = inputStartFloat;
+                    break;
+                case "secondary touch":
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightSecondaryTouch = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftSecondaryTouch = inputStartFloat;
+                    break;
+                case "menu button":
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightMenuButton = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftMenuButton = inputStartFloat;
+                    break;
+                    break;
+                case "trigger":
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightTrigger = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftTrigger = inputStartFloat;
                     break;
                 case "secondary button":
                     if (input.IsRightControllerInput)
