@@ -2,7 +2,7 @@
 
 This package contains a simulator for UnityXR which uses mouse and keyboard to simulate VR input (movement and interactions). There is also the possibility to record and replay this input though the simulator recorder and playback.
 
-##Setting up a scene
+## Setting up a scene
 To set up the scene for simulation, just drag the "Simulator_XRRig" into the scene. The "XR Device Simulator Controls" inputactions are used as mouse and keyboard input, so look at this asset to see what keyboard and mouse actions match which VR actions. 
 Also add a gameobject that holds both an XR Origin and XR interaction manager.
 
