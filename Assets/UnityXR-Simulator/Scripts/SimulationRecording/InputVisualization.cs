@@ -241,6 +241,8 @@ public class InputVisualization : MonoBehaviour
         if (_recorder == null || _playback == null || _deviceSimulator == null || _deviceSimulatorControls == null)
         {
             Debug.Log("InputVisualization, not all input references set!");
+            this.gameObject.SetActive(false);
+            return;
         }
         
         SimulatorUtils.Subscribe(_leftGripInputActionReference, OnGripPressed, OnGripCancelled);
