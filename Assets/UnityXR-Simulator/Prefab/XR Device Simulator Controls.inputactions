@@ -825,6 +825,114 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Recording/Playback Controls",
+            "id": "11a18b99-c6d4-4715-9560-d1799239f829",
+            "actions": [
+                {
+                    "name": "Start Recording",
+                    "type": "Button",
+                    "id": "97edddd0-736c-451a-98f7-8c4ae0c2c551",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "End Recording",
+                    "type": "Button",
+                    "id": "16795d75-14dc-4b47-94bf-af92e952ef8b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StartPlayback",
+                    "type": "Button",
+                    "id": "c5458b27-2ef6-4f11-8938-9b28794aae7d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ReimportRecording",
+                    "type": "Button",
+                    "id": "b8b45333-a562-4e54-ad6d-06c50b046fa5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AbortPlayback",
+                    "type": "Button",
+                    "id": "2883732f-3a16-4dab-9495-5a739ccd9df3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7831c42d-fc63-4c25-ba22-bcacf9a7ce92",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start Recording",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec08918c-dc26-421b-ae2d-f9360a16f8ca",
+                    "path": "<Keyboard>/f2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "End Recording",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8e651bc-3784-4716-9b10-9f81cb628448",
+                    "path": "<Keyboard>/f3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartPlayback",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a7fe283-4039-4d7b-8d26-cc0fa8574f89",
+                    "path": "<Keyboard>/f4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReimportRecording",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6250df04-938c-46a8-857c-a91fc7130b84",
+                    "path": "<Keyboard>/f5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbortPlayback",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

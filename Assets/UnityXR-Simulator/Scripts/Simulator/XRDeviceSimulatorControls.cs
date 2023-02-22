@@ -10,11 +10,10 @@ using Rhinox.GUIUtils.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
-using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation;
 
-namespace Rhinox.VOLT.XR.UnityXR.Simulator
+namespace Rhinox.XR.UnityXR.Simulator
 {
     [DefaultExecutionOrder(XRInteractionUpdateOrder.k_DeviceSimulator)]
     public class XRDeviceSimulatorControls : MonoBehaviour
@@ -661,11 +660,15 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
         public Vector2 Axis2DInput;
         public Vector2 RestingHandAxis2DInput;
 
-        public bool GripInput { get; private set; }
-        public bool TriggerInput { get; private set; }
-        public bool PrimaryButtonInput { get; private set; }
-        public bool SecondaryButtonInput { get; private set; }
-        public bool MenuInput { get; private set; }
+        public bool GripInput
+        {
+            get; 
+            set;
+        }
+        public bool TriggerInput { get; set; }
+        public bool PrimaryButtonInput { get; set; }
+        public bool SecondaryButtonInput { get; set; }
+        public bool MenuInput { get; set; }
         public bool Primary2DAxisClickInput { get; private set; }
         public bool Secondary2DAxisClickInput { get; private set; }
         public bool Primary2DAxisTouchInput { get; private set; }
@@ -790,117 +793,94 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
                 ? new Vector3(m_XConstraintInput ? 0f : 1f, m_YConstraintInput ? 0f : 1f, m_ZConstraintInput ? 0f : 1f)
                 : Vector3.zero;
         }
+        
 
-        static void Subscribe(InputActionReference reference, Action<InputAction.CallbackContext> performed = null, Action<InputAction.CallbackContext> canceled = null)
-        {
-            var action = GetInputAction(reference);
-            if (action != null)
-            {
-                if (performed != null)
-                    action.performed += performed;
-                if (canceled != null)
-                    action.canceled += canceled;
-            }
-        }
+        void SubscribeKeyboardXTranslateAction() => SimulatorUtils.Subscribe(m_KeyboardXTranslateAction, OnKeyboardXTranslatePerformed, OnKeyboardXTranslateCanceled);
+        void UnsubscribeKeyboardXTranslateAction() => SimulatorUtils.Unsubscribe(m_KeyboardXTranslateAction, OnKeyboardXTranslatePerformed, OnKeyboardXTranslateCanceled);
 
-        static void Unsubscribe(InputActionReference reference, Action<InputAction.CallbackContext> performed = null, Action<InputAction.CallbackContext> canceled = null)
-        {
-            var action = GetInputAction(reference);
-            if (action != null)
-            {
-                if (performed != null)
-                    action.performed -= performed;
-                if (canceled != null)
-                    action.canceled -= canceled;
-            }
-        }
+        void SubscribeKeyboardYTranslateAction() => SimulatorUtils.Subscribe(m_KeyboardYTranslateAction, OnKeyboardYTranslatePerformed, OnKeyboardYTranslateCanceled);
+        void UnsubscribeKeyboardYTranslateAction() => SimulatorUtils.Unsubscribe(m_KeyboardYTranslateAction, OnKeyboardYTranslatePerformed, OnKeyboardYTranslateCanceled);
 
-        void SubscribeKeyboardXTranslateAction() => Subscribe(m_KeyboardXTranslateAction, OnKeyboardXTranslatePerformed, OnKeyboardXTranslateCanceled);
-        void UnsubscribeKeyboardXTranslateAction() => Unsubscribe(m_KeyboardXTranslateAction, OnKeyboardXTranslatePerformed, OnKeyboardXTranslateCanceled);
+        void SubscribeKeyboardZTranslateAction() => SimulatorUtils.Subscribe(m_KeyboardZTranslateAction, OnKeyboardZTranslatePerformed, OnKeyboardZTranslateCanceled);
+        void UnsubscribeKeyboardZTranslateAction() => SimulatorUtils.Unsubscribe(m_KeyboardZTranslateAction, OnKeyboardZTranslatePerformed, OnKeyboardZTranslateCanceled);
 
-        void SubscribeKeyboardYTranslateAction() => Subscribe(m_KeyboardYTranslateAction, OnKeyboardYTranslatePerformed, OnKeyboardYTranslateCanceled);
-        void UnsubscribeKeyboardYTranslateAction() => Unsubscribe(m_KeyboardYTranslateAction, OnKeyboardYTranslatePerformed, OnKeyboardYTranslateCanceled);
+        void SubscribeToggleManipulateAction() => SimulatorUtils.Subscribe(m_ToggleManipulateAction, OnChangeManipulationTarget);
+        void UnsubscribeToggleManipulateAction() => SimulatorUtils.Unsubscribe(m_ToggleManipulateAction, OnChangeManipulationTarget);
 
-        void SubscribeKeyboardZTranslateAction() => Subscribe(m_KeyboardZTranslateAction, OnKeyboardZTranslatePerformed, OnKeyboardZTranslateCanceled);
-        void UnsubscribeKeyboardZTranslateAction() => Unsubscribe(m_KeyboardZTranslateAction, OnKeyboardZTranslatePerformed, OnKeyboardZTranslateCanceled);
+        void SubscribeToggleKeyboardSpaceAction() => SimulatorUtils.Subscribe(m_ToggleKeyboardSpaceAction, OnChangeKeyboardSpace);
+        void UnsubscribeToggleKeyboardSpaceAction() => SimulatorUtils.Unsubscribe(m_ToggleKeyboardSpaceAction, OnChangeKeyboardSpace);
 
-        void SubscribeToggleManipulateAction() => Subscribe(m_ToggleManipulateAction, OnChangeManipulationTarget);
-        void UnsubscribeToggleManipulateAction() => Unsubscribe(m_ToggleManipulateAction, OnChangeManipulationTarget);
+        void SubscribeMouseDeltaAction() => SimulatorUtils.Subscribe(m_MouseDeltaAction, OnMouseDeltaPerformed, OnMouseDeltaCanceled);
+        void UnsubscribeMouseDeltaAction() => SimulatorUtils.Unsubscribe(m_MouseDeltaAction, OnMouseDeltaPerformed, OnMouseDeltaCanceled);
 
-        void SubscribeToggleKeyboardSpaceAction() => Subscribe(m_ToggleKeyboardSpaceAction, OnChangeKeyboardSpace);
-        void UnsubscribeToggleKeyboardSpaceAction() => Unsubscribe(m_ToggleKeyboardSpaceAction, OnChangeKeyboardSpace);
+        void SubscribeMouseScrollAction() => SimulatorUtils.Subscribe(m_MouseScrollAction, OnMouseScrollPerformed, OnMouseScrollCanceled);
+        void UnsubscribeMouseScrollAction() => SimulatorUtils.Unsubscribe(m_MouseScrollAction, OnMouseScrollPerformed, OnMouseScrollCanceled);
 
-        void SubscribeMouseDeltaAction() => Subscribe(m_MouseDeltaAction, OnMouseDeltaPerformed, OnMouseDeltaCanceled);
-        void UnsubscribeMouseDeltaAction() => Unsubscribe(m_MouseDeltaAction, OnMouseDeltaPerformed, OnMouseDeltaCanceled);
+        void SubscribeXConstraintAction() => SimulatorUtils.Subscribe(m_XConstraintAction, OnXConstraintPerformed, OnXConstraintCanceled);
+        void UnsubscribeXConstraintAction() => SimulatorUtils.Unsubscribe(m_XConstraintAction, OnXConstraintPerformed, OnXConstraintCanceled);
 
-        void SubscribeMouseScrollAction() => Subscribe(m_MouseScrollAction, OnMouseScrollPerformed, OnMouseScrollCanceled);
-        void UnsubscribeMouseScrollAction() => Unsubscribe(m_MouseScrollAction, OnMouseScrollPerformed, OnMouseScrollCanceled);
+        void SubscribeYConstraintAction() => SimulatorUtils.Subscribe(m_YConstraintAction, OnYConstraintPerformed, OnYConstraintCanceled);
+        void UnsubscribeYConstraintAction() => SimulatorUtils.Unsubscribe(m_YConstraintAction, OnYConstraintPerformed, OnYConstraintCanceled);
 
-        void SubscribeXConstraintAction() => Subscribe(m_XConstraintAction, OnXConstraintPerformed, OnXConstraintCanceled);
-        void UnsubscribeXConstraintAction() => Unsubscribe(m_XConstraintAction, OnXConstraintPerformed, OnXConstraintCanceled);
+        void SubscribeZConstraintAction() => SimulatorUtils.Subscribe(m_ZConstraintAction, OnZConstraintPerformed, OnZConstraintCanceled);
+        void UnsubscribeZConstraintAction() => SimulatorUtils.Unsubscribe(m_ZConstraintAction, OnZConstraintPerformed, OnZConstraintCanceled);
 
-        void SubscribeYConstraintAction() => Subscribe(m_YConstraintAction, OnYConstraintPerformed, OnYConstraintCanceled);
-        void UnsubscribeYConstraintAction() => Unsubscribe(m_YConstraintAction, OnYConstraintPerformed, OnYConstraintCanceled);
+        void SubscribeResetAction() => SimulatorUtils.Subscribe(m_ResetAction, OnResetPerformed, OnResetCanceled);
+        void UnsubscribeResetAction() => SimulatorUtils.Unsubscribe(m_ResetAction, OnResetPerformed, OnResetCanceled);
 
-        void SubscribeZConstraintAction() => Subscribe(m_ZConstraintAction, OnZConstraintPerformed, OnZConstraintCanceled);
-        void UnsubscribeZConstraintAction() => Unsubscribe(m_ZConstraintAction, OnZConstraintPerformed, OnZConstraintCanceled);
+        void SubscribeToggleCursorLockAction() => SimulatorUtils.Subscribe(m_ToggleCursorLockAction, OnToggleCursorLockPerformed);
+        void UnsubscribeToggleCursorLockAction() => SimulatorUtils.Unsubscribe(m_ToggleCursorLockAction, OnToggleCursorLockPerformed);
 
-        void SubscribeResetAction() => Subscribe(m_ResetAction, OnResetPerformed, OnResetCanceled);
-        void UnsubscribeResetAction() => Unsubscribe(m_ResetAction, OnResetPerformed, OnResetCanceled);
+        void SubscribeToggleDevicePositionTargetAction() => SimulatorUtils.Subscribe(m_ToggleDevicePositionTargetAction, OnToggleDevicePositionTargetPerformed);
+        void UnsubscribeToggleDevicePositionTargetAction() => SimulatorUtils.Unsubscribe(m_ToggleDevicePositionTargetAction, OnToggleDevicePositionTargetPerformed);
 
-        void SubscribeToggleCursorLockAction() => Subscribe(m_ToggleCursorLockAction, OnToggleCursorLockPerformed);
-        void UnsubscribeToggleCursorLockAction() => Unsubscribe(m_ToggleCursorLockAction, OnToggleCursorLockPerformed);
+        void SubscribeTogglePrimary2DAxisTargetAction() => SimulatorUtils.Subscribe(m_TogglePrimary2DAxisTargetAction, OnTogglePrimary2DAxisTargetPerformed);
+        void UnsubscribeTogglePrimary2DAxisTargetAction() => SimulatorUtils.Unsubscribe(m_TogglePrimary2DAxisTargetAction, OnTogglePrimary2DAxisTargetPerformed);
 
-        void SubscribeToggleDevicePositionTargetAction() => Subscribe(m_ToggleDevicePositionTargetAction, OnToggleDevicePositionTargetPerformed);
-        void UnsubscribeToggleDevicePositionTargetAction() => Unsubscribe(m_ToggleDevicePositionTargetAction, OnToggleDevicePositionTargetPerformed);
+        void SubscribeToggleSecondary2DAxisTargetAction() => SimulatorUtils.Subscribe(m_ToggleSecondary2DAxisTargetAction, OnToggleSecondary2DAxisTargetPerformed);
+        void UnsubscribeToggleSecondary2DAxisTargetAction() => SimulatorUtils.Unsubscribe(m_ToggleSecondary2DAxisTargetAction, OnToggleSecondary2DAxisTargetPerformed);
 
-        void SubscribeTogglePrimary2DAxisTargetAction() => Subscribe(m_TogglePrimary2DAxisTargetAction, OnTogglePrimary2DAxisTargetPerformed);
-        void UnsubscribeTogglePrimary2DAxisTargetAction() => Unsubscribe(m_TogglePrimary2DAxisTargetAction, OnTogglePrimary2DAxisTargetPerformed);
+        void SubscribeAxis2DAction() => SimulatorUtils.Subscribe(m_Axis2DAction, OnAxis2DPerformed, OnAxis2DCanceled);
+        void UnsubscribeAxis2DAction() => SimulatorUtils.Unsubscribe(m_Axis2DAction, OnAxis2DPerformed, OnAxis2DCanceled);
 
-        void SubscribeToggleSecondary2DAxisTargetAction() => Subscribe(m_ToggleSecondary2DAxisTargetAction, OnToggleSecondary2DAxisTargetPerformed);
-        void UnsubscribeToggleSecondary2DAxisTargetAction() => Unsubscribe(m_ToggleSecondary2DAxisTargetAction, OnToggleSecondary2DAxisTargetPerformed);
+        void SubscribeRestingHandAxis2DAction() => SimulatorUtils.Subscribe(m_RestingHandAxis2DAction, OnRestingHandAxis2DPerformed, OnRestingHandAxis2DCanceled);
+        void UnsubscribeRestingHandAxis2DAction() => SimulatorUtils.Unsubscribe(m_RestingHandAxis2DAction, OnRestingHandAxis2DPerformed, OnRestingHandAxis2DCanceled);
 
-        void SubscribeAxis2DAction() => Subscribe(m_Axis2DAction, OnAxis2DPerformed, OnAxis2DCanceled);
-        void UnsubscribeAxis2DAction() => Unsubscribe(m_Axis2DAction, OnAxis2DPerformed, OnAxis2DCanceled);
+        void SubscribeGripAction() => SimulatorUtils.Subscribe(m_GripAction, OnGripPerformed, OnGripCanceled);
+        void UnsubscribeGripAction() => SimulatorUtils.Unsubscribe(m_GripAction, OnGripPerformed, OnGripCanceled);
 
-        void SubscribeRestingHandAxis2DAction() => Subscribe(m_RestingHandAxis2DAction, OnRestingHandAxis2DPerformed, OnRestingHandAxis2DCanceled);
-        void UnsubscribeRestingHandAxis2DAction() => Unsubscribe(m_RestingHandAxis2DAction, OnRestingHandAxis2DPerformed, OnRestingHandAxis2DCanceled);
+        void SubscribeTriggerAction() => SimulatorUtils.Subscribe(m_TriggerAction, OnTriggerPerformed, OnTriggerCanceled);
+        void UnsubscribeTriggerAction() => SimulatorUtils.Unsubscribe(m_TriggerAction, OnTriggerPerformed, OnTriggerCanceled);
 
-        void SubscribeGripAction() => Subscribe(m_GripAction, OnGripPerformed, OnGripCanceled);
-        void UnsubscribeGripAction() => Unsubscribe(m_GripAction, OnGripPerformed, OnGripCanceled);
+        void SubscribePrimaryButtonAction() => SimulatorUtils.Subscribe(m_PrimaryButtonAction, OnPrimaryButtonPerformed, OnPrimaryButtonCanceled);
+        void UnsubscribePrimaryButtonAction() => SimulatorUtils.Unsubscribe(m_PrimaryButtonAction, OnPrimaryButtonPerformed, OnPrimaryButtonCanceled);
 
-        void SubscribeTriggerAction() => Subscribe(m_TriggerAction, OnTriggerPerformed, OnTriggerCanceled);
-        void UnsubscribeTriggerAction() => Unsubscribe(m_TriggerAction, OnTriggerPerformed, OnTriggerCanceled);
+        void SubscribeSecondaryButtonAction() => SimulatorUtils.Subscribe(m_SecondaryButtonAction, OnSecondaryButtonPerformed, OnSecondaryButtonCanceled);
+        void UnsubscribeSecondaryButtonAction() => SimulatorUtils.Unsubscribe(m_SecondaryButtonAction, OnSecondaryButtonPerformed, OnSecondaryButtonCanceled);
 
-        void SubscribePrimaryButtonAction() => Subscribe(m_PrimaryButtonAction, OnPrimaryButtonPerformed, OnPrimaryButtonCanceled);
-        void UnsubscribePrimaryButtonAction() => Unsubscribe(m_PrimaryButtonAction, OnPrimaryButtonPerformed, OnPrimaryButtonCanceled);
+        void SubscribeMenuAction() => SimulatorUtils.Subscribe(m_MenuAction, OnMenuPerformed, OnMenuCanceled);
+        void UnsubscribeMenuAction() => SimulatorUtils.Unsubscribe(m_MenuAction, OnMenuPerformed, OnMenuCanceled);
 
-        void SubscribeSecondaryButtonAction() => Subscribe(m_SecondaryButtonAction, OnSecondaryButtonPerformed, OnSecondaryButtonCanceled);
-        void UnsubscribeSecondaryButtonAction() => Unsubscribe(m_SecondaryButtonAction, OnSecondaryButtonPerformed, OnSecondaryButtonCanceled);
+        void SubscribePrimary2DAxisClickAction() => SimulatorUtils.Subscribe(m_Primary2DAxisClickAction, OnPrimary2DAxisClickPerformed, OnPrimary2DAxisClickCanceled);
+        void UnsubscribePrimary2DAxisClickAction() => SimulatorUtils.Unsubscribe(m_Primary2DAxisClickAction, OnPrimary2DAxisClickPerformed, OnPrimary2DAxisClickCanceled);
 
-        void SubscribeMenuAction() => Subscribe(m_MenuAction, OnMenuPerformed, OnMenuCanceled);
-        void UnsubscribeMenuAction() => Unsubscribe(m_MenuAction, OnMenuPerformed, OnMenuCanceled);
+        void SubscribeSecondary2DAxisClickAction() => SimulatorUtils.Subscribe(m_Secondary2DAxisClickAction, OnSecondary2DAxisClickPerformed, OnSecondary2DAxisClickCanceled);
+        void UnsubscribeSecondary2DAxisClickAction() => SimulatorUtils.Unsubscribe(m_Secondary2DAxisClickAction, OnSecondary2DAxisClickPerformed, OnSecondary2DAxisClickCanceled);
 
-        void SubscribePrimary2DAxisClickAction() => Subscribe(m_Primary2DAxisClickAction, OnPrimary2DAxisClickPerformed, OnPrimary2DAxisClickCanceled);
-        void UnsubscribePrimary2DAxisClickAction() => Unsubscribe(m_Primary2DAxisClickAction, OnPrimary2DAxisClickPerformed, OnPrimary2DAxisClickCanceled);
+        void SubscribePrimary2DAxisTouchAction() => SimulatorUtils.Subscribe(m_Primary2DAxisTouchAction, OnPrimary2DAxisTouchPerformed, OnPrimary2DAxisTouchCanceled);
+        void UnsubscribePrimary2DAxisTouchAction() => SimulatorUtils.Unsubscribe(m_Primary2DAxisTouchAction, OnPrimary2DAxisTouchPerformed, OnPrimary2DAxisTouchCanceled);
 
-        void SubscribeSecondary2DAxisClickAction() => Subscribe(m_Secondary2DAxisClickAction, OnSecondary2DAxisClickPerformed, OnSecondary2DAxisClickCanceled);
-        void UnsubscribeSecondary2DAxisClickAction() => Unsubscribe(m_Secondary2DAxisClickAction, OnSecondary2DAxisClickPerformed, OnSecondary2DAxisClickCanceled);
+        void SubscribeSecondary2DAxisTouchAction() => SimulatorUtils.Subscribe(m_Secondary2DAxisTouchAction, OnSecondary2DAxisTouchPerformed, OnSecondary2DAxisTouchCanceled);
+        void UnsubscribeSecondary2DAxisTouchAction() => SimulatorUtils.Unsubscribe(m_Secondary2DAxisTouchAction, OnSecondary2DAxisTouchPerformed, OnSecondary2DAxisTouchCanceled);
 
-        void SubscribePrimary2DAxisTouchAction() => Subscribe(m_Primary2DAxisTouchAction, OnPrimary2DAxisTouchPerformed, OnPrimary2DAxisTouchCanceled);
-        void UnsubscribePrimary2DAxisTouchAction() => Unsubscribe(m_Primary2DAxisTouchAction, OnPrimary2DAxisTouchPerformed, OnPrimary2DAxisTouchCanceled);
+        void SubscribePrimaryTouchAction() => SimulatorUtils.Subscribe(m_PrimaryTouchAction, OnPrimaryTouchPerformed, OnPrimaryTouchCanceled);
+        void UnsubscribePrimaryTouchAction() => SimulatorUtils.Unsubscribe(m_PrimaryTouchAction, OnPrimaryTouchPerformed, OnPrimaryTouchCanceled);
 
-        void SubscribeSecondary2DAxisTouchAction() => Subscribe(m_Secondary2DAxisTouchAction, OnSecondary2DAxisTouchPerformed, OnSecondary2DAxisTouchCanceled);
-        void UnsubscribeSecondary2DAxisTouchAction() => Unsubscribe(m_Secondary2DAxisTouchAction, OnSecondary2DAxisTouchPerformed, OnSecondary2DAxisTouchCanceled);
+        void SubscribeSecondaryTouchAction() => SimulatorUtils.Subscribe(m_SecondaryTouchAction, OnSecondaryTouchPerformed, OnSecondaryTouchCanceled);
+        void UnsubscribeSecondaryTouchAction() => SimulatorUtils.Unsubscribe(m_SecondaryTouchAction, OnSecondaryTouchPerformed, OnSecondaryTouchCanceled);
 
-        void SubscribePrimaryTouchAction() => Subscribe(m_PrimaryTouchAction, OnPrimaryTouchPerformed, OnPrimaryTouchCanceled);
-        void UnsubscribePrimaryTouchAction() => Unsubscribe(m_PrimaryTouchAction, OnPrimaryTouchPerformed, OnPrimaryTouchCanceled);
-
-        void SubscribeSecondaryTouchAction() => Subscribe(m_SecondaryTouchAction, OnSecondaryTouchPerformed, OnSecondaryTouchCanceled);
-        void UnsubscribeSecondaryTouchAction() => Unsubscribe(m_SecondaryTouchAction, OnSecondaryTouchPerformed, OnSecondaryTouchCanceled);
-
-        void SubscribeToggleButtonControlTargetAction() => Subscribe(m_ToggleButtonControlTargetAction, OnToggleButtonControlTarget);
-        void UnsubscribeToggleButtonControlTargetAction() => Unsubscribe(m_ToggleButtonControlTargetAction, OnToggleButtonControlTarget);
+        void SubscribeToggleButtonControlTargetAction() => SimulatorUtils.Subscribe(m_ToggleButtonControlTargetAction, OnToggleButtonControlTarget);
+        void UnsubscribeToggleButtonControlTargetAction() => SimulatorUtils.Unsubscribe(m_ToggleButtonControlTargetAction, OnToggleButtonControlTarget);
 
         void OnKeyboardXTranslatePerformed(InputAction.CallbackContext context) => m_KeyboardXTranslateInput = context.ReadValue<float>();
         void OnKeyboardXTranslateCanceled(InputAction.CallbackContext context) => m_KeyboardXTranslateInput = 0f;
@@ -910,7 +890,6 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
 
         void OnKeyboardZTranslatePerformed(InputAction.CallbackContext context) => m_KeyboardZTranslateInput = context.ReadValue<float>();
         void OnKeyboardZTranslateCanceled(InputAction.CallbackContext context) => m_KeyboardZTranslateInput = 0f;
-
 
         void OnChangeManipulationTarget(InputAction.CallbackContext context)
         {
@@ -1040,13 +1019,6 @@ namespace Rhinox.VOLT.XR.UnityXR.Simulator
         void OnSecondaryTouchCanceled(InputAction.CallbackContext context) => SecondaryTouchInput = false;
 
         void OnToggleButtonControlTarget(InputAction.CallbackContext context) => ManipulateRightControllerButtons = !ManipulateRightControllerButtons;
-
-        static InputAction GetInputAction(InputActionReference actionReference)
-        {
-#pragma warning disable IDE0031 // Use null propagation -- Do not use for UnityEngine.Object types
-            return actionReference != null ? actionReference.action : null;
-#pragma warning restore IDE0031
-        }
 
         public bool ResetInputTriggered()
         {

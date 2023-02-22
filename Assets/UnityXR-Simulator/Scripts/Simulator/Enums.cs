@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Rhinox.VOLT.XR.UnityXR.Simulator
+namespace Rhinox.XR.UnityXR.Simulator
 {
     public enum ManipulationTarget
     {
