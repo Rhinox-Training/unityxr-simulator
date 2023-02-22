@@ -30,6 +30,7 @@ Some reference fps and thir deadzone value (positional deadzone and rotational d
 
 REMARKS:
 - It is possible to change the input in the recorder to other action references, this might be usefull. F.e. change it to keyboard actions to record this instead.
+- The recorder and playback don't record primary/secondary axis input. The posisiton and rotation of the devices (hmd, left controller and right controller) is used instead.
 - The recorder will write the ended recording to the Application.dataPath + FilePath, where FilePath is a SerializeField string field.
 - The recorder does not record frames in which nothing usefull has happened (no input or transform change).
 - The playback takes these missing frames into account.
