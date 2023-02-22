@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
@@ -16,6 +15,7 @@ public class InputVisualization : MonoBehaviour
     [SerializeField] private SimulationRecorder _recorder;
     [SerializeField] private SimulationPlayback _playback;
     [Space(10)]
+    [Header("Input actions")]
     [SerializeField] private InputActionReference _leftGripInputActionReference;
     [SerializeField] private InputActionReference _leftPrimaryAxisActionReference;
     [SerializeField] private InputActionReference _leftPrimaryAxis2DClickActionReference;
@@ -45,6 +45,8 @@ public class InputVisualization : MonoBehaviour
     [SerializeField] private InputActionReference _rightTriggerInputActionReference;
     [SerializeField] private InputActionReference _rightSecondaryButtonActionReference;
     
+    public Rect ControlsWindowRect;
+    public Rect InputWindowRect;
 
     private bool _leftGripPressed;
     private bool _rightGripPressed;
@@ -89,6 +91,19 @@ public class InputVisualization : MonoBehaviour
         Assert.AreNotEqual(_deviceSimulator, null, $"{nameof(InputVisualization)}, device simulator not set!");
     }
 
+    private void Awake()
+    {
+        InputWindowRect.x = Screen.width - 300;
+        InputWindowRect.y = 0;
+        InputWindowRect.width = 300;
+        InputWindowRect.height = 2f * Screen.height / 3;
+
+        ControlsWindowRect.x = 0;
+        ControlsWindowRect.y = 0;
+        ControlsWindowRect.width = 200;
+        ControlsWindowRect.height = Screen.height / 2f;
+    }
+
     /// <summary>
     /// See <see cref="MonoBehaviour"/>
     /// </summary>
@@ -106,26 +121,13 @@ public class InputVisualization : MonoBehaviour
             }
         };
 
-        var subTitleStyle = new GUIStyle()
-        {
-            fontStyle = FontStyle.Italic,
-            fontSize = 12,
-            alignment = TextAnchor.MiddleCenter,
-
-            normal =
-            {
-                textColor = Color.white
-            }
-        };
-
-        var windowRect = new Rect(Screen.width - 300, 0, 300, Screen.height);
-
-        GUI.Box(windowRect, "");
-        GUILayout.BeginArea(windowRect);
-
+        GUI.Box(ControlsWindowRect,"");
+        GUILayout.BeginArea(ControlsWindowRect);
         //--------------------------
         // Simulator Controls
         //--------------------------
+        GUILayout.Space(10);
+        GUILayout.Label("Controls",titleStyle);
         GUILayout.Label(
             $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.ToggleManipulateAction)} Mode: {_deviceSimulatorControls.ManipulationTarget}");
         GUILayout.Label(
@@ -140,9 +142,22 @@ public class InputVisualization : MonoBehaviour
             $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.StartPlaybackActionReference)} to start playback");
         GUILayout.Label(
             $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.ReimportRecordingActionReference)} to (re)import recording");
+        GUILayout.Label(
+            $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.AbortPlaybackActionReference)} to abort playback");
+        GUILayout.EndArea();
+        
+        
+        
+        //--------------------------
+        // Simulator INPUT WINDOW
+        //--------------------------
+
+        GUI.Box(InputWindowRect, "");
+        GUILayout.BeginArea(InputWindowRect);
         //--------------------------
         // Simulator Info
         //--------------------------
+        GUILayout.Space(10);
         if(_recorder.IsRecording)
             GUILayout.Label("Currently recording.");
         if (_playback.IsPlaying)
@@ -301,12 +316,7 @@ public class InputVisualization : MonoBehaviour
         SimulatorUtils.Unsubscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
         SimulatorUtils.Unsubscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
     }
-
-    private void Update()
-    {
-        // Debug.Log(Time.deltaTime);
-    }
-
+    
     private void OnGripPressed(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
