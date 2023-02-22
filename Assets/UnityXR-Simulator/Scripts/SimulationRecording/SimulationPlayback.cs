@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -122,9 +123,9 @@ namespace Rhinox.XR.UnityXR.Simulator
                     return;
             }
 
-            // SetInputActive(false);
             IsPlaying = true;
-            
+            _simulator.InputEnabled = false;
+
             _currentFrame = 0;
             Debug.Log("Started playback.");
 
@@ -135,22 +136,57 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private IEnumerator PlaybackRoutine()
         {
-            while (_currentFrame + 1 < _currentRecording.AmountOfFrames)
+            //Set first frame
+            _simulator.SetDeviceTransforms(_currentRecording.Frames.First().HeadPosition,
+                _currentRecording.Frames.First().HeadRotation,
+                _currentRecording.Frames.First().LeftHandPosition,
+                _currentRecording.Frames.First().LeftHandRotation,
+                _currentRecording.Frames.First().RightHandPosition,
+                _currentRecording.Frames.First().RightHandRotation);
+            foreach (var input in _currentRecording.Frames.First().FrameInputs)
+                ProcessFrameInput(input);
+
+            yield return new WaitForSecondsRealtime(_frameInterval);
+            
+            int loopFrame = 0;
+            while (loopFrame + 1 < _currentRecording.AmountOfFrames)
             {
                 var currentFrame = _currentRecording.Frames[_currentFrame];
-                var nextFrame = _currentRecording.Frames[_currentFrame + 1];
+                FrameData nextFrame;
+                if (_currentFrame + 1 != _currentRecording.Frames.Count)
+                    nextFrame = _currentRecording.Frames[_currentFrame + 1];
+                else
+                {
+                    //This is used when the last remaining frames are all empty
+                    yield return new WaitForSecondsRealtime(_frameInterval);
+                    loopFrame++;
+                    continue;
+                }
 
                 foreach (var input in currentFrame.FrameInputs)
                     ProcessFrameInput(input);
-                _currentFrame++;
-                
-                _simulator.InputEnabled = false;
                 
                 InputSystem.QueueStateEvent(_playbackInputDevice, _playbackDeviceState);
 
+                if (loopFrame == nextFrame.FrameNumber - 1)
+                {
+                    _currentFrame++;
+                    yield return StartCoroutine(TransformLerpCoroutine(currentFrame, nextFrame));
+                }
+                else
+                    yield return new WaitForSecondsRealtime(_frameInterval);
+
                 
-                yield return StartCoroutine(TransformLerpCoroutine(currentFrame,nextFrame));
+                loopFrame++;
             }
+
+            //Set final frame
+            _simulator.SetDeviceTransforms(_currentRecording.Frames.Last().HeadPosition,
+                _currentRecording.Frames.Last().HeadRotation,
+                _currentRecording.Frames.Last().LeftHandPosition,
+                _currentRecording.Frames.Last().LeftHandRotation,
+                _currentRecording.Frames.Last().RightHandPosition,
+                _currentRecording.Frames.Last().RightHandRotation);
 
             EndPlayBack();
 
@@ -158,6 +194,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private IEnumerator TransformLerpCoroutine(FrameData currentFrame, FrameData nextFrame)
         {
+            // (nextFrame.FrameNumber - currentFrame.FrameNumber) *
             var lerpTime = _frameInterval;
             var timer = 0f;
             while (timer< lerpTime)
@@ -286,7 +323,6 @@ namespace Rhinox.XR.UnityXR.Simulator
                         _playbackDeviceState.RightMenuButton = inputStartFloat;
                     else
                         _playbackDeviceState.LeftMenuButton = inputStartFloat;
-                    break;
                     break;
                 case "trigger":
                     if (input.IsRightControllerInput)

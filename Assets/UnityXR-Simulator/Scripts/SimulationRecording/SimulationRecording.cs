@@ -28,10 +28,15 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <param name="newFrame">The frame that gets appended to the recording.</param>
         public void AddFrame(FrameData newFrame)
         {
-            newFrame.FrameNumber = Frames.Count;
+            newFrame.FrameNumber = AmountOfFrames;
 
             //Add the frame.
             Frames.Add(newFrame);
+            AmountOfFrames++;
+        }
+
+        public void AddEmptyFrame()
+        {
             AmountOfFrames++;
         }
     }

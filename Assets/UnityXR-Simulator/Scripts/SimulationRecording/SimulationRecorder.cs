@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Timers;
 using System.Xml.Serialization;
 using UnityEngine;
@@ -206,9 +207,22 @@ namespace Rhinox.XR.UnityXR.Simulator
                                 RightHandRotation = _simulator.RightControllerState.deviceRotation,
                                 FrameInputs = new List<FrameInput>(_currentFrameInput)
                             };
+                var previousRecordedFrame = _currentRecording.Frames.LastOrDefault();
+                //Temporarily set the frame number of the current frame to the previous recorded frame
+                //Otherwise they will never be equal
+                newFrame.FrameNumber = previousRecordedFrame.FrameNumber;
                 
+                if (newFrame.ApproximatelyEqual(previousRecordedFrame,0.1f,0.1f) )
+                {
+                    Debug.Log("Same frame detected");
+                    _currentRecording.AddEmptyFrame();
+                }
+                else
+                {
+                    Debug.Log("Add new frame");
+                    _currentRecording.AddFrame(newFrame);
+                }
                 _currentFrameInput.Clear();
-                _currentRecording.AddFrame(newFrame);
 
                 yield return new WaitForSecondsRealtime(_frameInterval);
             }
