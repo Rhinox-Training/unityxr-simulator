@@ -637,8 +637,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _simulator: {fileID: 1176542678}
   _desiredFPS: 1
+  _positionDeadZone: 0.1
+  _rotationDeadZone: 0.1
   FilePath: /SimulationRecordings/
-  RecordingName: NewRecording
+  RecordingName: Test_Case_1_FPS
   BeginRecordingActionReference: {fileID: 6122326531011543821, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   EndRecordingActionReference: {fileID: -3003799356916955773, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   _leftGripInputActionReference: {fileID: -136597607583354346, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -1050,6 +1052,18 @@ MonoBehaviour:
   _rightMenuButtonActionReference: {fileID: 2648327434665965724, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _rightTriggerInputActionReference: {fileID: 8919385125143020261, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _rightSecondaryButtonActionReference: {fileID: 7821812841033530177, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  ControlsWindowRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  InputWindowRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!4 &1408917094
 Transform:
   m_ObjectHideFlags: 0
@@ -1491,7 +1505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _simulator: {fileID: 1176542678}
   _filePath: /SimulationRecordings/
-  _recordingName: NewRecording
+  _recordingName: Test_Case_1_FPS
   StartPlaybackActionReference: {fileID: 2468127893294578634, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   ReimportRecordingActionReference: {fileID: 4759847013449698904, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
   AbortPlaybackActionReference: {fileID: 6569104291058364262, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
