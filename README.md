@@ -29,6 +29,7 @@ Some reference fps and thir deadzone value (positional deadzone and rotational d
 ![Simulation_Playback](https://user-images.githubusercontent.com/55093987/220593058-e2902df1-592c-4a5e-80fd-8173fa8648e7.png)
 
 REMARKS:
+- It is possible to change the input in the recorder to other action references, this might be usefull. F.e. change it to keyboard actions to record this instead.
 - The recorder will write the ended recording to the Application.dataPath + FilePath, where FilePath is a SerializeField string field.
 - The recorder does not record frames in which nothing usefull has happened (no input or transform change).
 - The playback takes these missing frames into account.
