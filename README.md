@@ -17,6 +17,7 @@ It is possible to change mouse sensitivity and movement parameters on the "XR De
 To set this up, drag the "Record/Playback" prefab in the scene. By default the VR input that is simulated by the simulator are used by the recorder. These can be found in the included "XRI Default Input Actions" inputactions. After having added this object, link the simulator present in the scene on both the "Simulation Recorder" and "Simulation Playback" script present on the "Record/Playback"'s children. If this reference is not made correctly, the recorder or playback will disable itself.
 
 ![Simulation_Recorder](https://user-images.githubusercontent.com/55093987/220593049-80a64c54-a349-4e4f-acd0-d3918eb6e1e2.png)
+
 When setting the desired fps of the recording, also change the deadzones. The higher the desired fps, the lower the deadzone values should be. These values might take some trial and error to match perfectly.
 Some reference fps and thir deadzone value (positional deadzone and rotational deadzone are the same here):
 -120 fps -> 0.001
