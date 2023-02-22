@@ -34,3 +34,11 @@ REMARKS:
 - The recorder does not record frames in which nothing usefull has happened (no input or transform change).
 - The playback takes these missing frames into account.
 - KNOWN BUG: the playback time can be either 1 second faster or slower. Especially over longer recording, this does not interfere with the input actions.
+
+
+## Optional
+There is an input visualization script that visualizes all the input used using GUI. This can be added by dragging the "Input_Visualization" prefab in the scene and referencing the simulator, simulator controls, recorder and playback present in the scene.
+
+![Visualization_Input](https://user-images.githubusercontent.com/55093987/220614294-aeaffe05-3528-4ec5-ad6a-03c161a4d113.png)
+
+![Input window](https://user-images.githubusercontent.com/55093987/220614288-60a88730-3a95-42f2-a457-3328f79bbaa7.png)
