@@ -8,7 +8,8 @@ Also add a gameobject that holds both an XR Origin and XR interaction manager.
 
 ![XR_Rig](https://user-images.githubusercontent.com/55093987/220591047-f48debff-2f8e-4bf3-a0a1-93c6df6c8d9b.png)
 
-If these are all added, it should now be possible to simulate vr input in this scene.
+If these are all added, it should now be possible to simulate vr input in this scene. 
+
 REMARK:
 It is possible to change mouse sensitivity and movement parameters on the "XR Device SImulator Controls" script on the "Better XRSimulator" object.
 
