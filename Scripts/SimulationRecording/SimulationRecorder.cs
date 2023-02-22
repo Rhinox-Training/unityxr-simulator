@@ -20,6 +20,9 @@ namespace Rhinox.XR.UnityXR.Simulator
     {
         [Header("Device Transforms")]
         [SerializeField] private BetterXRDeviceSimulator _simulator;
+        [SerializeField] private Transform _headTransform;
+        [SerializeField] private Transform _leftHandTransform;
+        [SerializeField] private Transform _rightHandTransform;
 
         [Header("Recording parameters")]
         [SerializeField] private int _desiredFPS = 30;
@@ -210,12 +213,12 @@ namespace Rhinox.XR.UnityXR.Simulator
             {
                 var newFrame = new FrameData
                             {
-                                HeadPosition = _simulator.HMDState.devicePosition,
-                                HeadRotation = _simulator.HMDState.deviceRotation,
-                                LeftHandPosition = _simulator.LeftControllerState.devicePosition,
-                                LeftHandRotation = _simulator.LeftControllerState.deviceRotation,
-                                RightHandPosition = _simulator.RightControllerState.devicePosition,
-                                RightHandRotation = _simulator.RightControllerState.deviceRotation,
+                                HeadPosition = _headTransform.position,
+                                HeadRotation = _headTransform.rotation,
+                                LeftHandPosition = _leftHandTransform.position,
+                                LeftHandRotation = _leftHandTransform.rotation,
+                                RightHandPosition = _rightHandTransform.position,
+                                RightHandRotation = _rightHandTransform.rotation,
                                 FrameInputs = new List<FrameInput>(_currentFrameInput)
                             };
                 var previousRecordedFrame = _currentRecording.Frames.LastOrDefault();

@@ -2,9 +2,11 @@ using System.Collections;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using Debug = UnityEngine.Debug;
 
 namespace Rhinox.XR.UnityXR.Simulator
@@ -13,7 +15,10 @@ namespace Rhinox.XR.UnityXR.Simulator
     {
         [Header("Input parameters")] 
         [SerializeField] private BetterXRDeviceSimulator _simulator;
-
+        [SerializeField] private Transform _headTransform;
+        [SerializeField] private Transform _leftHandTransform;
+        [SerializeField] private Transform _rightHandTransform;
+        
         [Header("Output parameters")]
         [SerializeField] private string _filePath = "/SimulationRecordings/";
         [SerializeField] private string _recordingName = "NewRecording";
@@ -31,7 +36,10 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private PlaybackDeviceState _playbackDeviceState;
         private PlaybackInputDevice _playbackInputDevice;
-        
+
+        private TrackedPoseDriver _headTracker;
+        private TrackedPoseDriver _leftHandTracker;
+        private TrackedPoseDriver _rightHandTracker;
 
         /// <summary>
         /// See <see cref="MonoBehaviour"/>
@@ -39,7 +47,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         private void Awake()
         {
             //-----------------------------
-            //Set up fake input device
+            // Set up fake input device
             //-----------------------------
             InputSystem.FlushDisconnectedDevices();
 
@@ -49,6 +57,12 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _playbackInputDevice ??= InputSystem.AddDevice<PlaybackInputDevice>("PlaybackInputDevice");
 
+            //-----------------------------
+            // Get pose trackers
+            //-----------------------------
+            _headTracker = _headTransform.GetComponent<TrackedPoseDriver>();
+            _leftHandTracker = _leftHandTransform.GetComponent<TrackedPoseDriver>();
+            _rightHandTracker = _rightHandTransform.GetComponent<TrackedPoseDriver>();
         }
 
         private void OnEnable()
@@ -144,8 +158,8 @@ namespace Rhinox.XR.UnityXR.Simulator
             }
 
             IsPlaying = true;
-            _simulator.InputEnabled = false;
-
+            SetInput(false);
+            
             Debug.Log("Started playback.");
 
             _playbackStopwatch.Restart();
@@ -155,13 +169,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private IEnumerator PlaybackRoutine()
         {
-            //Set first frame
-            _simulator.SetDeviceTransforms(_currentRecording.Frames.First().HeadPosition,
-                _currentRecording.Frames.First().HeadRotation,
-                _currentRecording.Frames.First().LeftHandPosition,
-                _currentRecording.Frames.First().LeftHandRotation,
-                _currentRecording.Frames.First().RightHandPosition,
-                _currentRecording.Frames.First().RightHandRotation);
             foreach (var input in _currentRecording.Frames.First().FrameInputs)
                 ProcessFrameInput(input);
 
@@ -198,15 +205,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
                 loopFrame++;
             }
-
-            //Set final frame
-            _simulator.SetDeviceTransforms(_currentRecording.Frames.Last().HeadPosition,
-                _currentRecording.Frames.Last().HeadRotation,
-                _currentRecording.Frames.Last().LeftHandPosition,
-                _currentRecording.Frames.Last().LeftHandRotation,
-                _currentRecording.Frames.Last().RightHandPosition,
-                _currentRecording.Frames.Last().RightHandRotation);
-
             EndPlayBack();
 
         }
@@ -216,13 +214,19 @@ namespace Rhinox.XR.UnityXR.Simulator
             var timer = 0f;
             while (timer< _frameInterval)
             {
-                _simulator.SetDeviceTransforms(
-                    Vector3.Lerp(currentFrame.HeadPosition, nextFrame.HeadPosition, timer / _frameInterval),
-                    Quaternion.Lerp(currentFrame.HeadRotation, nextFrame.HeadRotation, timer / _frameInterval),
-                    Vector3.Lerp(currentFrame.LeftHandPosition, nextFrame.LeftHandPosition, timer / _frameInterval),
-                    Quaternion.Lerp(currentFrame.LeftHandRotation, nextFrame.LeftHandRotation, timer / _frameInterval),
-                    Vector3.Lerp(currentFrame.RightHandPosition, nextFrame.RightHandPosition, timer / _frameInterval),
-                    Quaternion.Lerp(currentFrame.RightHandRotation, nextFrame.RightHandRotation, timer / _frameInterval));
+                _headTransform.position = Vector3.Lerp(currentFrame.HeadPosition, nextFrame.HeadPosition,
+                    timer / _frameInterval);
+                _headTransform.rotation = Quaternion.Lerp(currentFrame.HeadRotation, nextFrame.HeadRotation,
+                    timer / _frameInterval);
+                _leftHandTransform.position = Vector3.Lerp(currentFrame.LeftHandPosition, nextFrame.LeftHandPosition,
+                    timer / _frameInterval);
+                _leftHandTransform.rotation = Quaternion.Lerp(currentFrame.LeftHandRotation, nextFrame.LeftHandRotation,
+                    timer / _frameInterval);
+                _rightHandTransform.position = Vector3.Lerp(currentFrame.RightHandPosition, nextFrame.RightHandPosition,
+                    timer / _frameInterval);
+                _rightHandTransform.rotation = Quaternion.Lerp(currentFrame.RightHandRotation, nextFrame.RightHandRotation,
+                    timer / _frameInterval);
+                
                 timer += Time.deltaTime;
                 yield return null;
             }
@@ -244,7 +248,15 @@ namespace Rhinox.XR.UnityXR.Simulator
             Debug.Log($"Ended playback of {temp}");
             
             IsPlaying = false;
-            _simulator.InputEnabled = true;
+            SetInput(true);
+        }
+
+        private void SetInput(bool state)
+        {
+            _headTracker.enabled = state;
+            _leftHandTracker.enabled = state;
+            _rightHandTracker.enabled = state;
+            _simulator.InputEnabled = state;
         }
         
         private void ProcessFrameInput(FrameInput input)
