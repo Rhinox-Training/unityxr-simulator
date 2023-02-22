@@ -23,7 +23,12 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         [Header("Recording parameters")]
         [SerializeField] private int _desiredFPS = 30;
-        
+        [Tooltip("Note: dead zone value should be very small for high frame rates!")]
+        [SerializeField] private float _positionDeadZone = 0.005f;
+
+        [Tooltip("Note: dead zone value should be very small for high frame rates!")]
+        [SerializeField] private float _rotationDeadZone = 0.005f;
+
         [Header("Output parameters")]
         [SerializeField] private string FilePath = "/SimulationRecordings/";
         [SerializeField] private string RecordingName = "NewRecording";
@@ -211,14 +216,12 @@ namespace Rhinox.XR.UnityXR.Simulator
                 //Otherwise they will never be equal
                 newFrame.FrameNumber = previousRecordedFrame.FrameNumber;
                 
-                if (newFrame.ApproximatelyEqual(previousRecordedFrame,0.1f,0.1f) )
+                if (newFrame.ApproximatelyEqual(previousRecordedFrame,_positionDeadZone,_rotationDeadZone) )
                 {
-                    Debug.Log("Same frame detected");
                     _currentRecording.AddEmptyFrame();
                 }
                 else
                 {
-                    Debug.Log("Add new frame");
                     _currentRecording.AddFrame(newFrame);
                 }
                 _currentFrameInput.Clear();
