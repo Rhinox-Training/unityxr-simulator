@@ -865,6 +865,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AbortPlayback",
+                    "type": "Button",
+                    "id": "2883732f-3a16-4dab-9495-5a739ccd9df3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -909,6 +918,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ReimportRecording",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6250df04-938c-46a8-857c-a91fc7130b84",
+                    "path": "<Keyboard>/f5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbortPlayback",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

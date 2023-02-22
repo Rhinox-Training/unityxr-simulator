@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Timers;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -181,14 +180,15 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (!ctx.performed)
                 return;
 
-            _frameInterval = 1.0f / _desiredFPS;
             IsRecording = true;
             _currentRecording = new SimulationRecording
             {
                 FrameRate = _desiredFPS
             };
-            Debug.Log("Started recording.");
+            _frameInterval = 1.0f / _desiredFPS;
             _recordingStopwatch.Restart();
+            Debug.Log("Started recording.");
+            
             StartCoroutine(RecordingCoroutine());
         }
 
@@ -196,7 +196,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         {
             while (IsRecording)
             {
-                
                 var newFrame = new FrameData
                             {
                                 HeadPosition = _simulator.HMDState.devicePosition,
@@ -253,12 +252,15 @@ namespace Rhinox.XR.UnityXR.Simulator
             //----------------------------
             //Write to XML
             //----------------------------
+            //Create the target directory just in case
+            Directory.CreateDirectory(Application.dataPath + FilePath);
+            
             var serializer = new XmlSerializer(typeof(SimulationRecording));
             var stream = new FileStream(Path.Combine(Application.dataPath + FilePath, $"{RecordingName}.xml"),
                 FileMode.Create);
             serializer.Serialize(stream, _currentRecording);
             stream.Close();
-
+            Debug.Log($"Wrote recording to: {Application.dataPath + FilePath}");
             _simulator.InputEnabled = true;
             IsRecording = false;
         }
