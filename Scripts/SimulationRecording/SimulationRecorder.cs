@@ -30,8 +30,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         [SerializeField] private float _rotationDeadZone = 0.005f;
 
         [Header("Output parameters")]
-        [SerializeField] private string FilePath = "/SimulationRecordings/";
-        [SerializeField] private string RecordingName = "NewRecording";
+        [SerializeField] private string _filePath = "/SimulationRecordings/";
+        [SerializeField] private string _recordingName = "NewRecording";
 
         [Header("Input actions")] 
         public InputActionReference BeginRecordingActionReference;
@@ -74,7 +74,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         private Stopwatch _recordingStopwatch = new Stopwatch();
         private SimulationRecording _currentRecording ;
         private List<FrameInput> _currentFrameInput = new List<FrameInput>();
-        
+
         /// <summary>
         /// See <see cref="MonoBehaviour"/>
         /// </summary>
@@ -85,6 +85,13 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void OnEnable()
         {
+            if (_simulator == null)
+            {
+                Debug.Log("_simulator has not been set,  disabling this SimulationRecorder.");
+                this.gameObject.SetActive(false);
+                return;
+            }
+            
             SubscribeControllerActions();
             SubscribeRecorderActions();
         }
@@ -256,14 +263,14 @@ namespace Rhinox.XR.UnityXR.Simulator
             //Write to XML
             //----------------------------
             //Create the target directory just in case
-            Directory.CreateDirectory(Application.dataPath + FilePath);
+            Directory.CreateDirectory(Application.dataPath + _filePath);
             
             var serializer = new XmlSerializer(typeof(SimulationRecording));
-            var stream = new FileStream(Path.Combine(Application.dataPath + FilePath, $"{RecordingName}.xml"),
+            var stream = new FileStream(Path.Combine(Application.dataPath + _filePath, $"{_recordingName}.xml"),
                 FileMode.Create);
             serializer.Serialize(stream, _currentRecording);
             stream.Close();
-            Debug.Log($"Wrote recording to: {Application.dataPath + FilePath}");
+            Debug.Log($"Wrote recording to: {Application.dataPath + _filePath}");
             _simulator.InputEnabled = true;
             IsRecording = false;
         }

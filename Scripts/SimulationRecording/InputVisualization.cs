@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using Rhinox.XR.UnityXR.Simulator;
 
@@ -80,19 +79,10 @@ public class InputVisualization : MonoBehaviour
     
     private bool _leftSecondaryButtonPressed;
     private bool _rightSecondaryButtonPressed;
-    
-    /// <summary>
-    /// See <see cref="MonoBehaviour"/>
-    /// </summary>
-    private void OnValidate()
-    {
-        Assert.AreNotEqual(_deviceSimulatorControls, null,
-            $"{nameof(InputVisualization)}, device simulator controls not set!");
-        Assert.AreNotEqual(_deviceSimulator, null, $"{nameof(InputVisualization)}, device simulator not set!");
-    }
 
     private void Awake()
     {
+        //SET WINDOW RECTS
         InputWindowRect.x = Screen.width - 300;
         InputWindowRect.y = 0;
         InputWindowRect.width = 300;
@@ -247,6 +237,12 @@ public class InputVisualization : MonoBehaviour
 
     private void OnEnable()
     {
+        //CHECK REFERENCES
+        if (_recorder == null || _playback == null || _deviceSimulator == null || _deviceSimulatorControls == null)
+        {
+            Debug.Log("InputVisualization, not all input references set!");
+        }
+        
         SimulatorUtils.Subscribe(_leftGripInputActionReference, OnGripPressed, OnGripCancelled);
         SimulatorUtils.Subscribe(_rightGripInputActionReference, OnGripPressed, OnGripCancelled);
 
