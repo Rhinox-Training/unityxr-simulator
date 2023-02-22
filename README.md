@@ -42,3 +42,7 @@ There is an input visualization script that visualizes all the input used using 
 ![Visualization_Input](https://user-images.githubusercontent.com/55093987/220614294-aeaffe05-3528-4ec5-ad6a-03c161a4d113.png)
 
 ![Input window](https://user-images.githubusercontent.com/55093987/220614288-60a88730-3a95-42f2-a457-3328f79bbaa7.png)
+
+# License
+
+Apache-2.0 © Rhinox NV
