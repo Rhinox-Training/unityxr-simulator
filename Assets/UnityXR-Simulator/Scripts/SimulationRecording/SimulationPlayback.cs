@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 
@@ -33,11 +31,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private PlaybackDeviceState _playbackDeviceState;
         private PlaybackInputDevice _playbackInputDevice;
-
-        private void OnValidate()
-        {
-            Assert.AreNotEqual(null,_simulator,$"{nameof(SimulationPlayback)}, _simulator is has not yet been set.");
-        }
+        
 
         /// <summary>
         /// See <see cref="MonoBehaviour"/>
@@ -59,6 +53,12 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void OnEnable()
         {
+            if (_simulator == null)
+            {
+                Debug.Log("_simulator has not been set,  disabling this SimulationPlayback.");
+                this.gameObject.SetActive(false);
+                return;
+            }
             SimulatorUtils.Subscribe(StartPlaybackActionReference, StartPlayback);
             SimulatorUtils.Subscribe(ReimportRecordingActionReference, ImportRecording);
             SimulatorUtils.Subscribe(AbortPlaybackActionReference, AbortPlayback);
