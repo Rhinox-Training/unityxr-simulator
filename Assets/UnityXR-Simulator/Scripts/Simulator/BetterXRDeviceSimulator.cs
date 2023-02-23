@@ -75,7 +75,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         private XRDeviceSimulatorControls _controls;
         private bool _simulatorLoaded;
         public bool IsLoaded => _simulatorLoaded;
-
+        private bool _usesRealVR;
+        public bool UsesRealVR => _usesRealVR;
         public bool IsRightTargeted => _controls == null || _controls.ManipulateRightControllerButtons;
 
         public event Action SimulatorLoaded;
@@ -90,9 +91,6 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             HMDState.Reset();
             ResetControllers();
-            XRSimulatedHMD temp;
-            
-
         }
 
 
@@ -244,7 +242,8 @@ namespace Rhinox.XR.UnityXR.Simulator
                     right * (_controls.ScaledKeyboardTranslateX * Time.deltaTime) +
                     up * (_controls.ScaledKeyboardTranslateY * Time.deltaTime) +
                     forward * (_controls.ScaledKeyboardTranslateZ * Time.deltaTime);
-
+            
+                
                 ProcessDevicePositionForTarget(_controls.KeyboardTranslateSpace, inverseCameraParentRotation, deltaPosition);
             }
 
@@ -453,9 +452,11 @@ namespace Rhinox.XR.UnityXR.Simulator
                     if (InputSystem.devices.Where(x => x.enabled && x.added).Any(x => IsRealXRDevice(x)))
                     {
                         // NOP
+                        _usesRealVR = true;
                     }
                     else
                     {
+                        _usesRealVR = false;
                         AddDevices();
                     }
                     break;

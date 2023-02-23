@@ -1,9 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Serialization;
+using Rhinox.GUIUtils.Editor;
+using Rhinox.Lightspeed;
+using Rhinox.Lightspeed.Reflection;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
@@ -20,8 +26,15 @@ namespace Rhinox.XR.UnityXR.Simulator
     {
         [Header("Device Transforms")]
         [SerializeField] private BetterXRDeviceSimulator _simulator;
+        [SerializeField] private Transform _headTransform;
+        [SerializeField] private Transform _leftHandTransform;
+        [SerializeField] private Transform _rightHandTransform;
 
-        [Header("Recording parameters")]
+        [Header("Recording parameters")] 
+        [Tooltip("Starts recording on awake.")]
+        [SerializeField] private bool _startOnAwake;
+        [Tooltip("End any running recording on destroy.")]
+        [SerializeField] private bool _endOnDestroy;
         [SerializeField] private int _desiredFPS = 30;
         [Tooltip("Note: dead zone value should be very small for high frame rates!")]
         [SerializeField] private float _positionDeadZone = 0.005f;
@@ -29,9 +42,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         [Tooltip("Note: dead zone value should be very small for high frame rates!")]
         [SerializeField] private float _rotationDeadZone = 0.005f;
 
-        [Header("Output parameters")]
-        [SerializeField] private string _filePath = "/SimulationRecordings/";
-        [SerializeField] private string _recordingName = "NewRecording";
+        [HideInInspector] public string Path;
+        [HideInInspector] public string RecordingName = "NewRecording";
 
         [Header("Input actions")] 
         public InputActionReference BeginRecordingActionReference;
@@ -81,6 +93,15 @@ namespace Rhinox.XR.UnityXR.Simulator
         private void Awake()
         {
             _frameInterval = 1 / (float)_desiredFPS;
+
+            if (_startOnAwake)
+                StartRecording(new InputAction.CallbackContext());
+        }
+
+        private void OnDestroy()
+        {
+            if(_endOnDestroy)
+                EndRecording(new InputAction.CallbackContext());
         }
 
         private void OnEnable()
@@ -189,9 +210,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         [ContextMenu("Start Recording")]
         private void StartRecording(InputAction.CallbackContext ctx)
         {
-            if (!ctx.performed)
-                return;
-
             IsRecording = true;
             _currentRecording = new SimulationRecording
             {
@@ -210,12 +228,12 @@ namespace Rhinox.XR.UnityXR.Simulator
             {
                 var newFrame = new FrameData
                             {
-                                HeadPosition = _simulator.HMDState.devicePosition,
-                                HeadRotation = _simulator.HMDState.deviceRotation,
-                                LeftHandPosition = _simulator.LeftControllerState.devicePosition,
-                                LeftHandRotation = _simulator.LeftControllerState.deviceRotation,
-                                RightHandPosition = _simulator.RightControllerState.devicePosition,
-                                RightHandRotation = _simulator.RightControllerState.deviceRotation,
+                                HeadPosition = _headTransform.position,
+                                HeadRotation = _headTransform.rotation,
+                                LeftHandPosition = _leftHandTransform.position,
+                                LeftHandRotation = _leftHandTransform.rotation,
+                                RightHandPosition = _rightHandTransform.position,
+                                RightHandRotation = _rightHandTransform.rotation,
                                 FrameInputs = new List<FrameInput>(_currentFrameInput)
                             };
                 var previousRecordedFrame = _currentRecording.Frames.LastOrDefault();
@@ -244,7 +262,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         [ContextMenu("End Recording")]
         private void EndRecording(InputAction.CallbackContext ctx)
         {
-            if (!ctx.performed || !IsRecording)
+            if (!IsRecording)
                 return;
 
             //----------------------------
@@ -263,14 +281,13 @@ namespace Rhinox.XR.UnityXR.Simulator
             //Write to XML
             //----------------------------
             //Create the target directory just in case
-            Directory.CreateDirectory(Application.dataPath + _filePath);
-            
+
             var serializer = new XmlSerializer(typeof(SimulationRecording));
-            var stream = new FileStream(Path.Combine(Application.dataPath + _filePath, $"{_recordingName}.xml"),
+            var stream = new FileStream(System.IO.Path.Combine(Path, $"{RecordingName}.xml"),
                 FileMode.Create);
             serializer.Serialize(stream, _currentRecording);
             stream.Close();
-            Debug.Log($"Wrote recording to: {Application.dataPath + _filePath}");
+            Debug.Log($"Wrote recording to: {Path}");
             _simulator.InputEnabled = true;
             IsRecording = false;
         }
@@ -948,8 +965,76 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _currentFrameInput.Add(frameInput);
         }
+         #if UNITY_EDITOR
+        [ContextMenu("Import InputActionAsset")]
+        private void ImportActionAsset()
+        {
+            EditorInputDialog.Create("Import InputActionAsset", "Reference File")
+                .GenericUnityObjectField<InputActionAsset>("InputActionAsset:", out var actionAsset)
+                .BooleanField("Overwrite:", out var overwriteVal)
+                .OnAccept(() =>
+                {
+                    if (actionAsset == null || actionAsset.Value == null)
+                        return;
+
+                    var fields = GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                    fields = fields.Where(x => x.GetReturnType() == typeof(InputActionReference)).ToArray();
+
+                    foreach (var field in fields)
+                    {
+                        if (!overwriteVal.Value && field.GetValue(this) != null)
+                            continue;
+                        foreach (var map in actionAsset.Value.actionMaps)
+                        {
+                            foreach (var action in map.actions)
+                            {
+                                var name = action.name.Split('/').LastOrDefault();
+                                if (name == null)
+                                    continue;
+                                var parts = name.SplitCamelCase(" ").Split(' ');
+                                bool containsAll = true;
+                                foreach (var part in parts)
+                                {
+                                    if (string.IsNullOrWhiteSpace(part))
+                                        continue;
+
+
+                                    if (!field.Name.Contains(part, StringComparison.InvariantCultureIgnoreCase))
+                                        containsAll = false;
+                                }
+
+                                if (containsAll)
+                                {
+                                    var actionReference = GetReference(action);
+                                    field.SetValue(this, actionReference);
+                                    break;
+                                }
+
+                            }
+                        }
+                    }
+                })
+                .Show();
+        }
+
+        private static InputActionReference GetReference(InputAction action)
+        {
+            var assets = AssetDatabase.FindAssets($"t:{nameof(InputActionReference)}");
+            foreach (var asset in assets)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(asset);
+                var refAssets = AssetDatabase.LoadAllAssetsAtPath(path);
+
+                foreach (var refAsset in refAssets.OfType<InputActionReference>())
+                    if (refAsset.action.id == action.id)
+                        return refAsset;
+            }
+
+            return InputActionReference.Create(action);
+        }
+#endif
     }
     
-    
+   
 
 }

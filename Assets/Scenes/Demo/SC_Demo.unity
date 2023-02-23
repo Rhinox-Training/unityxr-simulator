@@ -312,6 +312,11 @@ Transform:
   m_Father: {fileID: 1414641842}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &152710725 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4788689103480713417, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+  m_PrefabInstance: {fileID: 4788689102797514002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &247644074 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6160907025875792267, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
@@ -386,6 +391,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
+--- !u!4 &436949390 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4788689104274831504, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+  m_PrefabInstance: {fileID: 4788689102797514002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &750532395 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 833857559328614902, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+  m_PrefabInstance: {fileID: 4788689102797514002}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &769959905 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
@@ -1242,6 +1257,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Simulator_XRRig
       objectReference: {fileID: 0}
+    - target: {fileID: 2579941312925548006, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: _headTransform
+      value: 
+      objectReference: {fileID: 750532395}
+    - target: {fileID: 2579941312925548006, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: _leftControllerTransform
+      value: 
+      objectReference: {fileID: 436949390}
+    - target: {fileID: 2579941312925548006, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: _rightControllerTransform
+      value: 
+      objectReference: {fileID: 152710725}
+    - target: {fileID: 3303506426494415039, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: _controls
+      value: 
+      objectReference: {fileID: 247644074}
+    - target: {fileID: 3303506426494415039, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: _simulator
+      value: 
+      objectReference: {fileID: 1176542678}
+    - target: {fileID: 3303506426494415039, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: _leftHandMoveActionReference
+      value: 
+      objectReference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 3303506426494415039, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: _rightHandMoveActionReference
+      value: 
+      objectReference: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 4788689104210328100, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4788689104210328100, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4788689104210328100, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 8c2077e8-64c6-463f-976f-dc0a81a4aa46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4788689104210328100, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Position Input
+      objectReference: {fileID: 0}
     - target: {fileID: 5671648829650238234, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
       propertyPath: m_Name
       value: Mesh
@@ -1294,6 +1353,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6160907025875792267, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: m_VRAxis2D
+      value: 
+      objectReference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 6160907025875792267, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: m_VRRestingAxis2D
+      value: 
+      objectReference: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 6160907025875792267, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: m_LeftXRAxis2DTargetAction
+      value: 
+      objectReference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 6160907025875792267, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: m_RightVRRestingxis2DTargetAction
+      value: 
+      objectReference: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 8283507735027874717, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.36144
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90220089adc569b4ea94ac1e3bbb8dea, type: 3}
 --- !u!20 &6353673030000725181 stripped
@@ -1309,9 +1388,65 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: Path
+      value: C:/Users/TEST SSD/Desktop/Fork/unityxr-simulator/Output
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _filePath
+      value: SimulationRecordings
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
       propertyPath: _simulator
       value: 
       objectReference: {fileID: 1176542678}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: EndOnDestroy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: StartOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: RecordingName
+      value: Recording_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _endOnDestroy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _startOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _headTransform
+      value: 
+      objectReference: {fileID: 750532395}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _recordingName
+      value: Temp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _positionDeadZone
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _rotationDeadZone
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _leftHandTransform
+      value: 
+      objectReference: {fileID: 436949390}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _rightHandTransform
+      value: 
+      objectReference: {fileID: 152710725}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: FilePathTargetFolder
+      value: SimulationRecordings
+      objectReference: {fileID: 0}
     - target: {fileID: 8026381002887898981, guid: e3258182a9f91274995e1734d46bad67, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1361,8 +1496,40 @@ PrefabInstance:
       value: Record/Playback
       objectReference: {fileID: 0}
     - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: Path
+      value: C:/Users/TEST SSD/Desktop/Fork/unityxr-simulator/Output
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _filePath
+      value: SimulationRecordings
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
       propertyPath: _simulator
       value: 
       objectReference: {fileID: 1176542678}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: RecordingName
+      value: Recording_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _headTransform
+      value: 
+      objectReference: {fileID: 750532395}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _recordingName
+      value: Temp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _leftHandTransform
+      value: 
+      objectReference: {fileID: 436949390}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: _rightHandTransform
+      value: 
+      objectReference: {fileID: 152710725}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: FilePathTargetFolder
+      value: SimulationRecordings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3258182a9f91274995e1734d46bad67, type: 3}
