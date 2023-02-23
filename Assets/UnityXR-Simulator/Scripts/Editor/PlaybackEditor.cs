@@ -1,6 +1,4 @@
 using System.IO;
-using System.Linq;
-using Rhinox.Lightspeed;
 using Rhinox.XR.UnityXR.Simulator;
 using UnityEditor;
 using UnityEngine;

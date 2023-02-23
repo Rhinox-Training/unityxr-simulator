@@ -24,7 +24,11 @@ namespace Rhinox.XR.UnityXR.Simulator
         [SerializeField] private Transform _leftHandTransform;
         [SerializeField] private Transform _rightHandTransform;
 
-        [Header("Recording parameters")]
+        [Header("Recording parameters")] 
+        [Tooltip("Starts recording on awake.")]
+        [SerializeField] private bool _startOnAwake;
+        [Tooltip("End any running recording on destroy.")]
+        [SerializeField] private bool _endOnDestroy;
         [SerializeField] private int _desiredFPS = 30;
         [Tooltip("Note: dead zone value should be very small for high frame rates!")]
         [SerializeField] private float _positionDeadZone = 0.005f;
@@ -83,6 +87,15 @@ namespace Rhinox.XR.UnityXR.Simulator
         private void Awake()
         {
             _frameInterval = 1 / (float)_desiredFPS;
+
+            if (_startOnAwake)
+                StartRecording(new InputAction.CallbackContext());
+        }
+
+        private void OnDestroy()
+        {
+            if(_endOnDestroy)
+                EndRecording(new InputAction.CallbackContext());
         }
 
         private void OnEnable()
@@ -191,9 +204,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         [ContextMenu("Start Recording")]
         private void StartRecording(InputAction.CallbackContext ctx)
         {
-            if (!ctx.performed)
-                return;
-
             IsRecording = true;
             _currentRecording = new SimulationRecording
             {
@@ -246,7 +256,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         [ContextMenu("End Recording")]
         private void EndRecording(InputAction.CallbackContext ctx)
         {
-            if (!ctx.performed || !IsRecording)
+            if (!IsRecording)
                 return;
 
             //----------------------------
