@@ -1468,6 +1468,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1176542678}
     - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: RecordingName
+      value: hdfghdfgh
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
       propertyPath: _headTransform
       value: 
       objectReference: {fileID: 750532395}
@@ -1483,5 +1487,9 @@ PrefabInstance:
       propertyPath: _rightHandTransform
       value: 
       objectReference: {fileID: 152710725}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: FilePathTargetFolder
+      value: SimulationRecordings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3258182a9f91274995e1734d46bad67, type: 3}
