@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using Rhinox.Lightspeed;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -18,20 +19,10 @@ namespace Rhinox.XR.UnityXR.Simulator
         [SerializeField] private Transform _leftHandTransform;
         [SerializeField] private Transform _rightHandTransform;
         
-        [HideInInspector][SerializeField] public string FilePathTargetFolder = "SimulationRecordings";
+        [HideInInspector][SerializeField] public string Path;
         [HideInInspector][SerializeField] public string RecordingName = "MyRecording";
-
-        public string Path
-        {
-            get
-            {
-                var targetDirectory = Application.dataPath;
-                targetDirectory = targetDirectory.Replace("Assets", "");
-                targetDirectory = System.IO.Path.Combine(targetDirectory, FilePathTargetFolder);
-                return targetDirectory;
-            }
-        } 
         
+
         [Header("Playback Controls")] 
         public InputActionReference StartPlaybackActionReference;
         public InputActionReference ReimportRecordingActionReference;
@@ -40,7 +31,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         [HideInInspector] public bool IsPlaying;
 
         private SimulationRecording _currentRecording;
-        private Stopwatch _playbackStopwatch = new Stopwatch();
+        private Stopwatch _playbackStopwatch;
         private float _frameInterval = float.MaxValue;
 
         private PlaybackDeviceState _playbackDeviceState;
@@ -55,6 +46,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// </summary>
         private void Awake()
         {
+            _playbackStopwatch = new Stopwatch();
+            
             //-----------------------------
             // Set up fake input device
             //-----------------------------
@@ -95,13 +88,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         
         private void ImportRecording(InputAction.CallbackContext ctx)
         {
-            //Read XML
-            var targetDirectory = Application.dataPath;
-            targetDirectory = targetDirectory.Replace("Assets", "");
-            targetDirectory = System.IO.Path.Combine(targetDirectory, FilePathTargetFolder);
-            
             var serializer = new XmlSerializer(typeof(SimulationRecording));
-            var stream = new FileStream(System.IO.Path.Combine(targetDirectory, $"{RecordingName}.xml"),
+            var stream = new FileStream(System.IO.Path.Combine(Path, $"{RecordingName}.xml"),
                 FileMode.Open);
             _currentRecording = (SimulationRecording)serializer.Deserialize(stream);
             stream.Close();
@@ -117,12 +105,9 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
         private void ImportRecording()
         {
-            var targetDirectory = Application.dataPath;
-            targetDirectory = targetDirectory.Replace("Assets", "");
-            targetDirectory = System.IO.Path.Combine(targetDirectory, FilePathTargetFolder);
             //Read XML
             var serializer = new XmlSerializer(typeof(SimulationRecording));
-            var stream = new FileStream(System.IO.Path.Combine(targetDirectory, $"{RecordingName}.xml"),
+            var stream = new FileStream(System.IO.Path.Combine(Path, $"{RecordingName}.xml"),
                 FileMode.Open);
             _currentRecording = (SimulationRecording)serializer.Deserialize(stream);
             stream.Close();
@@ -185,11 +170,20 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private IEnumerator PlaybackRoutine()
         {
-            foreach (var input in _currentRecording.Frames.First().FrameInputs)
-                ProcessFrameInput(input);
+            //Set first frame state
+            {
+                var firstFrame = _currentRecording.Frames.First();
+                foreach (var input in firstFrame.FrameInputs)
+                    ProcessFrameInput(input);
+                _headTransform.position = firstFrame.HeadPosition;
+                _headTransform.rotation = firstFrame.HeadRotation;
+                _leftHandTransform.position = firstFrame.LeftHandPosition;
+                _leftHandTransform.rotation = firstFrame.LeftHandRotation;
+                _rightHandTransform.position = firstFrame.RightHandPosition;
+                _rightHandTransform.rotation = firstFrame.RightHandRotation;
+                yield return new WaitForSecondsRealtime(_frameInterval);
+            }
 
-            yield return new WaitForSecondsRealtime(_frameInterval);
-            
             int loopFrame = 0;
             int currentRecordedFrame = 0;
             while (loopFrame + 1 < _currentRecording.AmountOfFrames)
@@ -221,6 +215,21 @@ namespace Rhinox.XR.UnityXR.Simulator
 
                 loopFrame++;
             }
+
+            //Set final frame state
+            {
+                var final = _currentRecording.Frames.Last();
+                foreach (var input in final.FrameInputs)
+                    ProcessFrameInput(input);
+                _headTransform.position = final.HeadPosition;
+                _headTransform.rotation = final.HeadRotation;
+                _leftHandTransform.position = final.LeftHandPosition;
+                _leftHandTransform.rotation = final.LeftHandRotation;
+                _rightHandTransform.position = final.RightHandPosition;
+                _rightHandTransform.rotation = final.RightHandRotation;
+                yield return new WaitForSecondsRealtime(_frameInterval);
+            }
+            
             EndPlayBack();
 
         }

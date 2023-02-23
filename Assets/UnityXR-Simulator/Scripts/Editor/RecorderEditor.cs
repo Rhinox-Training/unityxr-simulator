@@ -1,4 +1,5 @@
 using System.IO;
+using Rhinox.Lightspeed;
 using Rhinox.XR.UnityXR.Simulator;
 using UnityEditor;
 using UnityEngine;
@@ -8,27 +9,34 @@ using UnityEngine;
 public class RecorderEditor : Editor
 {
     #region SerializedProperties
-    private SerializedProperty _filePathTargetFolder;
+    private SerializedProperty _path;
     private SerializedProperty _recordingName;
     #endregion
     private void OnEnable()
     {
-        _filePathTargetFolder = serializedObject.FindProperty("FilePathTargetFolder");
+        _path = serializedObject.FindProperty("Path");
         _recordingName = serializedObject.FindProperty("RecordingName");
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        
+       
         var script = (SimulationRecorder)target;
         EditorGUILayout.LabelField("Output file settings",EditorStyles.boldLabel);
+        if (GUILayout.Button("Choose target folder"))
+        {
+            var chosenFile = EditorUtility.OpenFolderPanel("Choose target folder", script.Path, "");
+            if (chosenFile.Length != 0)
+            {
+                _path.stringValue = chosenFile;
+                serializedObject.ApplyModifiedProperties();
+            }
+        }
         EditorGUILayout.LabelField("Output directory", EditorStyles.largeLabel);
-        _filePathTargetFolder.stringValue = EditorGUILayout.TextField("Target folder name", _filePathTargetFolder.stringValue);
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Current output directory: " + script.Path);
-        EditorGUILayout.EndHorizontal();
-        
+        _path.stringValue = EditorGUILayout.TextField("Target folder name", _path.stringValue);
+        EditorGUILayout.HelpBox("Current input directory: " + script.Path, MessageType.Info);
+
         EditorGUILayout.Space(15);
         
         EditorGUILayout.LabelField("Target file name", EditorStyles.largeLabel);

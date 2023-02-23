@@ -1388,6 +1388,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: Path
+      value: C:/Users/TEST SSD/Desktop/Fork/unityxr-simulator/SimulationRecordings
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
       propertyPath: _filePath
       value: SimulationRecordings
       objectReference: {fileID: 0}
@@ -1395,6 +1399,10 @@ PrefabInstance:
       propertyPath: _simulator
       value: 
       objectReference: {fileID: 1176542678}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: RecordingName
+      value: MyRecording
+      objectReference: {fileID: 0}
     - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
       propertyPath: _headTransform
       value: 
@@ -1411,6 +1419,10 @@ PrefabInstance:
       propertyPath: _rightHandTransform
       value: 
       objectReference: {fileID: 152710725}
+    - target: {fileID: 8026381002572379156, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: FilePathTargetFolder
+      value: SimulationRecordings
+      objectReference: {fileID: 0}
     - target: {fileID: 8026381002887898981, guid: e3258182a9f91274995e1734d46bad67, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1460,6 +1472,10 @@ PrefabInstance:
       value: Record/Playback
       objectReference: {fileID: 0}
     - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
+      propertyPath: Path
+      value: C:/Users/TEST SSD/Desktop/Fork/unityxr-simulator/SimulationRecordings
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
       propertyPath: _filePath
       value: SimulationRecordings
       objectReference: {fileID: 0}
@@ -1469,7 +1485,7 @@ PrefabInstance:
       objectReference: {fileID: 1176542678}
     - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
       propertyPath: RecordingName
-      value: hdfghdfgh
+      value: MyRecording
       objectReference: {fileID: 0}
     - target: {fileID: 8026381003739121979, guid: e3258182a9f91274995e1734d46bad67, type: 3}
       propertyPath: _headTransform
