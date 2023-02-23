@@ -2,7 +2,6 @@ using System.Collections;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,10 +18,20 @@ namespace Rhinox.XR.UnityXR.Simulator
         [SerializeField] private Transform _leftHandTransform;
         [SerializeField] private Transform _rightHandTransform;
         
-        [Header("Output parameters")]
-        [SerializeField] private string _filePath = "/SimulationRecordings/";
-        [SerializeField] private string _recordingName = "NewRecording";
+        [HideInInspector][SerializeField] public string FilePathTargetFolder = "SimulationRecordings";
+        [HideInInspector][SerializeField] public string RecordingName = "MyRecording";
 
+        public string Path
+        {
+            get
+            {
+                var targetDirectory = Application.dataPath;
+                targetDirectory = targetDirectory.Replace("Assets", "");
+                targetDirectory = System.IO.Path.Combine(targetDirectory, FilePathTargetFolder);
+                return targetDirectory;
+            }
+        } 
+        
         [Header("Playback Controls")] 
         public InputActionReference StartPlaybackActionReference;
         public InputActionReference ReimportRecordingActionReference;
@@ -87,8 +96,12 @@ namespace Rhinox.XR.UnityXR.Simulator
         private void ImportRecording(InputAction.CallbackContext ctx)
         {
             //Read XML
+            var targetDirectory = Application.dataPath;
+            targetDirectory = targetDirectory.Replace("Assets", "");
+            targetDirectory = System.IO.Path.Combine(targetDirectory, FilePathTargetFolder);
+            
             var serializer = new XmlSerializer(typeof(SimulationRecording));
-            var stream = new FileStream(Path.Combine(Application.dataPath + _filePath, $"{_recordingName}.xml"),
+            var stream = new FileStream(System.IO.Path.Combine(targetDirectory, $"{RecordingName}.xml"),
                 FileMode.Open);
             _currentRecording = (SimulationRecording)serializer.Deserialize(stream);
             stream.Close();
@@ -104,9 +117,12 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
         private void ImportRecording()
         {
+            var targetDirectory = Application.dataPath;
+            targetDirectory = targetDirectory.Replace("Assets", "");
+            targetDirectory = System.IO.Path.Combine(targetDirectory, FilePathTargetFolder);
             //Read XML
             var serializer = new XmlSerializer(typeof(SimulationRecording));
-            var stream = new FileStream(Path.Combine(Application.dataPath + _filePath, $"{_recordingName}.xml"),
+            var stream = new FileStream(System.IO.Path.Combine(targetDirectory, $"{RecordingName}.xml"),
                 FileMode.Open);
             _currentRecording = (SimulationRecording)serializer.Deserialize(stream);
             stream.Close();

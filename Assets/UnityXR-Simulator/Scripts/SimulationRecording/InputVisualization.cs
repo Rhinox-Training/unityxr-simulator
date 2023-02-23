@@ -334,7 +334,6 @@ public class InputVisualization : MonoBehaviour
 
     private void OnTriggerPressed(InputAction.CallbackContext ctx)
     {
-        Debug.Log(ctx.ReadValue<float>());
         //Check if the used controller was the left or right controller
         if (ctx.action == _leftTriggerInputActionReference.action)
             _leftTriggerPressed = true;
