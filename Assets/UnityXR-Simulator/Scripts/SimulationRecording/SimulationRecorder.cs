@@ -1,9 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Serialization;
+using Rhinox.GUIUtils.Editor;
+using Rhinox.Lightspeed;
+using Rhinox.Lightspeed.Reflection;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
@@ -959,8 +965,76 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _currentFrameInput.Add(frameInput);
         }
+         #if UNITY_EDITOR
+        [ContextMenu("Import InputActionAsset")]
+        private void ImportActionAsset()
+        {
+            EditorInputDialog.Create("Import InputActionAsset", "Reference File")
+                .GenericUnityObjectField<InputActionAsset>("InputActionAsset:", out var actionAsset)
+                .BooleanField("Overwrite:", out var overwriteVal)
+                .OnAccept(() =>
+                {
+                    if (actionAsset == null || actionAsset.Value == null)
+                        return;
+
+                    var fields = GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                    fields = fields.Where(x => x.GetReturnType() == typeof(InputActionReference)).ToArray();
+
+                    foreach (var field in fields)
+                    {
+                        if (!overwriteVal.Value && field.GetValue(this) != null)
+                            continue;
+                        foreach (var map in actionAsset.Value.actionMaps)
+                        {
+                            foreach (var action in map.actions)
+                            {
+                                var name = action.name.Split('/').LastOrDefault();
+                                if (name == null)
+                                    continue;
+                                var parts = name.SplitCamelCase(" ").Split(' ');
+                                bool containsAll = true;
+                                foreach (var part in parts)
+                                {
+                                    if (string.IsNullOrWhiteSpace(part))
+                                        continue;
+
+
+                                    if (!field.Name.Contains(part, StringComparison.InvariantCultureIgnoreCase))
+                                        containsAll = false;
+                                }
+
+                                if (containsAll)
+                                {
+                                    var actionReference = GetReference(action);
+                                    field.SetValue(this, actionReference);
+                                    break;
+                                }
+
+                            }
+                        }
+                    }
+                })
+                .Show();
+        }
+
+        private static InputActionReference GetReference(InputAction action)
+        {
+            var assets = AssetDatabase.FindAssets($"t:{nameof(InputActionReference)}");
+            foreach (var asset in assets)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(asset);
+                var refAssets = AssetDatabase.LoadAllAssetsAtPath(path);
+
+                foreach (var refAsset in refAssets.OfType<InputActionReference>())
+                    if (refAsset.action.id == action.id)
+                        return refAsset;
+            }
+
+            return InputActionReference.Create(action);
+        }
+#endif
     }
     
-    
+   
 
 }
