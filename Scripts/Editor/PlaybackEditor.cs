@@ -1,4 +1,6 @@
 using System.IO;
+using System.Linq;
+using Rhinox.Lightspeed;
 using Rhinox.XR.UnityXR.Simulator;
 using UnityEditor;
 using UnityEngine;
@@ -7,26 +9,40 @@ using UnityEngine;
 public class PlaybackEditor : Editor
 {
     #region SerializedProperties
-    private SerializedProperty _filePathTargetFolder;
+    private SerializedProperty _path;
     private SerializedProperty _recordingName;
     #endregion
     private void OnEnable()
     {
-        _filePathTargetFolder = serializedObject.FindProperty("FilePathTargetFolder");
+        _path = serializedObject.FindProperty("Path");
         _recordingName = serializedObject.FindProperty("RecordingName");
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        
+
+
         var script = (SimulationPlayback)target;
-        EditorGUILayout.LabelField("Output file settings",EditorStyles.boldLabel);
-        EditorGUILayout.LabelField("Output directory", EditorStyles.largeLabel);
-        _filePathTargetFolder.stringValue = EditorGUILayout.TextField("Target folder name", _filePathTargetFolder.stringValue);
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Current output directory: " + script.Path);
-        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.LabelField("Input file settings",EditorStyles.boldLabel);
+        if (GUILayout.Button("Import file"))
+        {
+            var chosenFile = EditorUtility.OpenFilePanel("Choose target folder", script.Path, "xml");
+            if (chosenFile.Length != 0)
+            {
+                var pathIndex = chosenFile.LastIndexOf('/');
+                var fileExtensionIndex = chosenFile.LastIndexOf('.');
+                var newFileName = chosenFile.Substring(pathIndex + 1, fileExtensionIndex - pathIndex - 1);
+                _recordingName.stringValue = newFileName;
+                _path.stringValue = chosenFile.Substring(0, pathIndex);
+                serializedObject.ApplyModifiedProperties();
+            }
+        }
+
+        EditorGUILayout.LabelField("Input directory", EditorStyles.largeLabel);
+        _path.stringValue = EditorGUILayout.TextField("Target folder name", _path.stringValue);
+
+        EditorGUILayout.HelpBox("Current input directory: " + script.Path,MessageType.Info);
         
         EditorGUILayout.Space(15);
         
