@@ -3,7 +3,7 @@
     "displayName": "UnityXR-Simulator",
     "author": "Rhinox",
     "version": "0.0.1",
-    "unity": "2020.2",
+    "unity": "2020.3",
     "description": "Simulator for UnityXR.",
     "keywords": [
         "unity",
