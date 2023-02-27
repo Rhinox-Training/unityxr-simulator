@@ -1,7 +1,6 @@
 using System;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Rhinox.XR.UnityXR.Simulator
@@ -36,6 +35,17 @@ namespace Rhinox.XR.UnityXR.Simulator
             }
         }
 
+        public static bool TryParseVector2(string input, out Vector2 value)
+        {
+            var commaSeparator = input.LastIndexOf(',');
+
+            var xParseSuccessful = float.TryParse(input.Substring(1, commaSeparator - 1), out value.x);
+            var yParseSuccessful =
+                float.TryParse(input.Substring(commaSeparator + 1, input.Length - commaSeparator - 2), out value.y);
+            return xParseSuccessful && yParseSuccessful;
+
+        }
+        
         private static InputAction GetInputAction(InputActionReference actionReference)
         {
 #pragma warning disable IDE0031 // Use null propagation -- Do not use for UnityEngine.Object types

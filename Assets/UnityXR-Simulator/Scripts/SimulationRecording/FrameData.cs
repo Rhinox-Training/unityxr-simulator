@@ -70,5 +70,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         public string InputActionName;
         public bool IsRightControllerInput;
         public bool IsInputStart;
+        public string Value;
     }
 }

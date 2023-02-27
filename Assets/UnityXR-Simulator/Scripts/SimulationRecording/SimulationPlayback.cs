@@ -287,6 +287,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         private void ProcessFrameInput(FrameInput input)
         {
             var inputStartFloat = input.IsInputStart ? 1f : 0f;
+            var vector2Value = Vector2.zero;
+            
             switch (input.InputActionName)
             {
                 case "grip":
@@ -351,9 +353,25 @@ namespace Rhinox.XR.UnityXR.Simulator
                     break;
                 case "secondary button":
                     if (input.IsRightControllerInput)
-                        _playbackDeviceState.LeftSecondaryButton = inputStartFloat;
+                        _playbackDeviceState.RightSecondaryButton = inputStartFloat;
                     else
-                        _playbackDeviceState.LeftPrimaryButton = inputStartFloat;
+                        _playbackDeviceState.LeftSecondaryButton = inputStartFloat;
+                    break;
+                case "Primary Axis 2D":
+                    if (!SimulatorUtils.TryParseVector2(input.Value, out vector2Value))
+                        break;
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightPrimaryAxis = vector2Value;
+                    else
+                        _playbackDeviceState.LeftPrimaryAxis = vector2Value;
+                    break;
+                case "Secondary Axis 2D":
+                    if (!SimulatorUtils.TryParseVector2(input.Value, out vector2Value))
+                        break;
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightPrimaryAxis = vector2Value;
+                    else
+                        _playbackDeviceState.LeftPrimaryAxis = vector2Value;
                     break;
                 default:
                     Debug.Log($"{nameof(SimulationPlayback)} - ProcessFrameInput, input action *{input.InputActionName}* not found.");                    
