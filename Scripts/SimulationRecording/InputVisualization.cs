@@ -90,7 +90,7 @@ public class InputVisualization : MonoBehaviour
 
         ControlsWindowRect.x = 0;
         ControlsWindowRect.y = 0;
-        ControlsWindowRect.width = 200;
+        ControlsWindowRect.width = 250;
         ControlsWindowRect.height = Screen.height / 2f;
     }
 
@@ -124,6 +124,8 @@ public class InputVisualization : MonoBehaviour
             $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.ToggleKeyboardSpaceAction)} Keyboard Space: {_deviceSimulatorControls.KeyboardTranslateSpace}");
         GUILayout.Label(
             $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.ToggleButtonControlTargetAction)} Controller Buttons: {(_deviceSimulatorControls.ManipulateRightControllerButtons ? "Right" : "Left")}");
+        GUILayout.Label(
+            $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.toggleDevicePositionTargetAction)} Keyboard Space: {_deviceSimulatorControls.axis2DTargets.ToString()}");
         GUILayout.Label(
             $"{SimulatorUtils.GetCurrentBindingPrefix(_recorder.BeginRecordingActionReference)} to start recording");
         GUILayout.Label(

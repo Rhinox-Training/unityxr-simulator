@@ -45,7 +45,6 @@ public class PlaybackEditor : Editor
         EditorGUILayout.Space(15);
         
         EditorGUILayout.LabelField("Target file name", EditorStyles.largeLabel);
-        _recordingName.stringValue = EditorGUILayout.TextField("Custom name", _recordingName.stringValue);
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel("Name from file in folder:");
         if (EditorGUILayout.DropdownButton(new GUIContent(script.RecordingName),FocusType.Passive))

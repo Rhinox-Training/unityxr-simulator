@@ -137,6 +137,12 @@ namespace Rhinox.XR.UnityXR.Simulator
         {
             SimulatorUtils.Subscribe(_leftGripInputActionReference, OnGripPressed, OnGripCancelled);
             SimulatorUtils.Subscribe(_rightGripInputActionReference, OnGripPressed, OnGripCancelled);
+            
+            SimulatorUtils.Subscribe(_leftPrimaryAxisActionReference,OnPrimaryAxis2DTriggered,OnPrimaryAxis2DCancelled);
+            SimulatorUtils.Subscribe(_rightPrimaryAxisActionReference, OnPrimaryAxis2DTriggered, OnPrimaryAxis2DCancelled);
+
+            SimulatorUtils.Subscribe(_leftSecondaryAxisActionReference, OnSecondaryAxis2DTriggered, OnSecondaryAxis2DCancelled);
+            SimulatorUtils.Subscribe(_rightSecondaryAxisActionReference, OnSecondaryAxis2DTriggered, OnSecondaryAxis2DCancelled);
 
             SimulatorUtils.Subscribe(_leftPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick, OnPrimaryAxis2DClickCancelled);
             SimulatorUtils.Subscribe(_rightPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick, OnPrimaryAxis2DClickCancelled);
@@ -172,7 +178,13 @@ namespace Rhinox.XR.UnityXR.Simulator
         {
             SimulatorUtils.Unsubscribe(_leftGripInputActionReference, OnGripPressed, OnGripCancelled);
             SimulatorUtils.Unsubscribe(_rightGripInputActionReference, OnGripPressed, OnGripCancelled);
-    
+
+            SimulatorUtils.Unsubscribe(_leftPrimaryAxisActionReference, OnPrimaryAxis2DTriggered, OnPrimaryAxis2DCancelled);
+            SimulatorUtils.Unsubscribe(_rightPrimaryAxisActionReference, OnPrimaryAxis2DTriggered, OnPrimaryAxis2DCancelled);
+
+            SimulatorUtils.Unsubscribe(_leftSecondaryAxisActionReference, OnSecondaryAxis2DTriggered, OnSecondaryAxis2DCancelled);
+            SimulatorUtils.Unsubscribe(_rightSecondaryAxisActionReference, OnSecondaryAxis2DTriggered, OnSecondaryAxis2DCancelled);
+            
             SimulatorUtils.Unsubscribe(_leftPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick, OnPrimaryAxis2DClickCancelled);
             SimulatorUtils.Unsubscribe(_rightPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick, OnPrimaryAxis2DClickCancelled);
     
@@ -965,6 +977,126 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             _currentFrameInput.Add(frameInput);
         }
+
+        private void OnPrimaryAxis2DTriggered(InputAction.CallbackContext ctx)
+        {
+            if(!IsRecording)
+                return;
+
+            var value = ctx.ReadValue<Vector2>();
+            Debug.Log(value);
+            var frameInput = new FrameInput
+            {
+                InputActionName = "Primary Axis 2D",
+                Value = value.ToString()
+            };
+            
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftPrimaryAxisActionReference.action)
+            {
+                //LEFT
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightPrimaryAxisActionReference.action)
+            {
+                //RIGHT
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+                return;
+            
+            _currentFrameInput.Add(frameInput);
+        }
+        private void OnPrimaryAxis2DCancelled(InputAction.CallbackContext ctx)
+        {
+            if (!IsRecording)
+                return;
+
+            var frameInput = new FrameInput
+            {
+                InputActionName = "Primary Axis 2D",
+                Value = Vector2.zero.ToString()
+            };
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftPrimaryAxisActionReference.action)
+            {
+                //LEFT
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightPrimaryAxisActionReference.action)
+            {
+                //RIGHT
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+                return;
+
+            _currentFrameInput.Add(frameInput);
+        }
+
+        private void OnSecondaryAxis2DTriggered(InputAction.CallbackContext ctx)
+        {
+            if (!IsRecording)
+                return;
+
+            var value = ctx.ReadValue<Vector2>();
+            Debug.Log(value);
+            var frameInput = new FrameInput
+            {
+                InputActionName = "Secondary Axis 2D",
+                Value = value.ToString()
+            };
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftSecondaryAxisActionReference.action)
+            {
+                //LEFT
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightSecondaryAxisActionReference.action)
+            {
+                //RIGHT
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+                return;
+
+            _currentFrameInput.Add(frameInput);
+        }
+
+        private void OnSecondaryAxis2DCancelled(InputAction.CallbackContext ctx)
+        {
+            if (!IsRecording)
+                return;
+
+            var frameInput = new FrameInput
+            {
+                InputActionName = "Secondary Axis 2D",
+                Value = Vector2.zero.ToString()
+            };
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftSecondaryAxisActionReference.action)
+            {
+                //LEFT
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightSecondaryAxisActionReference.action)
+            {
+                //RIGHT
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+                return;
+
+            _currentFrameInput.Add(frameInput);
+        }
+        
          #if UNITY_EDITOR
         [ContextMenu("Import InputActionAsset")]
         private void ImportActionAsset()
