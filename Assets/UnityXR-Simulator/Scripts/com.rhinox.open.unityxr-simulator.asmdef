@@ -1,0 +1,21 @@
+{
+    "name": "com.rhinox.open.xrsimulator",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3b169ccda512e504b9e2eb8b0bec14f9",
+        "GUID:fc025ba4ac3997440926e87ec084af89",
+        "GUID:d06f234cedf03a546807d093bc1d736b",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:fe685ec1767f73d42b749ea8045bfe43",
+        "GUID:7262f4696183b8841b571481b3ac0765"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

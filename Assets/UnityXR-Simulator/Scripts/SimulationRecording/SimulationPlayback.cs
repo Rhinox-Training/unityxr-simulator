@@ -297,6 +297,12 @@ namespace Rhinox.XR.UnityXR.Simulator
                     else
                         _playbackDeviceState.LeftGrip = inputStartFloat;
                     break;
+                case "Grip value":
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightGrip = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftGrip = inputStartFloat;
+                    break;
                 case "primary axis 2D click":
                     if (input.IsRightControllerInput)
                         _playbackDeviceState.RightPrimaryAxis2DClick = inputStartFloat;
@@ -346,6 +352,12 @@ namespace Rhinox.XR.UnityXR.Simulator
                         _playbackDeviceState.LeftMenuButton = inputStartFloat;
                     break;
                 case "trigger":
+                    if (input.IsRightControllerInput)
+                        _playbackDeviceState.RightTrigger = inputStartFloat;
+                    else
+                        _playbackDeviceState.LeftTrigger = inputStartFloat;
+                    break;
+                case "Trigger value":
                     if (input.IsRightControllerInput)
                         _playbackDeviceState.RightTrigger = inputStartFloat;
                     else

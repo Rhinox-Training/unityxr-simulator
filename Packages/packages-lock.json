@@ -1,36 +1,36 @@
 {
   "dependencies": {
     "com.rhinox.open.guiutils": {
-      "version": "1.5.7",
+      "version": "2.7.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.rhinox.open.lightspeed": "1.2.9"
+        "com.rhinox.open.lightspeed": "1.5.5"
       },
       "url": "https://package.openupm.com"
     },
     "com.rhinox.open.lightspeed": {
-      "version": "1.2.12",
+      "version": "1.5.5",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
     "com.rhinox.open.perceptor": {
-      "version": "0.1.6",
+      "version": "0.2.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
     "com.rhinox.open.utilities": {
-      "version": "1.2.1",
+      "version": "1.5.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.rhinox.open.lightspeed": "1.2.12",
-        "com.rhinox.open.guiutils": "1.5.7",
-        "com.rhinox.open.perceptor": "0.1.6"
+        "com.rhinox.open.lightspeed": "1.5.5",
+        "com.rhinox.open.guiutils": "2.7.0",
+        "com.rhinox.open.perceptor": "0.2.0"
       },
       "url": "https://package.openupm.com"
     },

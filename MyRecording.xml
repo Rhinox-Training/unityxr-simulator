@@ -5,7 +5,7 @@
   <RecordingLength>
     <Minutes>0</Minutes>
     <Seconds>1</Seconds>
-    <Milliseconds>407</Milliseconds>
+    <Milliseconds>267</Milliseconds>
   </RecordingLength>
   <Frames>
     <FrameData>
@@ -320,12 +320,6 @@
       </RightHandRotation>
       <FrameInputs>
         <FrameInput>
-          <InputActionName>Trigger value</InputActionName>
-          <IsRightControllerInput>true</IsRightControllerInput>
-          <IsInputStart>false</IsInputStart>
-          <Value>0</Value>
-        </FrameInput>
-        <FrameInput>
           <InputActionName>trigger</InputActionName>
           <IsRightControllerInput>true</IsRightControllerInput>
           <IsInputStart>false</IsInputStart>
@@ -592,12 +586,6 @@
       </RightHandRotation>
       <FrameInputs>
         <FrameInput>
-          <InputActionName>Grip value</InputActionName>
-          <IsRightControllerInput>true</IsRightControllerInput>
-          <IsInputStart>false</IsInputStart>
-          <Value>1</Value>
-        </FrameInput>
-        <FrameInput>
           <InputActionName>grip</InputActionName>
           <IsRightControllerInput>true</IsRightControllerInput>
           <IsInputStart>true</IsInputStart>
@@ -862,14 +850,7 @@
           <z>-1.61819912E-06</z>
         </eulerAngles>
       </RightHandRotation>
-      <FrameInputs>
-        <FrameInput>
-          <InputActionName>Trigger value</InputActionName>
-          <IsRightControllerInput>true</IsRightControllerInput>
-          <IsInputStart>false</IsInputStart>
-          <Value>1</Value>
-        </FrameInput>
-      </FrameInputs>
+      <FrameInputs />
     </FrameData>
     <FrameData>
       <FrameNumber>16</FrameNumber>
@@ -926,12 +907,6 @@
           <InputActionName>trigger</InputActionName>
           <IsRightControllerInput>true</IsRightControllerInput>
           <IsInputStart>true</IsInputStart>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Grip value</InputActionName>
-          <IsRightControllerInput>true</IsRightControllerInput>
-          <IsInputStart>false</IsInputStart>
-          <Value>0</Value>
         </FrameInput>
         <FrameInput>
           <InputActionName>grip</InputActionName>
@@ -1200,18 +1175,6 @@
       </RightHandRotation>
       <FrameInputs>
         <FrameInput>
-          <InputActionName>Grip value</InputActionName>
-          <IsRightControllerInput>true</IsRightControllerInput>
-          <IsInputStart>false</IsInputStart>
-          <Value>1</Value>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger value</InputActionName>
-          <IsRightControllerInput>true</IsRightControllerInput>
-          <IsInputStart>false</IsInputStart>
-          <Value>0</Value>
-        </FrameInput>
-        <FrameInput>
           <InputActionName>trigger</InputActionName>
           <IsRightControllerInput>true</IsRightControllerInput>
           <IsInputStart>false</IsInputStart>
@@ -1273,12 +1236,6 @@
           <InputActionName>grip</InputActionName>
           <IsRightControllerInput>true</IsRightControllerInput>
           <IsInputStart>true</IsInputStart>
-        </FrameInput>
-        <FrameInput>
-          <InputActionName>Trigger value</InputActionName>
-          <IsRightControllerInput>true</IsRightControllerInput>
-          <IsInputStart>false</IsInputStart>
-          <Value>1</Value>
         </FrameInput>
       </FrameInputs>
     </FrameData>
@@ -1391,12 +1348,6 @@
         </eulerAngles>
       </RightHandRotation>
       <FrameInputs>
-        <FrameInput>
-          <InputActionName>Grip value</InputActionName>
-          <IsRightControllerInput>true</IsRightControllerInput>
-          <IsInputStart>false</IsInputStart>
-          <Value>0</Value>
-        </FrameInput>
         <FrameInput>
           <InputActionName>grip</InputActionName>
           <IsRightControllerInput>true</IsRightControllerInput>
@@ -1715,12 +1666,6 @@
         </eulerAngles>
       </RightHandRotation>
       <FrameInputs>
-        <FrameInput>
-          <InputActionName>Trigger value</InputActionName>
-          <IsRightControllerInput>true</IsRightControllerInput>
-          <IsInputStart>false</IsInputStart>
-          <Value>0</Value>
-        </FrameInput>
         <FrameInput>
           <InputActionName>trigger</InputActionName>
           <IsRightControllerInput>true</IsRightControllerInput>
