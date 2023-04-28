@@ -50,6 +50,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         public InputActionReference EndRecordingActionReference;
         [Space(15)]
         [SerializeField] private InputActionReference _leftGripInputActionReference;
+        [SerializeField] private InputActionReference _leftGripValueInputActionReference;
         [SerializeField] private InputActionReference _leftPrimaryAxisActionReference;
         [SerializeField] private InputActionReference _leftPrimaryAxis2DClickActionReference;
         [SerializeField] private InputActionReference _leftPrimaryAxis2DTouchActionReference;
@@ -61,10 +62,12 @@ namespace Rhinox.XR.UnityXR.Simulator
         [SerializeField] private InputActionReference _leftSecondaryTouchActionReference;
         [SerializeField] private InputActionReference _leftMenuButtonActionReference;
         [SerializeField] private InputActionReference _leftTriggerInputActionReference;
+        [SerializeField] private InputActionReference _leftTriggerValueInputActionReference;
         [SerializeField] private InputActionReference _leftSecondaryButtonActionReference;
         
         [Space(10)] 
         [SerializeField] private InputActionReference _rightGripInputActionReference;
+        [SerializeField] private InputActionReference _rightGripValueInputActionReference;
         [SerializeField] private InputActionReference _rightPrimaryAxisActionReference;
         [SerializeField] private InputActionReference _rightPrimaryAxis2DClickActionReference;
         [SerializeField] private InputActionReference _rightPrimaryAxis2DTouchActionReference;
@@ -76,6 +79,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         [SerializeField] private InputActionReference _rightSecondaryTouchActionReference;
         [SerializeField] private InputActionReference _rightMenuButtonActionReference;
         [SerializeField] private InputActionReference _rightTriggerInputActionReference;
+        [SerializeField] private InputActionReference _rightTriggerValueInputActionReference;
         [SerializeField] private InputActionReference _rightSecondaryButtonActionReference;
         
         private float _frameInterval;
@@ -137,6 +141,9 @@ namespace Rhinox.XR.UnityXR.Simulator
         {
             SimulatorUtils.Subscribe(_leftGripInputActionReference, OnGripPressed, OnGripCancelled);
             SimulatorUtils.Subscribe(_rightGripInputActionReference, OnGripPressed, OnGripCancelled);
+
+            SimulatorUtils.Subscribe(_leftGripValueInputActionReference,OnGripValueTriggered,OnGripValueCancelled);
+            SimulatorUtils.Subscribe(_rightGripValueInputActionReference, OnGripValueTriggered, OnGripValueCancelled);
             
             SimulatorUtils.Subscribe(_leftPrimaryAxisActionReference,OnPrimaryAxis2DTriggered,OnPrimaryAxis2DCancelled);
             SimulatorUtils.Subscribe(_rightPrimaryAxisActionReference, OnPrimaryAxis2DTriggered, OnPrimaryAxis2DCancelled);
@@ -171,6 +178,9 @@ namespace Rhinox.XR.UnityXR.Simulator
             SimulatorUtils.Subscribe(_leftTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
             SimulatorUtils.Subscribe(_rightTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
     
+            SimulatorUtils.Subscribe(_leftTriggerValueInputActionReference,OnTriggerValueTriggered,OnTriggerValueCancelled);
+            SimulatorUtils.Subscribe(_rightTriggerValueInputActionReference, OnTriggerValueTriggered, OnTriggerValueCancelled);
+            
             SimulatorUtils.Subscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
             SimulatorUtils.Subscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
         }
@@ -211,7 +221,10 @@ namespace Rhinox.XR.UnityXR.Simulator
             
             SimulatorUtils.Unsubscribe(_leftTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
             SimulatorUtils.Unsubscribe(_rightTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
-    
+
+            SimulatorUtils.Unsubscribe(_leftTriggerValueInputActionReference, OnTriggerValueTriggered, OnTriggerValueCancelled);
+            SimulatorUtils.Unsubscribe(_rightTriggerValueInputActionReference, OnTriggerValueTriggered, OnTriggerValueCancelled);
+            
             SimulatorUtils.Unsubscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
             SimulatorUtils.Unsubscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
         }
@@ -259,6 +272,7 @@ namespace Rhinox.XR.UnityXR.Simulator
                 }
                 else
                 {
+                    
                     _currentRecording.AddFrame(newFrame);
                 }
                 _currentFrameInput.Clear();
@@ -368,6 +382,120 @@ namespace Rhinox.XR.UnityXR.Simulator
             _currentFrameInput.Add(frameInput);
         }
 
+        private void OnGripValueTriggered(InputAction.CallbackContext ctx)
+        {
+            if (!IsRecording)
+                return;
+
+            var frameInput = new FrameInput
+            {
+                InputActionName = "Grip value",
+                Value = ctx.ReadValue<float>().ToString()
+            };
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftGripValueInputActionReference.action)
+            {
+                //LEFT
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightGripValueInputActionReference.action)
+            {
+                //RIGHT
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+                return;
+
+            _currentFrameInput.Add(frameInput);
+        }
+        private void OnGripValueCancelled(InputAction.CallbackContext ctx)
+        {
+            if (!IsRecording)
+                return;
+
+            var frameInput = new FrameInput
+            {
+                InputActionName = "Grip value",
+                Value = 0.ToString()
+            };
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftGripValueInputActionReference.action)
+            {
+                //LEFT
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightGripValueInputActionReference.action)
+            {
+                //RIGHT
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+                return;
+
+            _currentFrameInput.Add(frameInput);
+        }
+
+        private void OnTriggerValueTriggered(InputAction.CallbackContext ctx)
+        {
+            if (!IsRecording)
+                return;
+
+            var frameInput = new FrameInput
+            {
+                InputActionName = "Trigger value",
+                Value = ctx.ReadValue<float>().ToString()
+            };
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftTriggerValueInputActionReference.action)
+            {
+                //LEFT
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightTriggerValueInputActionReference.action)
+            {
+                //RIGHT
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+                return;
+
+            _currentFrameInput.Add(frameInput);
+        }
+        private void OnTriggerValueCancelled(InputAction.CallbackContext ctx)
+        {
+            if (!IsRecording)
+                return;
+
+            var frameInput = new FrameInput
+            {
+                InputActionName = "Trigger value",
+                Value = 0.ToString()
+            };
+
+            //Check if the used controller was the left or right controller
+            if (ctx.action == _leftTriggerValueInputActionReference.action)
+            {
+                //LEFT
+                frameInput.IsRightControllerInput = false;
+
+            }
+            else if (ctx.action == _rightTriggerValueInputActionReference.action)
+            {
+                //RIGHT
+                frameInput.IsRightControllerInput = true;
+            }
+            else
+                return;
+
+            _currentFrameInput.Add(frameInput);
+        }
+        
         private void OnPrimaryAxis2DClick(InputAction.CallbackContext ctx)
         {
             if (!IsRecording)
