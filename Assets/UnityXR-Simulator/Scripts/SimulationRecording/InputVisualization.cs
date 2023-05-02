@@ -8,14 +8,16 @@ using Rhinox.XR.UnityXR.Simulator;
 /// </summary>
 public class InputVisualization : MonoBehaviour
 {
-    [Header("Input parameters")]
-    [SerializeField] private XRDeviceSimulatorControls _deviceSimulatorControls;
-    [SerializeField] private BetterXRDeviceSimulator _deviceSimulator;
-    [SerializeField] private SimulationRecorder _recorder;
-    [SerializeField] private SimulationPlayback _playback;
-    [Space(10)]
-    [Header("Input actions")]
-    [SerializeField] private InputActionReference _leftGripInputActionReference;
+    [Header("Input parameters")] [SerializeField]
+    private XRDeviceSimulatorControls _deviceSimulatorControls;
+
+    [SerializeField] private BaseSimulator _deviceSimulator;
+
+    // [SerializeField] private SimulationRecorder _recorder;
+    // [SerializeField] private SimulationPlayback _playback;
+    [Space(10)] [Header("Input actions")] [SerializeField]
+    private InputActionReference _leftGripInputActionReference;
+
     [SerializeField] private InputActionReference _leftPrimaryAxisActionReference;
     [SerializeField] private InputActionReference _leftPrimaryAxis2DClickActionReference;
     [SerializeField] private InputActionReference _leftPrimaryAxis2DTouchActionReference;
@@ -28,9 +30,8 @@ public class InputVisualization : MonoBehaviour
     [SerializeField] private InputActionReference _leftMenuButtonActionReference;
     [SerializeField] private InputActionReference _leftTriggerInputActionReference;
     [SerializeField] private InputActionReference _leftSecondaryButtonActionReference;
-    
-    [Space(10)] 
-    [SerializeField] private InputActionReference _rightGripInputActionReference;
+
+    [Space(10)] [SerializeField] private InputActionReference _rightGripInputActionReference;
     [SerializeField] private InputActionReference _rightPrimaryAxisActionReference;
     [SerializeField] private InputActionReference _rightPrimaryAxis2DClickActionReference;
     [SerializeField] private InputActionReference _rightPrimaryAxis2DTouchActionReference;
@@ -43,40 +44,40 @@ public class InputVisualization : MonoBehaviour
     [SerializeField] private InputActionReference _rightMenuButtonActionReference;
     [SerializeField] private InputActionReference _rightTriggerInputActionReference;
     [SerializeField] private InputActionReference _rightSecondaryButtonActionReference;
-    
+
     public Rect ControlsWindowRect;
     public Rect InputWindowRect;
 
     private bool _leftGripPressed;
     private bool _rightGripPressed;
-    
+
     private bool _leftPrimaryAxis2DClick;
     private bool _rightPrimaryAxis2DClick;
-    
+
     private bool _leftPrimaryAxis2DTouch;
     private bool _rightPrimaryAxis2DTouch;
-    
+
     private bool _leftPrimaryButtonPressed;
     private bool _rightPrimaryButtonPressed;
-    
+
     private bool _leftPrimaryTouch;
     private bool _rightPrimaryTouch;
-    
+
     private bool _leftSecondaryAxis2DClick;
     private bool _rightSecondaryAxis2DClick;
-    
+
     private bool _leftSecondaryAxis2DTouch;
     private bool _rightSecondaryAxis2DTouch;
-    
+
     private bool _leftSecondaryTouch;
     private bool _rightSecondaryTouch;
-    
+
     private bool _leftMenuButtonPressed;
     private bool _rightMenuButtonPressed;
-    
+
     private bool _leftTriggerPressed;
     private bool _rightTriggerPressed;
-    
+
     private bool _leftSecondaryButtonPressed;
     private bool _rightSecondaryButtonPressed;
 
@@ -111,13 +112,13 @@ public class InputVisualization : MonoBehaviour
             }
         };
 
-        GUI.Box(ControlsWindowRect,"");
+        GUI.Box(ControlsWindowRect, "");
         GUILayout.BeginArea(ControlsWindowRect);
         //--------------------------
         // Simulator Controls
         //--------------------------
         GUILayout.Space(10);
-        GUILayout.Label("Controls",titleStyle);
+        GUILayout.Label("Controls", titleStyle);
         GUILayout.Label(
             $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.ToggleManipulateAction)} Mode: {_deviceSimulatorControls.ManipulationTarget}");
         GUILayout.Label(
@@ -126,20 +127,19 @@ public class InputVisualization : MonoBehaviour
             $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.ToggleButtonControlTargetAction)} Controller Buttons: {(_deviceSimulatorControls.ManipulateRightControllerButtons ? "Right" : "Left")}");
         GUILayout.Label(
             $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.toggleDevicePositionTargetAction)} Keyboard Space: {_deviceSimulatorControls.axis2DTargets.ToString()}");
-        GUILayout.Label(
-            $"{SimulatorUtils.GetCurrentBindingPrefix(_recorder.BeginRecordingActionReference)} to start recording");
-        GUILayout.Label(
-            $"{SimulatorUtils.GetCurrentBindingPrefix(_recorder.EndRecordingActionReference)} to end recording");
-        GUILayout.Label(
-            $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.StartPlaybackActionReference)} to start playback");
-        GUILayout.Label(
-            $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.ReimportRecordingActionReference)} to (re)import recording");
-        GUILayout.Label(
-            $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.AbortPlaybackActionReference)} to abort playback");
+        // GUILayout.Label(
+        //     $"{SimulatorUtils.GetCurrentBindingPrefix(_recorder.BeginRecordingActionReference)} to start recording");
+        // GUILayout.Label(
+        //     $"{SimulatorUtils.GetCurrentBindingPrefix(_recorder.EndRecordingActionReference)} to end recording");
+        // GUILayout.Label(
+        //     $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.StartPlaybackActionReference)} to start playback");
+        // GUILayout.Label(
+        //     $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.ReimportRecordingActionReference)} to (re)import recording");
+        // GUILayout.Label(
+        //     $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.AbortPlaybackActionReference)} to abort playback");
         GUILayout.EndArea();
-        
-        
-        
+
+
         //--------------------------
         // Simulator INPUT WINDOW
         //--------------------------
@@ -150,36 +150,36 @@ public class InputVisualization : MonoBehaviour
         // Simulator Info
         //--------------------------
         GUILayout.Space(10);
-        if(_recorder.IsRecording)
-            GUILayout.Label("Currently recording.");
-        if (_playback.IsPlaying)
-            GUILayout.Label("Currently playing back.");
+        // if(_recorder.IsRecording)
+        //     GUILayout.Label("Currently recording.");
+        // if (_playback.IsPlaying)
+        //     GUILayout.Label("Currently playing back.");
         //--------------------------
         // DEVICE POSITIONS
         //--------------------------
-        GUILayout.Label("Device transforms",titleStyle);
+        GUILayout.Label("Device transforms", titleStyle);
 
-        GUILayout.Label($"HMD position: {_deviceSimulator.HMDState.devicePosition}");
-        GUILayout.Label($"HMD rotation: {_deviceSimulator.HMDState.deviceRotation}");
-
-        GUILayout.Label($"Right controller position: {_deviceSimulator.RightControllerState.devicePosition}");
-        GUILayout.Label($"Right controller rotation: {_deviceSimulator.RightControllerState.deviceRotation}");
-        
-        GUILayout.Label($"Left controller position: {_deviceSimulator.LeftControllerState.devicePosition}");
-        GUILayout.Label($"Left controller rotation: {_deviceSimulator.LeftControllerState.deviceRotation}");
+        // GUILayout.Label($"HMD position: {_deviceSimulator.HMDState.devicePosition}");
+        // GUILayout.Label($"HMD rotation: {_deviceSimulator.HMDState.deviceRotation}");
+        //
+        // GUILayout.Label($"Right controller position: {_deviceSimulator.RightControllerState.devicePosition}");
+        // GUILayout.Label($"Right controller rotation: {_deviceSimulator.RightControllerState.deviceRotation}");
+        //
+        // GUILayout.Label($"Left controller position: {_deviceSimulator.LeftControllerState.devicePosition}");
+        // GUILayout.Label($"Left controller rotation: {_deviceSimulator.LeftControllerState.deviceRotation}");
 
         GUILayout.Space(10);
         GUILayout.Label(
             _deviceSimulatorControls.ManipulateRightControllerButtons
                 ? $"Current manipulated controller: right"
                 : $"Current manipulated controller: left");
-        
+
         //--------------------------
         // INPUT 
         //--------------------------
         GUILayout.Label("Used input", titleStyle);
-        
-        if(_leftGripPressed)
+
+        if (_leftGripPressed)
             GUILayout.Label("Left GRIP pressed.");
         if (_rightGripPressed)
             GUILayout.Label("Right GRIP pressed.");
@@ -193,13 +193,13 @@ public class InputVisualization : MonoBehaviour
             GUILayout.Label("Left PRIMARY AXIS 2D TOUCH pressed.");
         if (_rightPrimaryAxis2DTouch)
             GUILayout.Label("Right PRIMARY AXIS 2D TOUCH pressed.");
-        
-        if(_leftTriggerPressed)
+
+        if (_leftTriggerPressed)
             GUILayout.Label("Left TRIGGER pressed.");
         if (_rightTriggerPressed)
             GUILayout.Label("Right TRIGGER pressed.");
-        
-        if(_leftPrimaryButtonPressed)
+
+        if (_leftPrimaryButtonPressed)
             GUILayout.Label("Left PRIMARY BUTTON pressed.");
         if (_rightPrimaryButtonPressed)
             GUILayout.Label("Right PRIMARY BUTTON pressed.");
@@ -228,57 +228,69 @@ public class InputVisualization : MonoBehaviour
             GUILayout.Label("Left MENU BUTTON pressed.");
         if (_rightMenuButtonPressed)
             GUILayout.Label("Right MENU BUTTON pressed.");
-        
-        if(_leftSecondaryButtonPressed)
+
+        if (_leftSecondaryButtonPressed)
             GUILayout.Label("Left SECONDARY BUTTON pressed.");
-        if(_rightSecondaryButtonPressed)
+        if (_rightSecondaryButtonPressed)
             GUILayout.Label("Right SECONDARY BUTTON pressed.");
-        
+
         GUILayout.EndArea();
     }
 
     private void OnEnable()
     {
         //CHECK REFERENCES
-        if (_recorder == null || _playback == null || _deviceSimulator == null || _deviceSimulatorControls == null)
+        if ( /*_recorder == null || _playback == null ||*/ _deviceSimulator == null || _deviceSimulatorControls == null)
         {
             Debug.Log("InputVisualization, not all input references set!");
             this.gameObject.SetActive(false);
             return;
         }
-        
+
         SimulatorUtils.Subscribe(_leftGripInputActionReference, OnGripPressed, OnGripCancelled);
         SimulatorUtils.Subscribe(_rightGripInputActionReference, OnGripPressed, OnGripCancelled);
 
-        SimulatorUtils.Subscribe(_leftPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick, OnPrimaryAxis2DClickCancelled);
-        SimulatorUtils.Subscribe(_rightPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick, OnPrimaryAxis2DClickCancelled);
+        SimulatorUtils.Subscribe(_leftPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick,
+            OnPrimaryAxis2DClickCancelled);
+        SimulatorUtils.Subscribe(_rightPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick,
+            OnPrimaryAxis2DClickCancelled);
 
-        SimulatorUtils.Subscribe(_leftPrimaryAxis2DTouchActionReference, OnPrimaryAxis2DTouch, OnPrimaryAxis2DTouchCancelled);
-        SimulatorUtils.Subscribe(_rightPrimaryAxis2DTouchActionReference, OnPrimaryAxis2DTouch, OnPrimaryAxis2DTouchCancelled);
-        
-        SimulatorUtils.Subscribe(_leftPrimaryButtonInputActionReference, OnPrimaryButtonPressed, OnPrimaryButtonCancelled);
-        SimulatorUtils.Subscribe(_rightPrimaryButtonInputActionReference, OnPrimaryButtonPressed, OnPrimaryButtonCancelled);
+        SimulatorUtils.Subscribe(_leftPrimaryAxis2DTouchActionReference, OnPrimaryAxis2DTouch,
+            OnPrimaryAxis2DTouchCancelled);
+        SimulatorUtils.Subscribe(_rightPrimaryAxis2DTouchActionReference, OnPrimaryAxis2DTouch,
+            OnPrimaryAxis2DTouchCancelled);
+
+        SimulatorUtils.Subscribe(_leftPrimaryButtonInputActionReference, OnPrimaryButtonPressed,
+            OnPrimaryButtonCancelled);
+        SimulatorUtils.Subscribe(_rightPrimaryButtonInputActionReference, OnPrimaryButtonPressed,
+            OnPrimaryButtonCancelled);
 
         SimulatorUtils.Subscribe(_leftPrimaryTouchInputActionReference, OnPrimaryTouch, OnPrimaryTouchCancelled);
         SimulatorUtils.Subscribe(_rightPrimaryTouchInputActionReference, OnPrimaryTouch, OnPrimaryTouchCancelled);
 
-        SimulatorUtils.Subscribe(_leftSecondaryAxis2DClickActionReference, OnSecondaryAxis2DClick, OnSecondaryAxis2DClickCancelled);
-        SimulatorUtils.Subscribe(_rightSecondaryAxis2DClickActionReference, OnSecondaryAxis2DClick, OnSecondaryAxis2DClickCancelled);
+        SimulatorUtils.Subscribe(_leftSecondaryAxis2DClickActionReference, OnSecondaryAxis2DClick,
+            OnSecondaryAxis2DClickCancelled);
+        SimulatorUtils.Subscribe(_rightSecondaryAxis2DClickActionReference, OnSecondaryAxis2DClick,
+            OnSecondaryAxis2DClickCancelled);
 
-        SimulatorUtils.Subscribe(_leftSecondaryAxis2DTouchActionReference, OnSecondaryAxis2DTouch, OnSecondaryAxis2DTouchCancelled);
-        SimulatorUtils.Subscribe(_rightSecondaryAxis2DTouchActionReference, OnSecondaryAxis2DTouch, OnSecondaryAxis2DTouchCancelled);
+        SimulatorUtils.Subscribe(_leftSecondaryAxis2DTouchActionReference, OnSecondaryAxis2DTouch,
+            OnSecondaryAxis2DTouchCancelled);
+        SimulatorUtils.Subscribe(_rightSecondaryAxis2DTouchActionReference, OnSecondaryAxis2DTouch,
+            OnSecondaryAxis2DTouchCancelled);
 
         SimulatorUtils.Subscribe(_leftSecondaryTouchActionReference, OnSecondaryTouch, OnSecondaryTouchCancelled);
         SimulatorUtils.Subscribe(_rightSecondaryTouchActionReference, OnSecondaryTouch, OnSecondaryTouchCancelled);
 
         SimulatorUtils.Subscribe(_leftMenuButtonActionReference, OnMenuButtonPressed, OnMenuButtonCancelled);
         SimulatorUtils.Subscribe(_rightMenuButtonActionReference, OnMenuButtonPressed, OnMenuButtonCancelled);
-        
+
         SimulatorUtils.Subscribe(_leftTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
         SimulatorUtils.Subscribe(_rightTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
 
-        SimulatorUtils.Subscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
-        SimulatorUtils.Subscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
+        SimulatorUtils.Subscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed,
+            OnSecondaryButtonCancelled);
+        SimulatorUtils.Subscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed,
+            OnSecondaryButtonCancelled);
     }
 
     private void OnDisable()
@@ -286,37 +298,49 @@ public class InputVisualization : MonoBehaviour
         SimulatorUtils.Unsubscribe(_leftGripInputActionReference, OnGripPressed, OnGripCancelled);
         SimulatorUtils.Unsubscribe(_rightGripInputActionReference, OnGripPressed, OnGripCancelled);
 
-        SimulatorUtils.Unsubscribe(_leftPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick, OnPrimaryAxis2DClickCancelled);
-        SimulatorUtils.Unsubscribe(_rightPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick, OnPrimaryAxis2DClickCancelled);
+        SimulatorUtils.Unsubscribe(_leftPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick,
+            OnPrimaryAxis2DClickCancelled);
+        SimulatorUtils.Unsubscribe(_rightPrimaryAxis2DClickActionReference, OnPrimaryAxis2DClick,
+            OnPrimaryAxis2DClickCancelled);
 
-        SimulatorUtils.Unsubscribe(_leftPrimaryAxis2DTouchActionReference, OnPrimaryAxis2DTouch, OnPrimaryAxis2DTouchCancelled);
-        SimulatorUtils.Unsubscribe(_rightPrimaryAxis2DTouchActionReference, OnPrimaryAxis2DTouch, OnPrimaryAxis2DTouchCancelled);
-        
-        SimulatorUtils.Unsubscribe(_leftPrimaryButtonInputActionReference, OnPrimaryButtonPressed, OnPrimaryButtonCancelled);
-        SimulatorUtils.Unsubscribe(_rightPrimaryButtonInputActionReference, OnPrimaryButtonPressed, OnPrimaryButtonCancelled);
+        SimulatorUtils.Unsubscribe(_leftPrimaryAxis2DTouchActionReference, OnPrimaryAxis2DTouch,
+            OnPrimaryAxis2DTouchCancelled);
+        SimulatorUtils.Unsubscribe(_rightPrimaryAxis2DTouchActionReference, OnPrimaryAxis2DTouch,
+            OnPrimaryAxis2DTouchCancelled);
+
+        SimulatorUtils.Unsubscribe(_leftPrimaryButtonInputActionReference, OnPrimaryButtonPressed,
+            OnPrimaryButtonCancelled);
+        SimulatorUtils.Unsubscribe(_rightPrimaryButtonInputActionReference, OnPrimaryButtonPressed,
+            OnPrimaryButtonCancelled);
 
         SimulatorUtils.Unsubscribe(_leftPrimaryTouchInputActionReference, OnPrimaryTouch, OnPrimaryTouchCancelled);
         SimulatorUtils.Unsubscribe(_rightPrimaryTouchInputActionReference, OnPrimaryTouch, OnPrimaryTouchCancelled);
 
-        SimulatorUtils.Unsubscribe(_leftSecondaryAxis2DClickActionReference, OnSecondaryAxis2DClick, OnSecondaryAxis2DClickCancelled);
-        SimulatorUtils.Unsubscribe(_rightSecondaryAxis2DClickActionReference, OnSecondaryAxis2DClick, OnSecondaryAxis2DClickCancelled);
+        SimulatorUtils.Unsubscribe(_leftSecondaryAxis2DClickActionReference, OnSecondaryAxis2DClick,
+            OnSecondaryAxis2DClickCancelled);
+        SimulatorUtils.Unsubscribe(_rightSecondaryAxis2DClickActionReference, OnSecondaryAxis2DClick,
+            OnSecondaryAxis2DClickCancelled);
 
-        SimulatorUtils.Unsubscribe(_leftSecondaryAxis2DTouchActionReference, OnSecondaryAxis2DTouch, OnSecondaryAxis2DTouchCancelled);
-        SimulatorUtils.Unsubscribe(_rightSecondaryAxis2DTouchActionReference, OnSecondaryAxis2DTouch, OnSecondaryAxis2DTouchCancelled);
+        SimulatorUtils.Unsubscribe(_leftSecondaryAxis2DTouchActionReference, OnSecondaryAxis2DTouch,
+            OnSecondaryAxis2DTouchCancelled);
+        SimulatorUtils.Unsubscribe(_rightSecondaryAxis2DTouchActionReference, OnSecondaryAxis2DTouch,
+            OnSecondaryAxis2DTouchCancelled);
 
         SimulatorUtils.Unsubscribe(_leftSecondaryTouchActionReference, OnSecondaryTouch, OnSecondaryTouchCancelled);
         SimulatorUtils.Unsubscribe(_rightSecondaryTouchActionReference, OnSecondaryTouch, OnSecondaryTouchCancelled);
 
         SimulatorUtils.Unsubscribe(_leftMenuButtonActionReference, OnMenuButtonPressed, OnMenuButtonCancelled);
         SimulatorUtils.Unsubscribe(_rightMenuButtonActionReference, OnMenuButtonPressed, OnMenuButtonCancelled);
-        
+
         SimulatorUtils.Unsubscribe(_leftTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
         SimulatorUtils.Unsubscribe(_rightTriggerInputActionReference, OnTriggerPressed, OnTriggerCancelled);
 
-        SimulatorUtils.Unsubscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
-        SimulatorUtils.Unsubscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed, OnSecondaryButtonCancelled);
+        SimulatorUtils.Unsubscribe(_leftSecondaryButtonActionReference, OnSecondaryButtonPressed,
+            OnSecondaryButtonCancelled);
+        SimulatorUtils.Unsubscribe(_rightSecondaryButtonActionReference, OnSecondaryButtonPressed,
+            OnSecondaryButtonCancelled);
     }
-    
+
     private void OnGripPressed(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -325,6 +349,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightGripInputActionReference.action)
             _rightGripPressed = true;
     }
+
     private void OnGripCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -342,6 +367,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightTriggerInputActionReference.action)
             _rightTriggerPressed = true;
     }
+
     private void OnTriggerCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -359,6 +385,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightPrimaryButtonInputActionReference.action)
             _rightPrimaryButtonPressed = true;
     }
+
     private void OnPrimaryButtonCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -376,6 +403,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightSecondaryButtonActionReference.action)
             _rightSecondaryButtonPressed = true;
     }
+
     private void OnSecondaryButtonCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -393,6 +421,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightPrimaryAxis2DClickActionReference.action)
             _rightPrimaryAxis2DClick = true;
     }
+
     private void OnPrimaryAxis2DClickCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -410,6 +439,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightPrimaryAxis2DTouchActionReference.action)
             _rightPrimaryAxis2DTouch = true;
     }
+
     private void OnPrimaryAxis2DTouchCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -427,6 +457,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightPrimaryTouchInputActionReference.action)
             _rightPrimaryTouch = true;
     }
+
     private void OnPrimaryTouchCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -444,6 +475,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightSecondaryAxis2DClickActionReference.action)
             _rightSecondaryAxis2DClick = true;
     }
+
     private void OnSecondaryAxis2DClickCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -461,6 +493,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightSecondaryAxis2DTouchActionReference.action)
             _rightSecondaryAxis2DTouch = true;
     }
+
     private void OnSecondaryAxis2DTouchCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -478,6 +511,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightSecondaryTouchActionReference.action)
             _rightSecondaryTouch = true;
     }
+
     private void OnSecondaryTouchCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -495,6 +529,7 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightMenuButtonActionReference.action)
             _rightMenuButtonPressed = true;
     }
+
     private void OnMenuButtonCancelled(InputAction.CallbackContext ctx)
     {
         //Check if the used controller was the left or right controller
@@ -503,5 +538,4 @@ public class InputVisualization : MonoBehaviour
         else if (ctx.action == _rightMenuButtonActionReference.action)
             _rightMenuButtonPressed = false;
     }
-
 }
