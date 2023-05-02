@@ -40,7 +40,8 @@ namespace Rhinox.XR.UnityXR.Simulator
     [DefaultExecutionOrder(XRInteractionUpdateOrder.k_DeviceSimulator)]
     public class BetterXRDeviceSimulator : MonoBehaviour
     {
-        [Tooltip("The Transform that contains the Camera. This is usually the \"Head\" of XR Origins. Automatically set to the first enabled camera tagged MainCamera if unset.")]
+        [Tooltip(
+            "The Transform that contains the Camera. This is usually the \"Head\" of XR Origins. Automatically set to the first enabled camera tagged MainCamera if unset.")]
         public Transform CameraTransform;
 
         /// <summary>
@@ -91,6 +92,10 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             HMDState.Reset();
             ResetControllers();
+        }
+
+        protected virtual void Initialize()
+        {
         }
 
 
@@ -150,10 +155,9 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             if (_leftControllerDevice != null && _leftControllerDevice.added)
                 InputState.Change(_leftControllerDevice, LeftControllerState);
-    
+
             if (_rightControllerDevice != null && _rightControllerDevice.added)
                 InputState.Change(_rightControllerDevice, RightControllerState);
-            
         }
 
         public void SetDeviceTransforms(Vector3 hmdPos, Quaternion hmdRot, Vector3 leftPos, Quaternion leftRot,
@@ -163,7 +167,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             HMDState.deviceRotation = hmdRot;
             HMDState.centerEyePosition = hmdPos;
             HMDState.centerEyeRotation = hmdRot;
-            
+
             LeftControllerState.devicePosition = leftPos;
             LeftControllerState.deviceRotation = leftRot;
 
@@ -202,7 +206,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <param name="state">Desired controller state to position.</param>
         /// <param name="position">The relative position.</param>
         /// <param name="rotation">An optional rotation to add.</param>
-        private void PositionRelativeToHead(ref XRSimulatedControllerState state, Vector3 position, Quaternion? rotation = null)
+        private void PositionRelativeToHead(ref XRSimulatedControllerState state, Vector3 position,
+            Quaternion? rotation = null)
         {
             Vector3 headPos = HMDState.centerEyePosition;
             Quaternion rot = HMDState.centerEyeRotation;
@@ -235,16 +240,18 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (Axis2DTargets.HasFlag(Axis2DTargets.Position))
             {
                 // Determine frame of reference
-                EnumHelper.GetAxes(_controls.KeyboardTranslateSpace, CameraTransform, out var right, out var up, out var forward);
+                EnumHelper.GetAxes(_controls.KeyboardTranslateSpace, CameraTransform, out var right, out var up,
+                    out var forward);
 
                 // Keyboard translation
                 var deltaPosition =
                     right * (_controls.ScaledKeyboardTranslateX * Time.deltaTime) +
                     up * (_controls.ScaledKeyboardTranslateY * Time.deltaTime) +
                     forward * (_controls.ScaledKeyboardTranslateZ * Time.deltaTime);
-            
-                
-                ProcessDevicePositionForTarget(_controls.KeyboardTranslateSpace, inverseCameraParentRotation, deltaPosition);
+
+
+                ProcessDevicePositionForTarget(_controls.KeyboardTranslateSpace, inverseCameraParentRotation,
+                    deltaPosition);
             }
 
 
@@ -269,11 +276,11 @@ namespace Rhinox.XR.UnityXR.Simulator
                     HMDState.deviceRotation = HMDState.centerEyeRotation;
                     break;
                 case ManipulationTarget.All:
-                    var matrixL = GetRelativeMatrixFromHead(ref LeftControllerState);
-                    var matrixR = GetRelativeMatrixFromHead(ref RightControllerState);
                     _centerEyeEuler += anglesDelta;
                     HMDState.centerEyeRotation = Quaternion.Euler(_centerEyeEuler);
                     HMDState.deviceRotation = HMDState.centerEyeRotation;
+                    var matrixL = GetRelativeMatrixFromHead(ref LeftControllerState);
+                    var matrixR = GetRelativeMatrixFromHead(ref RightControllerState);
                     PositionRelativeToHead(ref LeftControllerState, matrixL.GetColumn(3), matrixL.rotation);
                     PositionRelativeToHead(ref RightControllerState, matrixR.GetColumn(3), matrixR.rotation);
                     break;
@@ -284,7 +291,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (_controls.ResetInputTriggered())
                 ResetControllers();
         }
-        
+
         /// <summary>
         /// Calculates the relative matrix from the head matrix and the given controller states matrix.
         /// </summary>
@@ -321,17 +328,20 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <param name="inverseCameraParentRotation">The inverse of the camera parent rotation.</param>
         /// <param name="deltaPosition">The translation needed.</param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        private void ProcessDevicePositionForTarget(Space manipulationSpace, Quaternion inverseCameraParentRotation, Vector3 deltaPosition)
+        private void ProcessDevicePositionForTarget(Space manipulationSpace, Quaternion inverseCameraParentRotation,
+            Vector3 deltaPosition)
         {
             Quaternion deltaRotation = Quaternion.identity;
             switch (_controls.ManipulationTarget)
             {
                 case ManipulationTarget.RightHand:
-                    deltaRotation = GetDeltaRotation(manipulationSpace, RightControllerState, inverseCameraParentRotation);
+                    deltaRotation = GetDeltaRotation(manipulationSpace, RightControllerState,
+                        inverseCameraParentRotation);
                     RightControllerState.devicePosition += deltaRotation * deltaPosition;
                     break;
                 case ManipulationTarget.LeftHand:
-                    deltaRotation = GetDeltaRotation(manipulationSpace, LeftControllerState, inverseCameraParentRotation);
+                    deltaRotation = GetDeltaRotation(manipulationSpace, LeftControllerState,
+                        inverseCameraParentRotation);
                     LeftControllerState.devicePosition += deltaRotation * deltaPosition;
                     break;
                 case ManipulationTarget.Head:
@@ -365,13 +375,35 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (!_controls.ManipulateRightControllerButtons)
             {
                 LeftControllerState = _controls.ProcessAxis2DControlInput(LeftControllerState);
-                _controls.ProcessButtonControlInput(ref LeftControllerState);
+                ProcessButtonControlInput(ref LeftControllerState);
             }
             else
             {
                 RightControllerState = _controls.ProcessAxis2DControlInput(RightControllerState);
-                _controls.ProcessButtonControlInput(ref RightControllerState);
+                ProcessButtonControlInput(ref RightControllerState);
             }
+        }
+
+        /// <summary>
+        /// Process input from the user and update the state of manipulated controller device(s)
+        /// related to button input controls.
+        /// </summary>
+        /// <param name="controllerState">The controller state that will be processed.</param>
+        protected virtual void ProcessButtonControlInput(ref XRSimulatedControllerState controllerState)
+        {
+            controllerState.grip = _controls.GripInput ? 1f : 0f;
+            controllerState.WithButton(ControllerButton.GripButton, _controls.GripInput);
+            controllerState.trigger = _controls.TriggerInput ? 1f : 0f;
+            controllerState.WithButton(ControllerButton.TriggerButton, _controls.TriggerInput);
+            controllerState.WithButton(ControllerButton.PrimaryButton, _controls.PrimaryButtonInput);
+            controllerState.WithButton(ControllerButton.SecondaryButton, _controls.SecondaryButtonInput);
+            controllerState.WithButton(ControllerButton.MenuButton, _controls.MenuInput);
+            controllerState.WithButton(ControllerButton.Primary2DAxisClick, _controls.Primary2DAxisClickInput);
+            controllerState.WithButton(ControllerButton.Secondary2DAxisClick, _controls.Secondary2DAxisClickInput);
+            controllerState.WithButton(ControllerButton.Primary2DAxisTouch, _controls.Primary2DAxisTouchInput);
+            controllerState.WithButton(ControllerButton.Secondary2DAxisTouch, _controls.Secondary2DAxisTouchInput);
+            controllerState.WithButton(ControllerButton.PrimaryTouch, _controls.PrimaryTouchInput);
+            controllerState.WithButton(ControllerButton.SecondaryTouch, _controls.SecondaryTouchInput);
         }
 
         /// <summary>
@@ -388,7 +420,9 @@ namespace Rhinox.XR.UnityXR.Simulator
                 Debug.LogError($"Failed to create {nameof(XRSimulatedHMD)}.");
             }
 
-            _leftControllerDevice = InputSystem.AddDevice<XRSimulatedController>($"{nameof(XRSimulatedController)} - {CommonUsages.LeftHand}");
+            _leftControllerDevice =
+                InputSystem.AddDevice<XRSimulatedController>(
+                    $"{nameof(XRSimulatedController)} - {CommonUsages.LeftHand}");
             if (_leftControllerDevice != null)
             {
                 InputSystem.SetDeviceUsage(_leftControllerDevice, CommonUsages.LeftHand);
@@ -398,7 +432,9 @@ namespace Rhinox.XR.UnityXR.Simulator
                 Debug.LogError($"Failed to create {nameof(XRSimulatedController)} for {CommonUsages.LeftHand}.", this);
             }
 
-            _rightControllerDevice = InputSystem.AddDevice<XRSimulatedController>($"{nameof(XRSimulatedController)} - {CommonUsages.RightHand}");
+            _rightControllerDevice =
+                InputSystem.AddDevice<XRSimulatedController>(
+                    $"{nameof(XRSimulatedController)} - {CommonUsages.RightHand}");
             if (_rightControllerDevice != null)
             {
                 InputSystem.SetDeviceUsage(_rightControllerDevice, CommonUsages.RightHand);
@@ -436,7 +472,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             SimulatorUnloaded?.Invoke();
         }
 
-        
+
         void OnInputDeviceChange(InputDevice device, InputDeviceChange change)
         {
             switch (change)
@@ -459,10 +495,11 @@ namespace Rhinox.XR.UnityXR.Simulator
                         _usesRealVR = false;
                         AddDevices();
                     }
+
                     break;
             }
         }
-    
+
         /// <summary>
         /// Check if the given device is not simulated and thus a real connected device.
         /// </summary>
@@ -488,8 +525,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
 
 
-       
-        static Quaternion GetDeltaRotation(Space translateSpace, in XRSimulatedControllerState state, in Quaternion inverseCameraParentRotation)
+        static Quaternion GetDeltaRotation(Space translateSpace, in XRSimulatedControllerState state,
+            in Quaternion inverseCameraParentRotation)
         {
             switch (translateSpace)
             {
@@ -505,7 +542,8 @@ namespace Rhinox.XR.UnityXR.Simulator
             }
         }
 
-        static Quaternion GetDeltaRotation(Space translateSpace, in XRSimulatedHMDState state, in Quaternion inverseCameraParentRotation)
+        static Quaternion GetDeltaRotation(Space translateSpace, in XRSimulatedHMDState state,
+            in Quaternion inverseCameraParentRotation)
         {
             switch (translateSpace)
             {
