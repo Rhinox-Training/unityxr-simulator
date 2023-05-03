@@ -39,7 +39,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         protected Vector3 _leftControllerEuler;
         protected Vector3 _rightControllerEuler;
         protected Vector3 _centerEyeEuler;
-
+        protected const float HALF_SHOULDER_WIDTH = 0.18f;
         
         protected virtual void Awake()
         {
@@ -70,7 +70,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             }
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (_controls.DesiredCursorLockMode != Cursor.lockState)
                 Cursor.lockState = _controls.DesiredCursorLockMode;

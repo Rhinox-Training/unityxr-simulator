@@ -46,14 +46,14 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <summary>
         /// See <see cref="MonoBehaviour"/>.
         /// </summary>
-        protected virtual void OnDisable()
+        protected void OnDisable()
         {
             InputSystem.onDeviceChange -= OnInputDeviceChange;
 
             TryRemoveDevices();
         }
-        
-        
+
+
         void OnInputDeviceChange(InputDevice device, InputDeviceChange change)
         {
             switch (change)
@@ -176,13 +176,13 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         protected override void OnUpdateEnd()
         {
-            if (_hmdDevice != null && _hmdDevice.added)
+            if (_hmdDevice is { added: true })
                 InputState.Change(_hmdDevice, HMDState);
 
-            if (_leftControllerDevice != null && _leftControllerDevice.added)
+            if (_leftControllerDevice is { added: true })
                 InputState.Change(_leftControllerDevice, LeftControllerState);
 
-            if (_rightControllerDevice != null && _rightControllerDevice.added)
+            if (_rightControllerDevice is { added: true })
                 InputState.Change(_rightControllerDevice, RightControllerState);
         }
 
@@ -205,7 +205,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// related to button input controls.
         /// </summary>
         /// <param name="controllerState">The controller state that will be processed.</param>
-        protected virtual void ProcessButtonControlInput(ref XRSimulatedControllerState controllerState)
+        private void ProcessButtonControlInput(ref XRSimulatedControllerState controllerState)
         {
             controllerState.grip = _controls.GripInput ? 1f : 0f;
             controllerState.WithButton(ControllerButton.GripButton, _controls.GripInput);
@@ -370,7 +370,6 @@ namespace Rhinox.XR.UnityXR.Simulator
             LeftControllerState.Reset();
             RightControllerState.Reset();
 
-            const float HALF_SHOULDER_WIDTH = 0.18f;
             Vector3 baseHeadOffset = Vector3.forward * 0.25f + Vector3.down * 0.15f;
             Vector3 leftOffset = Vector3.left * HALF_SHOULDER_WIDTH + baseHeadOffset;
             Vector3 rightOffset = Vector3.right * HALF_SHOULDER_WIDTH + baseHeadOffset;

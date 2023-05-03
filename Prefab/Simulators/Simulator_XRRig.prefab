@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controls: {fileID: 6160907025875792267}
-  _simulator: {fileID: 2579941312925548006}
+  _simulator: {fileID: 0}
   _leftHandMoveActionReference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _rightHandMoveActionReference: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &4788689103480713416
@@ -412,7 +412,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -5908353012961274365, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_HapticDeviceAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Haptic Device
       m_Type: 0
@@ -422,7 +422,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_RotateAnchorAction:
     m_UseReference: 0
     m_Action:
@@ -991,6 +991,10 @@ PrefabInstance:
       propertyPath: CameraTransform
       value: 
       objectReference: {fileID: 833857559328614902}
+    - target: {fileID: 7772999587284334248, guid: 421f52bb4c469404792810f221510d28, type: 3}
+      propertyPath: CameraTransform
+      value: 
+      objectReference: {fileID: 833857559328614902}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 421f52bb4c469404792810f221510d28, type: 3}
 --- !u!4 &7946493870729130421 stripped
@@ -1007,17 +1011,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ef472ee503f4a25be4a3d3fe59309cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2579941312925548006 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7041692109847791290, guid: 421f52bb4c469404792810f221510d28, type: 3}
-  m_PrefabInstance: {fileID: 4788689103123004252}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49d2cfe6d2074efbbf034a4ac5e6e59b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5943700647358110881
