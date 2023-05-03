@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class RealVRMovement : MonoBehaviour
 {
     [SerializeField] private XRDeviceSimulatorControls _controls;
-    [SerializeField] private BetterXRDeviceSimulator _simulator;
+    [SerializeField] private XRDeviceSimulator _simulator;
     [SerializeField] private InputActionReference _leftHandMoveActionReference;
     [SerializeField] private InputActionReference _rightHandMoveActionReference;
     private float _moveX;
@@ -56,11 +56,12 @@ public class RealVRMovement : MonoBehaviour
     {
         if (!_simulator.UsesRealVR)
             return;
-        
-        var newPos = transform.position;
-        newPos += transform.forward * (_moveZ * (_controls.KeyboardZTranslateSpeed * Time.deltaTime));
-        newPos += transform.right * (_moveX * (_controls.KeyboardXTranslateSpeed * Time.deltaTime));
-        newPos += transform.up * (_moveY * (_controls.KeyboardYTranslateSpeed * Time.deltaTime));
-        transform.position = newPos;
+
+        var transform1 = transform;
+        var newPos = transform1.position;
+        newPos += transform1.forward * (_moveZ * (_controls.KeyboardZTranslateSpeed * Time.deltaTime));
+        newPos += transform1.right * (_moveX * (_controls.KeyboardXTranslateSpeed * Time.deltaTime));
+        newPos += transform1.up * (_moveY * (_controls.KeyboardYTranslateSpeed * Time.deltaTime));
+        transform1.position = newPos;
     }
 }

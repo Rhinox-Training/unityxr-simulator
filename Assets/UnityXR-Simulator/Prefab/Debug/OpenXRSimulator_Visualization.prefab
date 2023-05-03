@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6494542228391568209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6494542228391568211}
+  - component: {fileID: 6494542228391568208}
+  m_Layer: 0
+  m_Name: OpenXRSimulator_Visualization
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6494542228391568211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6494542228391568209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6494542228391568208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6494542228391568209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1166cfdd38e28de4d8b852d3a51aa1c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deviceSimulatorControls: {fileID: 0}
+  _deviceSimulator: {fileID: 0}
+  _recorder: {fileID: 0}
+  _playback: {fileID: 0}
+  _leftGripInputActionReference: {fileID: -136597607583354346, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftPrimaryAxisActionReference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftPrimaryAxis2DClickActionReference: {fileID: 69749557581286593, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftPrimaryAxis2DTouchActionReference: {fileID: -2871110999144764761, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftPrimaryButtonInputActionReference: {fileID: 6186978847385010408, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftPrimaryTouchInputActionReference: {fileID: -8708522874740785943, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftSecondaryAxisActionReference: {fileID: 0}
+  _leftSecondaryAxis2DClickActionReference: {fileID: 8742982496300322822, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftSecondaryAxis2DTouchActionReference: {fileID: -7647241935323177967, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftSecondaryTouchActionReference: {fileID: -2213121664158513536, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftMenuButtonActionReference: {fileID: 1229075635588420129, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftTriggerInputActionReference: {fileID: -5952763304763810824, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _leftSecondaryButtonActionReference: {fileID: 7399129515099858902, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightGripInputActionReference: {fileID: -2857637710643994626, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightPrimaryAxisActionReference: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightPrimaryAxis2DClickActionReference: {fileID: -4138224219104046936, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightPrimaryAxis2DTouchActionReference: {fileID: 4843746061983672341, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightPrimaryButtonInputActionReference: {fileID: 8825329060996655173, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightPrimaryTouchInputActionReference: {fileID: 1166826598381020100, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightSecondaryAxisActionReference: {fileID: 0}
+  _rightSecondaryAxis2DClickActionReference: {fileID: 2992323219690842763, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightSecondaryAxis2DTouchActionReference: {fileID: 3944578555297166781, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightSecondaryTouchActionReference: {fileID: 8462701704267928378, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightMenuButtonActionReference: {fileID: 2648327434665965724, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightTriggerInputActionReference: {fileID: 8919385125143020261, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  _rightSecondaryButtonActionReference: {fileID: 7821812841033530177, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  ControlsWindowRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  InputWindowRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0

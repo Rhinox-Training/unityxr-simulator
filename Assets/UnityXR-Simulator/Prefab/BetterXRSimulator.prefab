@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3184969954760772329}
   - component: {fileID: 1660463847773227735}
-  - component: {fileID: 7041692109847791290}
   - component: {fileID: 2298685696492575083}
+  - component: {fileID: 7772999587284334248}
   m_Layer: 0
   m_Name: BetterXRSimulator
   m_TagString: Untagged
@@ -89,19 +89,6 @@ MonoBehaviour:
   ManipulationTarget: 0
   Axis2DInput: {x: 0, y: 0}
   RestingHandAxis2DInput: {x: 0, y: 0}
---- !u!114 &7041692109847791290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1280859305134374831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49d2cfe6d2074efbbf034a4ac5e6e59b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraTransform: {fileID: 0}
 --- !u!114 &2298685696492575083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,3 +103,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
+--- !u!114 &7772999587284334248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280859305134374831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b1e8af9fae8324a911debd335ff5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraTransform: {fileID: 0}

@@ -2,7 +2,7 @@
     "name": "com.rhinox.open.unityxr-simulator",
     "displayName": "UnityXR-Simulator",
     "author": "Rhinox",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "unity": "2020.3",
     "description": "Simulator for UnityXR.",
     "keywords": [
