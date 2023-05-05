@@ -12,7 +12,7 @@ using InputDevice = UnityEngine.InputSystem.InputDevice;
 
 namespace Rhinox.XR.UnityXR.Simulator
 {
-    public class XRDeviceSimulator : BaseSimulator
+    public class OpenXRDeviceSimulator : BaseSimulator
     {
         public XRSimulatedHMDState HMDState;
         public XRSimulatedControllerState LeftControllerState;

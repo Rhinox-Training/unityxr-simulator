@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class RealVRMovement : MonoBehaviour
 {
     [SerializeField] private XRDeviceSimulatorControls _controls;
-    [SerializeField] private XRDeviceSimulator _simulator;
+    [SerializeField] private OpenXRDeviceSimulator _simulator;
     [SerializeField] private InputActionReference _leftHandMoveActionReference;
     [SerializeField] private InputActionReference _rightHandMoveActionReference;
     private float _moveX;

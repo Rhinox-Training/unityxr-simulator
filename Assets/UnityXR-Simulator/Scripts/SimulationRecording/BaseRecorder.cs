@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Xml.Serialization;
-using Rhinox.Perceptor;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
@@ -14,7 +12,7 @@ namespace Rhinox.XR.UnityXR.Simulator
     public abstract class BaseRecorder : MonoBehaviour
     {
         [Header("Device Transforms")] [SerializeField]
-        protected OculusDeviceSimulator _simulator;
+        protected BaseSimulator _simulator;
 
         [SerializeField] protected Transform _headTransform;
         [SerializeField] protected Transform _leftHandTransform;
@@ -26,14 +24,8 @@ namespace Rhinox.XR.UnityXR.Simulator
         [Tooltip("End any running recording on destroy.")] [SerializeField]
         protected bool _endOnDestroy;
 
-        [Tooltip("Note: dead zone value should be very small for high frame rates!")] [SerializeField]
-        protected float _positionDeadZone = 0.005f;
-
-        [Tooltip("Note: dead zone value should be very small for high frame rates!")] [SerializeField]
-        protected float _rotationDeadZone = 0.005f;
-
-        [HideInInspector] public string Path;
-        [HideInInspector] public string RecordingName = "NewRecording";
+        [FolderPath] public string Path;
+        public string RecordingName = "NewRecording";
 
         [Header("Input actions")] public InputActionReference BeginRecordingActionReference;
         public InputActionReference EndRecordingActionReference;
@@ -49,7 +41,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         protected virtual void Awake()
         {
             Initialize();
-            
+
             //Start the recording now, if desired
             if (_startOnAwake)
                 StartRecording(new InputAction.CallbackContext());
@@ -57,19 +49,19 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         protected virtual void Initialize()
         {
-            
         }
 
         protected virtual void OnDestroy()
         {
             if (_endOnDestroy)
                 EndRecording(new InputAction.CallbackContext());
-            
+
             CleanUp();
         }
-        
+
         protected virtual void CleanUp()
-        {}
+        {
+        }
 
         protected virtual void OnEnable()
         {
@@ -79,13 +71,13 @@ namespace Rhinox.XR.UnityXR.Simulator
                 this.gameObject.SetActive(false);
                 return;
             }
+
             SubscribeRecorderActions();
-            PerformOnOnDisable();
+            PerformOnOnEnable();
         }
 
         protected virtual void PerformOnOnEnable()
         {
-            
         }
 
         protected virtual void OnDisable()
@@ -96,8 +88,8 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         protected virtual void PerformOnOnDisable()
         {
-
         }
+
         private void SubscribeRecorderActions()
         {
             SimulatorUtils.Subscribe(BeginRecordingActionReference, StartRecording);
@@ -162,10 +154,10 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         protected virtual void FixedUpdate()
         {
-            if(!IsRecording)
+            if (!IsRecording)
                 return;
 
-            List<FrameInput> frameInputData = GetFrameInputs();
+            var frameInputData = GetFrameInputs();
             var newFrame = new FrameData
             {
                 HeadPosition = _headTransform.position,
@@ -176,21 +168,10 @@ namespace Rhinox.XR.UnityXR.Simulator
                 RightHandRotation = _rightHandTransform.rotation,
                 FrameInputs = frameInputData
             };
-            var previousRecordedFrame = _currentRecording.Frames.LastOrDefault();
-            //Temporarily set the frame number of the current frame to the previous recorded frame
-            //Otherwise they will never be equal
-            newFrame.FrameNumber = previousRecordedFrame.FrameNumber;
 
-            if (newFrame.ApproximatelyEqual(previousRecordedFrame, _positionDeadZone, _rotationDeadZone))
-            {
-                _currentRecording.AddEmptyFrame();
-            }
-            else
-            {
-                _currentRecording.AddFrame(newFrame);
-            }
+            _currentRecording.AddFrame(newFrame);
         }
-        
+
         protected abstract List<FrameInput> GetFrameInputs(bool clearInputsAfterwards = true);
     }
 }
