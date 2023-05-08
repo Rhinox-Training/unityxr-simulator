@@ -11,7 +11,7 @@ namespace Rhinox.XR.UnityXR.Simulator
     public abstract class BasePlayback : MonoBehaviour
     {
         [Header("Input parameters")] [SerializeField]
-        private BaseSimulator _simulator;
+        protected BaseSimulator _simulator;
 
        [SerializeField] public string Path;
        [SerializeField] public string RecordingName = "MyRecording";
