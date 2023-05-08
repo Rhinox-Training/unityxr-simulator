@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Rhinox.XR.UnityXR.Simulator
 {
-    internal static class SimulatorUtils
+    public static class SimulatorUtils
     {
         public static void Subscribe(InputActionReference reference,
             Action<InputAction.CallbackContext> performed = null,

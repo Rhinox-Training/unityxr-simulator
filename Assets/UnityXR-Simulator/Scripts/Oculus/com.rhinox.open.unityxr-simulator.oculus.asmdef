@@ -1,0 +1,28 @@
+{
+    "name": "com.rhinox.open.unityxr-simulator.oculus",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7040c93f6035f5749888e6fdf5ef28f8",
+        "GUID:85717d7d18a16a0449c96cb958a8a27d",
+        "GUID:f64c9ebcd7899c3448a08dc9f9ddbe30",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:fe685ec1767f73d42b749ea8045bfe43"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "USING_OVR"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.xr.oculus",
+            "expression": "",
+            "define": "USING_OVR"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -1072,7 +1072,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         {
             if (!IsRecording)
                 return;
-
+ctx.
             var frameInput = new FrameInput
             {
                 InputActionName = "Secondary Axis 2D",
