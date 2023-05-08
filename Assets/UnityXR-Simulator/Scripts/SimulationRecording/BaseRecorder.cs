@@ -33,7 +33,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         public bool IsRecording { get; private set; }
 
         private Stopwatch _recordingStopwatch = new Stopwatch();
-        private SimulationRecording _currentRecording;
+        protected SimulationRecording CurrentRecording;
 
         /// <summary>
         /// See <see cref="MonoBehaviour"/>
@@ -110,7 +110,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             if (!ctx.performed)
                 return;
 
-            _currentRecording = new SimulationRecording
+            CurrentRecording = new SimulationRecording
             {
                 FrameRate = (int)(1f / Time.fixedDeltaTime)
             };
@@ -135,8 +135,8 @@ namespace Rhinox.XR.UnityXR.Simulator
             temp.Milliseconds = _recordingStopwatch.Elapsed.Milliseconds;
             temp.Seconds = _recordingStopwatch.Elapsed.Seconds;
             temp.Minutes = _recordingStopwatch.Elapsed.Minutes;
-            _currentRecording.RecordingLength = temp;
-            Debug.Log($"Ended recording of {_currentRecording.RecordingLength}");
+            CurrentRecording.RecordingLength = temp;
+            Debug.Log($"Ended recording of {CurrentRecording.RecordingLength}");
 
 
             //----------------------------
@@ -145,7 +145,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             var serializer = new XmlSerializer(typeof(SimulationRecording));
             var stream = new FileStream(System.IO.Path.Combine(Path, $"{RecordingName}.xml"),
                 FileMode.Create);
-            serializer.Serialize(stream, _currentRecording);
+            serializer.Serialize(stream, CurrentRecording);
             stream.Close();
             Debug.Log($"Wrote recording to: {Path}");
             Simulator.InputEnabled = true;
@@ -169,9 +169,14 @@ namespace Rhinox.XR.UnityXR.Simulator
                 FrameInputs = frameInputData
             };
 
-            _currentRecording.AddFrame(newFrame);
+            CurrentRecording.AddFrame(newFrame);
         }
 
+        /// <summary>
+        /// Returns a list of FrameInput objects representing the recorded input data for the current frame
+        /// </summary>
+        /// <param name="clearInputsAfterwards">Whether to clear the recorded input data after returning it</param>
+        /// <returns>A list of FrameInput objects representing the recorded input data for the current frame</returns>
         protected abstract List<FrameInput> GetFrameInputs(bool clearInputsAfterwards = true);
     }
 }

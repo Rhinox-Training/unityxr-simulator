@@ -22,6 +22,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             _rig = FindObjectOfType<OVRCameraRig>();
             if (_rig == null)
                 Debug.LogError($"Failed to find {nameof(_controls)}.");
+            ResetControllers();
         }
 
         private void Start()

@@ -485,6 +485,16 @@ Transform:
   m_Father: {fileID: 1345138186}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &617217335 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4933601114193050703, guid: df39c061521ac404dbfff927b9410786, type: 3}
+  m_PrefabInstance: {fileID: 2110988613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &688419841 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4933601114193037387, guid: df39c061521ac404dbfff927b9410786, type: 3}
+  m_PrefabInstance: {fileID: 2110988613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &865722596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1157,6 +1167,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1809102173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1809102175}
+  - component: {fileID: 1809102174}
+  m_Layer: 0
+  m_Name: OculusRecorder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1809102174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809102173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ab002cf5072da41ab7a47dde4223f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Simulator: {fileID: 2110988614}
+  HeadTransform: {fileID: 1900176015}
+  LeftHandTransform: {fileID: 688419841}
+  RightHandTransform: {fileID: 617217335}
+  StartOnAwake: 0
+  EndOnDestroy: 0
+  Path: 
+  RecordingName: NewRecording
+  BeginRecordingActionReference: {fileID: 6122326531011543821, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
+  EndRecordingActionReference: {fileID: -3003799356916955773, guid: da2b439d1a2de5c46a4f428f8cf4fe19, type: 3}
+--- !u!4 &1809102175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809102173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0060023577, y: 2.806647, z: -2.7645698}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1900176015 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4933601114193119643, guid: df39c061521ac404dbfff927b9410786, type: 3}
+  m_PrefabInstance: {fileID: 2110988613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1904929801
 GameObject:
   m_ObjectHideFlags: 0
