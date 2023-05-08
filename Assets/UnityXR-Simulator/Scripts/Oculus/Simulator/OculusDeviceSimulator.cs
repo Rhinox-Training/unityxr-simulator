@@ -330,5 +330,24 @@ namespace Rhinox.XR.UnityXR.Simulator
             _rig.rightHandAnchor.localPosition = controllerPos;
             _rig.rightHandAnchor.localRotation = controllerRot;
         }
+
+
+        public void SetRigTransforms(Vector3 headPos, Quaternion headRot, Vector3 leftHandPos, Quaternion leftHandRot,
+            Vector3 rightHandPos, Quaternion rightHandRot)
+        {
+            _rig.centerEyeAnchor.position = headPos;
+            _rig.centerEyeAnchor.rotation = headRot;
+            _rig.leftHandAnchor.position = leftHandPos;
+            _rig.leftHandAnchor.rotation = leftHandRot;
+            _rig.rightHandAnchor.position = rightHandPos;
+            _rig.rightHandAnchor.rotation = rightHandRot;
+        }
+
+        public void PushControllerState(OVRPlugin.ControllerState5 state)
+        {
+            _updateMethod.Invoke(_controller, null);
+            _controllerFieldInfo.SetValue(_controller, state);
+        }
+
     }
 }
