@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controls: {fileID: 6160907025875792267}
-  _simulator: {fileID: 0}
+  _simulator: {fileID: 3002751614520462836}
   _leftHandMoveActionReference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _rightHandMoveActionReference: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &4788689103480713416
@@ -1011,6 +1011,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ef472ee503f4a25be4a3d3fe59309cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3002751614520462836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7772999587284334248, guid: 421f52bb4c469404792810f221510d28, type: 3}
+  m_PrefabInstance: {fileID: 4788689103123004252}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b1e8af9fae8324a911debd335ff5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5943700647358110881
