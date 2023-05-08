@@ -216,7 +216,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.Grip,
+                InputActionID = SimulatorInputID.Grip,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -247,7 +247,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.Grip,
+                InputActionID = SimulatorInputID.Grip,
                 InputType = SimulatorInputType.Button,
             };
 
@@ -277,7 +277,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.Grip,
+                InputActionID = SimulatorInputID.Grip,
                 InputType = SimulatorInputType.Axis1D,
                 Value = ctx.ReadValue<float>().ToString(CultureInfo.InvariantCulture)
             };
@@ -306,7 +306,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.Grip,
+                InputActionID = SimulatorInputID.Grip,
                 InputType = SimulatorInputType.Axis1D,
                 Value = 0.ToString()
             };
@@ -335,7 +335,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.Trigger,
+                InputActionID = SimulatorInputID.Trigger,
                 InputType = SimulatorInputType.Axis1D,
                 Value = ctx.ReadValue<float>().ToString(CultureInfo.InvariantCulture)
             };
@@ -364,7 +364,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.Trigger,
+                InputActionID = SimulatorInputID.Trigger,
                 InputType = SimulatorInputType.Axis1D,
                 Value = 0.ToString()
             };
@@ -393,7 +393,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.PrimaryAxisClick,
+                InputActionID = SimulatorInputID.PrimaryAxisClick,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -424,7 +424,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.PrimaryAxisClick,
+                InputActionID = SimulatorInputID.PrimaryAxisClick,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = false
             };
@@ -455,7 +455,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.PrimaryAxisTouch,
+                InputActionID = SimulatorInputID.PrimaryAxisTouch,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -486,7 +486,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.PrimaryAxisTouch,
+                InputActionID = SimulatorInputID.PrimaryAxisTouch,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = false
             };
@@ -517,7 +517,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.PrimaryButton,
+                InputActionID = SimulatorInputID.PrimaryButton,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -548,7 +548,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.PrimaryButton,
+                InputActionID = SimulatorInputID.PrimaryButton,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = false
             };
@@ -579,7 +579,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.PrimaryTouch,
+                InputActionID = SimulatorInputID.PrimaryTouch,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -610,7 +610,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.PrimaryTouch,
+                InputActionID = SimulatorInputID.PrimaryTouch,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = false
             };
@@ -641,7 +641,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.SecondaryAxisClick,
+                InputActionID = SimulatorInputID.SecondaryAxisClick,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -672,7 +672,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.SecondaryAxisClick,
+                InputActionID = SimulatorInputID.SecondaryAxisClick,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = false
             };
@@ -703,7 +703,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.SecondaryAxisTouch,
+                InputActionID = SimulatorInputID.SecondaryAxisTouch,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -734,7 +734,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.SecondaryAxisTouch,
+                InputActionID = SimulatorInputID.SecondaryAxisTouch,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = false
             };
@@ -765,7 +765,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.SecondaryTouch,
+                InputActionID = SimulatorInputID.SecondaryTouch,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -796,7 +796,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.SecondaryTouch,
+                InputActionID = SimulatorInputID.SecondaryTouch,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = false
             };
@@ -827,7 +827,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.SecondaryButton,
+                InputActionID = SimulatorInputID.SecondaryButton,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -858,7 +858,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.SecondaryButton,
+                InputActionID = SimulatorInputID.SecondaryButton,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = false
             };
@@ -889,7 +889,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.Menu,
+                InputActionID = SimulatorInputID.Menu,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -920,7 +920,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.Menu,
+                InputActionID = SimulatorInputID.Menu,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = false
             };
@@ -951,7 +951,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.Trigger,
+                InputActionID = SimulatorInputID.Trigger,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = true
             };
@@ -982,7 +982,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.Menu,
+                InputActionID = SimulatorInputID.Menu,
                 InputType = SimulatorInputType.Button,
                 IsInputStart = false
             };
@@ -1015,7 +1015,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             Debug.Log(value);
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.PrimaryAxis,
+                InputActionID = SimulatorInputID.PrimaryAxis,
                 InputType = SimulatorInputType.Axis2D,
                 Value = value.ToString()
             };
@@ -1044,7 +1044,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.PrimaryAxis,
+                InputActionID = SimulatorInputID.PrimaryAxis,
                 InputType = SimulatorInputType.Axis2D,
                 Value = Vector2.zero.ToString()
             };
@@ -1075,7 +1075,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             Debug.Log(value);
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.SecondaryAxis,
+                InputActionID = SimulatorInputID.SecondaryAxis,
                 InputType = SimulatorInputType.Axis2D,
                 Value = value.ToString()
             };
@@ -1103,7 +1103,7 @@ namespace Rhinox.XR.UnityXR.Simulator
                 return;
             var frameInput = new FrameInput
             {
-                InputActionID = SimulatorInputEnums.SecondaryAxis,
+                InputActionID = SimulatorInputID.SecondaryAxis,
                 InputType = SimulatorInputType.Axis2D,
                 Value = Vector2.zero.ToString()
             };

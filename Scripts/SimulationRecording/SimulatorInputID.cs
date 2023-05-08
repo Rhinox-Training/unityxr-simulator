@@ -1,6 +1,6 @@
 namespace Rhinox.XR.UnityXR.Simulator
 {
-    public enum SimulatorInputEnums
+    public enum SimulatorInputID
     {
         Grip = 0,
         Trigger = 1,
@@ -14,7 +14,10 @@ namespace Rhinox.XR.UnityXR.Simulator
         SecondaryAxisTouch = 9,
         SecondaryButton = 10,
         SecondaryTouch = 11,
-        Menu = 12
+        Menu = 12,
+        
+        
+        Invalid = 13
     }
 
     public enum SimulatorInputType
