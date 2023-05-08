@@ -725,7 +725,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         public bool PrimaryTouchInput { get; private set; }
         public bool SecondaryTouchInput { get; private set; }
 
-        bool m_ManipulatedRestingHandAxis2D;
+        public bool ManipulatedRestingHandAxis2D;
 
         Vector3 m_LeftControllerEuler;
         Vector3 m_RightControllerEuler;
@@ -1161,14 +1161,14 @@ namespace Rhinox.XR.UnityXR.Simulator
             {
                 controllerState.primary2DAxis = Axis2DInput;
 
-                if (RestingHandAxis2DInput != Vector2.zero || m_ManipulatedRestingHandAxis2D)
+                if (RestingHandAxis2DInput != Vector2.zero || ManipulatedRestingHandAxis2D)
                 {
                     controllerState.primary2DAxis = RestingHandAxis2DInput;
-                    m_ManipulatedRestingHandAxis2D = RestingHandAxis2DInput != Vector2.zero;
+                    ManipulatedRestingHandAxis2D = RestingHandAxis2DInput != Vector2.zero;
                 }
                 else
                 {
-                    m_ManipulatedRestingHandAxis2D = false;
+                    ManipulatedRestingHandAxis2D = false;
                 }
             }
 
@@ -1176,56 +1176,14 @@ namespace Rhinox.XR.UnityXR.Simulator
             {
                 controllerState.secondary2DAxis = Axis2DInput;
 
-                if (RestingHandAxis2DInput != Vector2.zero || m_ManipulatedRestingHandAxis2D)
+                if (RestingHandAxis2DInput != Vector2.zero || ManipulatedRestingHandAxis2D)
                 {
                     controllerState.secondary2DAxis = RestingHandAxis2DInput;
-                    m_ManipulatedRestingHandAxis2D = RestingHandAxis2DInput != Vector2.zero;
+                    ManipulatedRestingHandAxis2D = RestingHandAxis2DInput != Vector2.zero;
                 }
                 else
                 {
-                    m_ManipulatedRestingHandAxis2D = false;
-                }
-            }
-
-            return controllerState;
-        }
-
-        public virtual OVRPlugin.ControllerState5 ProcessAxis2DControlInput(OVRPlugin.ControllerState5 controllerState)
-        {
-            if (ManipulationTarget == ManipulationTarget.Head || ManipulationTarget == ManipulationTarget.All)
-                return controllerState;
-
-            if ((axis2DTargets & Axis2DTargets.Primary2DAxis) != 0)
-            {
-                if (ManipulateRightControllerButtons)
-                {
-                    controllerState.RThumbstick.x = Axis2DInput.x;
-                    controllerState.RThumbstick.y = Axis2DInput.y;
-                }
-                else
-                {
-                    controllerState.LThumbstick.x = Axis2DInput.x;
-                    controllerState.LThumbstick.y = Axis2DInput.y;
-                }
-
-                if (RestingHandAxis2DInput != Vector2.zero || m_ManipulatedRestingHandAxis2D)
-                {
-                    if (ManipulateRightControllerButtons)
-                    {
-                        controllerState.RThumbstick.x = RestingHandAxis2DInput.x;
-                        controllerState.RThumbstick.y = RestingHandAxis2DInput.y;
-                    }
-                    else
-                    {
-                        controllerState.LThumbstick.x = RestingHandAxis2DInput.x;
-                        controllerState.LThumbstick.y = RestingHandAxis2DInput.y;
-                    }
-
-                    m_ManipulatedRestingHandAxis2D = RestingHandAxis2DInput != Vector2.zero;
-                }
-                else
-                {
-                    m_ManipulatedRestingHandAxis2D = false;
+                    ManipulatedRestingHandAxis2D = false;
                 }
             }
 

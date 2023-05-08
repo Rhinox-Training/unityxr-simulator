@@ -120,10 +120,52 @@ namespace Rhinox.XR.UnityXR.Simulator
                 #endregion
             }
 
-            state = _controls.ProcessAxis2DControlInput(state);
+            state = ProcessAxis2DControlInput(state);
 
             _updateMethod.Invoke(_controller, null);
             _controllerFieldInfo.SetValue(_controller, state);
+        }
+
+        public virtual OVRPlugin.ControllerState5 ProcessAxis2DControlInput(OVRPlugin.ControllerState5 controllerState)
+        {
+            if (_controls.ManipulationTarget == ManipulationTarget.Head || _controls.ManipulationTarget == ManipulationTarget.All)
+                return controllerState;
+
+            if ((_controls.axis2DTargets & Axis2DTargets.Primary2DAxis) != 0)
+            {
+                if (_controls.ManipulateRightControllerButtons)
+                {
+                    controllerState.RThumbstick.x = _controls.Axis2DInput.x;
+                    controllerState.RThumbstick.y = _controls.Axis2DInput.y;
+                }
+                else
+                {
+                    controllerState.LThumbstick.x = _controls.Axis2DInput.x;
+                    controllerState.LThumbstick.y = _controls.Axis2DInput.y;
+                }
+
+                if (_controls.RestingHandAxis2DInput != Vector2.zero || _controls.ManipulatedRestingHandAxis2D)
+                {
+                    if (_controls.ManipulateRightControllerButtons)
+                    {
+                        controllerState.RThumbstick.x = _controls.RestingHandAxis2DInput.x;
+                        controllerState.RThumbstick.y = _controls.RestingHandAxis2DInput.y;
+                    }
+                    else
+                    {
+                        controllerState.LThumbstick.x = _controls.RestingHandAxis2DInput.x;
+                        controllerState.LThumbstick.y = _controls.RestingHandAxis2DInput.y;
+                    }
+
+                    _controls.ManipulatedRestingHandAxis2D = _controls.RestingHandAxis2DInput != Vector2.zero;
+                }
+                else
+                {
+                    _controls.ManipulatedRestingHandAxis2D = false;
+                }
+            }
+
+            return controllerState;
         }
 
         protected override void UsePoseInput(Vector3 anglesDelta)

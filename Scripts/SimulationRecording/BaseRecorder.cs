@@ -12,18 +12,18 @@ namespace Rhinox.XR.UnityXR.Simulator
     public abstract class BaseRecorder : MonoBehaviour
     {
         [Header("Device Transforms")] [SerializeField]
-        protected BaseSimulator _simulator;
+        protected BaseSimulator Simulator;
 
-        [SerializeField] protected Transform _headTransform;
-        [SerializeField] protected Transform _leftHandTransform;
-        [SerializeField] protected Transform _rightHandTransform;
+        [SerializeField] protected Transform HeadTransform;
+        [SerializeField] protected Transform LeftHandTransform;
+        [SerializeField] protected Transform RightHandTransform;
 
         [Header("Recording parameters")] [Tooltip("Starts recording on awake.")] [SerializeField]
-        protected bool _startOnAwake;
+        protected bool StartOnAwake;
 
         [Tooltip("End any running recording on destroy.")] [SerializeField]
-        protected bool _endOnDestroy;
 
+        protected bool EndOnDestroy;
         [FolderPath] public string Path;
         public string RecordingName = "NewRecording";
 
@@ -43,7 +43,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             Initialize();
 
             //Start the recording now, if desired
-            if (_startOnAwake)
+            if (StartOnAwake)
                 StartRecording(new InputAction.CallbackContext());
         }
 
@@ -53,7 +53,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         protected virtual void OnDestroy()
         {
-            if (_endOnDestroy)
+            if (EndOnDestroy)
                 EndRecording(new InputAction.CallbackContext());
 
             CleanUp();
@@ -65,7 +65,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         protected virtual void OnEnable()
         {
-            if (_simulator == null)
+            if (Simulator == null)
             {
                 Debug.Log("_simulator has not been set,  disabling this SimulationRecorder.");
                 this.gameObject.SetActive(false);
@@ -148,7 +148,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             serializer.Serialize(stream, _currentRecording);
             stream.Close();
             Debug.Log($"Wrote recording to: {Path}");
-            _simulator.InputEnabled = true;
+            Simulator.InputEnabled = true;
             IsRecording = false;
         }
 
@@ -160,12 +160,12 @@ namespace Rhinox.XR.UnityXR.Simulator
             var frameInputData = GetFrameInputs();
             var newFrame = new FrameData
             {
-                HeadPosition = _headTransform.position,
-                HeadRotation = _headTransform.rotation,
-                LeftHandPosition = _leftHandTransform.position,
-                LeftHandRotation = _leftHandTransform.rotation,
-                RightHandPosition = _rightHandTransform.position,
-                RightHandRotation = _rightHandTransform.rotation,
+                HeadPosition = HeadTransform.position,
+                HeadRotation = HeadTransform.rotation,
+                LeftHandPosition = LeftHandTransform.position,
+                LeftHandRotation = LeftHandTransform.rotation,
+                RightHandPosition = RightHandTransform.position,
+                RightHandRotation = RightHandTransform.rotation,
                 FrameInputs = frameInputData
             };
 
