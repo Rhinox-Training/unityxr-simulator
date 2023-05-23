@@ -11,10 +11,9 @@ namespace Rhinox.XR.UnityXR.Simulator
     public abstract class BasePlayback : MonoBehaviour
     {
         [Header("Input parameters")] [SerializeField]
-        protected BaseSimulator _simulator;
+        protected BaseSimulator Simulator;
 
-       [SerializeField] public string Path;
-       [SerializeField] public string RecordingName = "MyRecording";
+       [FileBrowser("xml")] public string FileDirectory;
 
         [Header("Playback Controls")] public InputActionReference StartPlaybackActionReference;
         public InputActionReference ReimportRecordingActionReference;
@@ -40,7 +39,7 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void OnEnable()
         {
-            if (_simulator == null)
+            if (Simulator == null)
             {
                 Debug.Log("_simulator has not been set,  disabling this SimulationPlayback.");
                 this.gameObject.SetActive(false);
@@ -81,27 +80,16 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         private void ImportRecording(InputAction.CallbackContext ctx)
         {
-            var serializer = new XmlSerializer(typeof(SimulationRecording));
-            var stream = new FileStream(System.IO.Path.Combine(Path, $"{RecordingName}.xml"),
-                FileMode.Open);
-            _currentRecording = (SimulationRecording)serializer.Deserialize(stream);
-            stream.Close();
-
-            if (_currentRecording == null)
-            {
-                Debug.Log($"{nameof(SimulationPlayback)}, could not loud recording from XML file");
+            if(!ctx.performed)
                 return;
-            }
-
-            Debug.Log($"Imported recording of {_currentRecording.RecordingLength}");
+            ImportRecording();
         }
 
         private void ImportRecording()
         {
             //Read XML
             var serializer = new XmlSerializer(typeof(SimulationRecording));
-            var stream = new FileStream(System.IO.Path.Combine(Path, $"{RecordingName}.xml"),
-                FileMode.Open);
+            var stream = new FileStream(FileDirectory, FileMode.Open);
             _currentRecording = (SimulationRecording)serializer.Deserialize(stream);
             stream.Close();
 
@@ -150,11 +138,11 @@ namespace Rhinox.XR.UnityXR.Simulator
             }
 
             Debug.Log("Started playback.");
-            _simulator.IsInputEnabled = false;
+            Simulator.IsInputEnabled = false;
 
             IsPlaying = true;
             _currentFrameNumber = 0;
-            _simulator.IsInputEnabled = false;
+            Simulator.IsInputEnabled = false;
 
             PlaybackStarted?.Invoke();
 
@@ -172,7 +160,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             temp.Seconds = _playbackStopwatch.Elapsed.Seconds;
             temp.Minutes = _playbackStopwatch.Elapsed.Minutes;
             Debug.Log($"Ended playback of {temp}");
-            _simulator.IsInputEnabled = true;
+            Simulator.IsInputEnabled = true;
             IsPlaying = false;
 
             PlaybackStopped?.Invoke();
