@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityXR_Simulator.Scripts.Attributes;
 using Debug = UnityEngine.Debug;
 
 namespace Rhinox.XR.UnityXR.Simulator
@@ -24,7 +25,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         [Tooltip("End any running recording on destroy.")] [SerializeField]
 
         protected bool EndOnDestroy;
-        [FolderPath] public string Path;
+        [FolderBrowser]public string Path;
         public string RecordingName = "NewRecording";
 
         [Header("Input actions")] public InputActionReference BeginRecordingActionReference;

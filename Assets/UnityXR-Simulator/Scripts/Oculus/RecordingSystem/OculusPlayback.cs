@@ -11,7 +11,7 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
 
         protected override void Initialize()
         {
-            _oculusDeviceSimulator = _simulator as OculusDeviceSimulator;
+            _oculusDeviceSimulator = Simulator as OculusDeviceSimulator;
             if (_oculusDeviceSimulator == null)
             {
                 Debug.LogWarning("_oculusDeviceSimulator was not found, disabling this object");
