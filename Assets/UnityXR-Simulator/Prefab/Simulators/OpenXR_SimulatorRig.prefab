@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 3643786903577664}
   - component: {fileID: 3303506426494415039}
   m_Layer: 0
-  m_Name: Simulator_XRRig
+  m_Name: OpenXR_SimulatorRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

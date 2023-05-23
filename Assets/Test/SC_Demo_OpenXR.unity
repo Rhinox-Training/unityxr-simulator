@@ -377,6 +377,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23df6d3c9d5b81f4799c5459380248f3, type: 3}
+--- !u!1001 &341970631
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.031270545
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.7682269
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.035672814
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741146, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741147, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: Path
+      value: C:/Users/TEST SSD/Desktop/Fork/unityxr-simulator/Assets/UnityXR-Simulator
+      objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741148, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: m_Name
+      value: OpenXRRecorder
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
 --- !u!1 &532751298
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,9 +604,17 @@ PrefabInstance:
       value: OpenXRPlayback
       objectReference: {fileID: 0}
     - target: {fileID: 7934090152291517093, guid: 6c4562820684a1241a6abcba36431274, type: 3}
+      propertyPath: Path
+      value: C:/Users/TEST SSD/Desktop/Fork/unityxr-simulator/README.md
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934090152291517093, guid: 6c4562820684a1241a6abcba36431274, type: 3}
       propertyPath: _simulator
       value: 
       objectReference: {fileID: 1908556132}
+    - target: {fileID: 7934090152291517093, guid: 6c4562820684a1241a6abcba36431274, type: 3}
+      propertyPath: FileDirectory
+      value: C:/Users/TEST SSD/Desktop/Fork/unityxr-simulator/Assets/UnityXR-Simulator/Editor.meta
+      objectReference: {fileID: 0}
     - target: {fileID: 7934090152291517093, guid: 6c4562820684a1241a6abcba36431274, type: 3}
       propertyPath: RecordingName
       value: NewRecording
