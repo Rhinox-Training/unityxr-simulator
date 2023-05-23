@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -21,57 +22,64 @@ namespace Rhinox.XR.UnityXR.Simulator
 
         protected override void Initialize()
         {
-            //-----------------------------
-            // Set up fake input device
-            //-----------------------------
-            InputSystem.FlushDisconnectedDevices();
-
-            var prevFake = InputSystem.GetDevice("PlaybackInputDevice");
-            if (prevFake != null)
-                _playbackInputDevice = prevFake as PlaybackInputDevice;
-
-            _playbackInputDevice ??= InputSystem.AddDevice<PlaybackInputDevice>("PlaybackInputDevice");
-
-            //-----------------------------
-            // Get pose trackers
-            //-----------------------------
-            _headTracker = _headTransform.GetComponent<TrackedPoseDriver>();
-            _leftHandTracker = _leftHandTransform.GetComponent<TrackedPoseDriver>();
-            _rightHandTracker = _rightHandTransform.GetComponent<TrackedPoseDriver>();
-
+            SetupFakeInputDevice();
+            GetPoseTrackers();
             PlaybackStarted += OnPlaybackStart;
             PlaybackStopped += OnPlaybackEnd;
         }
 
+        private void SetupFakeInputDevice()
+        {
+            InputSystem.FlushDisconnectedDevices();
+            _playbackInputDevice = InputSystem.GetDevice("PlaybackInputDevice") as PlaybackInputDevice;
+            _playbackInputDevice ??= InputSystem.AddDevice<PlaybackInputDevice>("PlaybackInputDevice");
+        }
+
+        private void GetPoseTrackers()
+        {
+            _headTracker = _headTransform.GetComponent<TrackedPoseDriver>();
+            _leftHandTracker = _leftHandTransform.GetComponent<TrackedPoseDriver>();
+            _rightHandTracker = _rightHandTransform.GetComponent<TrackedPoseDriver>();
+        }
+
         private void OnPlaybackStart()
         {
-            _headTracker.enabled = false;
-            _leftHandTracker.enabled = false;
-            _rightHandTracker.enabled = false;
+            SetPoseTrackersState(false);
         }
 
         private void OnPlaybackEnd()
         {
-            _headTracker.enabled = true;
-            _leftHandTracker.enabled = true;
-            _rightHandTracker.enabled = true;
+            SetPoseTrackersState(true);
+        }
+
+        private void SetPoseTrackersState(bool state)
+        {
+            _headTracker.enabled = state;
+            _leftHandTracker.enabled = state;
+            _rightHandTracker.enabled = state;
         }
 
         protected override void ProcessFrame(FrameData frameData)
         {
-            // Process transforms
+            UpdateTransforms(frameData);
+            ProcessFrameInputs(frameData.FrameInputs);
+            InputSystem.QueueStateEvent(_playbackInputDevice, _playbackDeviceState);
+        }
+
+        private void UpdateTransforms(FrameData frameData)
+        {
             _headTransform.position = frameData.HeadPosition;
             _headTransform.rotation = frameData.HeadRotation;
             _leftHandTransform.position = frameData.LeftHandPosition;
             _leftHandTransform.rotation = frameData.LeftHandRotation;
             _rightHandTransform.position = frameData.RightHandPosition;
             _rightHandTransform.rotation = frameData.RightHandRotation;
+        }
 
-            // Process input
-            foreach (var input in frameData.FrameInputs)
+        private void ProcessFrameInputs(List<FrameInput> frameInputs)
+        {
+            foreach (var input in frameInputs)
                 ProcessFrameInput(input);
-
-            InputSystem.QueueStateEvent(_playbackInputDevice, _playbackDeviceState);
         }
 
         private void ProcessFrameInput(FrameInput input)
