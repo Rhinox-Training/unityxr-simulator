@@ -12,9 +12,7 @@ public class InputVisualization : MonoBehaviour
     private XRDeviceSimulatorControls _deviceSimulatorControls;
 
     [SerializeField] private BaseSimulator _deviceSimulator;
-
-    // [SerializeField] private SimulationRecorder _recorder;
-    // [SerializeField] private SimulationPlayback _playback;
+    
     [Space(10)] [Header("Input actions")] [SerializeField]
     private InputActionReference _leftGripInputActionReference;
 
@@ -127,16 +125,6 @@ public class InputVisualization : MonoBehaviour
             $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.ToggleButtonControlTargetAction)} Controller Buttons: {(_deviceSimulatorControls.ManipulateRightControllerButtons ? "Right" : "Left")}");
         GUILayout.Label(
             $"{SimulatorUtils.GetCurrentBindingPrefix(_deviceSimulatorControls.toggleDevicePositionTargetAction)} Keyboard Space: {_deviceSimulatorControls.axis2DTargets.ToString()}");
-        // GUILayout.Label(
-        //     $"{SimulatorUtils.GetCurrentBindingPrefix(_recorder.BeginRecordingActionReference)} to start recording");
-        // GUILayout.Label(
-        //     $"{SimulatorUtils.GetCurrentBindingPrefix(_recorder.EndRecordingActionReference)} to end recording");
-        // GUILayout.Label(
-        //     $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.StartPlaybackActionReference)} to start playback");
-        // GUILayout.Label(
-        //     $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.ReimportRecordingActionReference)} to (re)import recording");
-        // GUILayout.Label(
-        //     $"{SimulatorUtils.GetCurrentBindingPrefix(_playback.AbortPlaybackActionReference)} to abort playback");
         GUILayout.EndArea();
 
 
@@ -150,24 +138,10 @@ public class InputVisualization : MonoBehaviour
         // Simulator Info
         //--------------------------
         GUILayout.Space(10);
-        // if(_recorder.IsRecording)
-        //     GUILayout.Label("Currently recording.");
-        // if (_playback.IsPlaying)
-        //     GUILayout.Label("Currently playing back.");
+
         //--------------------------
         // DEVICE POSITIONS
         //--------------------------
-        GUILayout.Label("Device transforms", titleStyle);
-
-        // GUILayout.Label($"HMD position: {_deviceSimulator.HMDState.devicePosition}");
-        // GUILayout.Label($"HMD rotation: {_deviceSimulator.HMDState.deviceRotation}");
-        //
-        // GUILayout.Label($"Right controller position: {_deviceSimulator.RightControllerState.devicePosition}");
-        // GUILayout.Label($"Right controller rotation: {_deviceSimulator.RightControllerState.deviceRotation}");
-        //
-        // GUILayout.Label($"Left controller position: {_deviceSimulator.LeftControllerState.devicePosition}");
-        // GUILayout.Label($"Left controller rotation: {_deviceSimulator.LeftControllerState.deviceRotation}");
-
         GUILayout.Space(10);
         GUILayout.Label(
             _deviceSimulatorControls.ManipulateRightControllerButtons

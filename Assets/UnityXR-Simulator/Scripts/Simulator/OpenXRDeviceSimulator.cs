@@ -12,10 +12,24 @@ using InputDevice = UnityEngine.InputSystem.InputDevice;
 
 namespace Rhinox.XR.UnityXR.Simulator
 {
+    /// <summary>
+    /// Simulates an OpenXR device in Unity for testing and development purposes.
+    /// </summary>
     public class OpenXRDeviceSimulator : BaseSimulator
     {
+        /// <summary>
+        /// State of the simulated HMD (Head-Mounted Display).
+        /// </summary>
         public XRSimulatedHMDState HMDState;
+
+        /// <summary>
+        /// State of the simulated left controller.
+        /// </summary>
         public XRSimulatedControllerState LeftControllerState;
+
+        /// <summary>
+        /// State of the simulated right controller.
+        /// </summary>
         public XRSimulatedControllerState RightControllerState;
 
         private XRSimulatedHMD _hmdDevice;
@@ -23,8 +37,19 @@ namespace Rhinox.XR.UnityXR.Simulator
         private XRSimulatedController _rightControllerDevice;
         private bool _simulatorLoaded;
 
+        /// <summary>
+        /// Event triggered when the simulator is loaded.
+        /// </summary>
         public event Action SimulatorLoaded;
+
+        /// <summary>
+        /// Event triggered when the simulator is unloaded.
+        /// </summary>
         public event Action SimulatorUnloaded;
+
+        /// <summary>
+        /// Indicates whether the simulator is using real VR devices.
+        /// </summary>
         public bool UsesRealVR { get; private set; }
 
         protected override void Initialize()
@@ -53,8 +78,12 @@ namespace Rhinox.XR.UnityXR.Simulator
             TryRemoveDevices();
         }
 
-
-        void OnInputDeviceChange(InputDevice device, InputDeviceChange change)
+        /// <summary>
+        /// Event handler for input device changes.
+        /// </summary>
+        /// <param name="device">The input device that has changed.</param>
+        /// <param name="change">The type of change that occurred.</param>
+        private void OnInputDeviceChange(InputDevice device, InputDeviceChange change)
         {
             switch (change)
             {
@@ -82,10 +111,10 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
 
         /// <summary>
-        /// Check if the given device is not simulated and thus a real connected device.
+        /// Checks if the given device is a real XR (Extended Reality) device and not a simulated one.
         /// </summary>
-        /// <param name="device">The device that should get checked.</param>
-        /// <returns></returns>
+        /// <param name="device">The input device to check.</param>
+        /// <returns>True if the device is a real XR device, false otherwise.</returns>
         private bool IsRealXRDevice(InputDevice device)
         {
             switch (device)
@@ -99,7 +128,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
 
         /// <summary>
-        /// If the simulator is loaded, removes the current simulated controllers and head mounted device. Unloads the simulator.
+        /// Tries to remove the simulated devices if the simulator is loaded.
         /// </summary>
         private void TryRemoveDevices()
         {
@@ -133,7 +162,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
 
         /// <summary>
-        /// If the simulator has not yet been loaded, creates the simulated controllers and head mounted display.
+        /// Adds the simulated devices if the simulator is not loaded.
         /// </summary>
         private void AddDevices()
         {
@@ -254,7 +283,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
 
         /// <summary>
-        /// Calculates the relative matrix from the head matrix and the given controller states matrix.
+        /// Calculates the relative matrix from the head matrix and the given controller state matrix.
         /// </summary>
         /// <param name="state">Controller state of which the relative matrix is desired.</param>
         /// <returns>The calculated relative matrix.</returns>
@@ -270,7 +299,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
 
         /// <summary>
-        /// Positions the given simulated controller state relatively to the head.
+        /// Positions the given simulated controller state relative to the head.
         /// </summary>
         /// <param name="state">Desired controller state to position.</param>
         /// <param name="position">The relative position.</param>
@@ -314,7 +343,6 @@ namespace Rhinox.XR.UnityXR.Simulator
                     HMDState.devicePosition = HMDState.centerEyePosition;
                     break;
                 case ManipulationTarget.All:
-
                     Vector3 relativeRightPosition = RightControllerState.devicePosition - HMDState.devicePosition;
                     Vector3 relativeLeftPosition = LeftControllerState.devicePosition - HMDState.devicePosition;
 
@@ -331,6 +359,13 @@ namespace Rhinox.XR.UnityXR.Simulator
             }
         }
 
+        /// <summary>
+        /// Calculates the delta rotation based on the translation space and the controller state.
+        /// </summary>
+        /// <param name="translateSpace">The translation space.</param>
+        /// <param name="state">The controller state.</param>
+        /// <param name="inverseCameraParentRotation">The inverse rotation of the camera's parent.</param>
+        /// <returns>The calculated delta rotation.</returns>
         static Quaternion GetDeltaRotation(Space translateSpace, in XRSimulatedControllerState state,
             in Quaternion inverseCameraParentRotation)
         {
@@ -348,6 +383,13 @@ namespace Rhinox.XR.UnityXR.Simulator
             }
         }
 
+        /// <summary>
+        /// Calculates the delta rotation based on the translation space and the HMD state.
+        /// </summary>
+        /// <param name="translateSpace">The translation space.</param>
+        /// <param name="state">The HMD state.</param>
+        /// <param name="inverseCameraParentRotation">The inverse rotation of the camera's parent.</param>
+        /// <returns>The calculated delta rotation.</returns>
         static Quaternion GetDeltaRotation(Space translateSpace, in XRSimulatedHMDState state,
             in Quaternion inverseCameraParentRotation)
         {

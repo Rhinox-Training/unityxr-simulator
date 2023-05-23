@@ -2,49 +2,89 @@
 using System.Diagnostics;
 using System.IO;
 using System.Xml.Serialization;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityXR_Simulator.Scripts.Attributes;
 using Debug = UnityEngine.Debug;
 
 namespace Rhinox.XR.UnityXR.Simulator
 {
+    /// <summary>
+    /// Base class for recording simulation data.
+    /// </summary>
     public abstract class BaseRecorder : MonoBehaviour
     {
-        [Header("Device Transforms")] [SerializeField]
+        [Header("Device Transforms")]
+        [SerializeField]
         protected BaseSimulator Simulator;
 
         [SerializeField] protected Transform HeadTransform;
         [SerializeField] protected Transform LeftHandTransform;
         [SerializeField] protected Transform RightHandTransform;
 
-        [Header("Recording parameters")] [Tooltip("Starts recording on awake.")] [SerializeField]
+        [Header("Recording parameters")]
+        [Tooltip("Starts recording on awake.")]
+        [SerializeField]
         protected bool StartOnAwake;
 
-        [Tooltip("End any running recording on destroy.")] [SerializeField]
-
+        [Tooltip("End any running recording on destroy.")]
+        [SerializeField]
         protected bool EndOnDestroy;
-        [FolderPath] public string Path;
+
+        /// <summary>
+        /// Path to save the recording.
+        /// </summary>
+        [FolderBrowser]
+        public string Path;
+
+        /// <summary>
+        /// Name of the recording file.
+        /// </summary>
         public string RecordingName = "NewRecording";
 
-        [Header("Input actions")] public InputActionReference BeginRecordingActionReference;
+        /// <summary>
+        /// Input action reference for beginning the recording.
+        /// </summary>
+        [Header("Input actions")]
+        public InputActionReference BeginRecordingActionReference;
+
+        /// <summary>
+        /// Input action reference for ending the recording.
+        /// </summary>
         public InputActionReference EndRecordingActionReference;
 
+        /// <summary>
+        /// Gets a value indicating whether the recorder is currently recording.
+        /// </summary>
         public bool IsRecording { get; private set; }
 
         private Stopwatch _recordingStopwatch = new Stopwatch();
         protected SimulationRecording CurrentRecording;
 
         /// <summary>
-        /// See <see cref="MonoBehaviour"/>
+        /// Initializes the recorder.
         /// </summary>
         protected virtual void Awake()
         {
             Initialize();
 
-            //Start the recording now, if desired
+            ValidatePath();
+
+            // Start the recording now, if desired
             if (StartOnAwake)
                 StartRecording(new InputAction.CallbackContext());
+        }
+
+        private void ValidatePath()
+        {
+            if (Directory.Exists(Path))
+                return;
+
+            if (string.IsNullOrEmpty(Path))
+                Path = Application.dataPath;
+
+            if (!Directory.Exists(Path))
+                Directory.CreateDirectory(Path);
         }
 
         protected virtual void Initialize()
@@ -67,7 +107,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         {
             if (Simulator == null)
             {
-                Debug.Log("_simulator has not been set,  disabling this SimulationRecorder.");
+                Debug.Log("_simulator has not been set, disabling this SimulationRecorder.");
                 this.gameObject.SetActive(false);
                 return;
             }
@@ -105,6 +145,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <summary>
         /// Creates the recording and starts frame capturing.
         /// </summary>
+        /// <param name="ctx">The input action callback context.</param>
         private void StartRecording(InputAction.CallbackContext ctx)
         {
             if (!ctx.performed)
@@ -114,6 +155,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             {
                 FrameRate = (int)(1f / Time.fixedDeltaTime)
             };
+
             _recordingStopwatch.Restart();
             Debug.Log("Started recording.");
             IsRecording = true;
@@ -122,6 +164,7 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <summary>
         /// End frame capturing and writes the recording to an XML file.
         /// </summary>
+        /// <param name="ctx">The input action callback context.</param>
         private void EndRecording(InputAction.CallbackContext ctx)
         {
             if (!IsRecording)
@@ -138,13 +181,11 @@ namespace Rhinox.XR.UnityXR.Simulator
             CurrentRecording.RecordingLength = temp;
             Debug.Log($"Ended recording of {CurrentRecording.RecordingLength}");
 
-
             //----------------------------
             //Write to XML
             //----------------------------
             var serializer = new XmlSerializer(typeof(SimulationRecording));
-            var stream = new FileStream(System.IO.Path.Combine(Path, $"{RecordingName}.xml"),
-                FileMode.Create);
+            var stream = new FileStream(System.IO.Path.Combine(Path, $"{RecordingName}.xml"), FileMode.Create);
             serializer.Serialize(stream, CurrentRecording);
             stream.Close();
             Debug.Log($"Wrote recording to: {Path}");
@@ -173,10 +214,10 @@ namespace Rhinox.XR.UnityXR.Simulator
         }
 
         /// <summary>
-        /// Returns a list of FrameInput objects representing the recorded input data for the current frame
+        /// Returns a list of FrameInput objects representing the recorded input data for the current frame.
         /// </summary>
-        /// <param name="clearInputsAfterwards">Whether to clear the recorded input data after returning it</param>
-        /// <returns>A list of FrameInput objects representing the recorded input data for the current frame</returns>
+        /// <param name="clearInputsAfterwards">Whether to clear the recorded input data after returning it.</param>
+        /// <returns>A list of FrameInput objects representing the recorded input data for the current frame.</returns>
         protected abstract List<FrameInput> GetFrameInputs(bool clearInputsAfterwards = true);
     }
 }
