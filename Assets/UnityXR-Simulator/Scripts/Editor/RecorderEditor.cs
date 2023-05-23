@@ -4,7 +4,7 @@
 // using UnityEngine;
 //
 //
-// [CustomEditor(typeof(SimulationRecorder))]
+// [CustomEditor(typeof(BaseRecorder))]
 // public class RecorderEditor : Editor
 // {
 //     #region SerializedProperties

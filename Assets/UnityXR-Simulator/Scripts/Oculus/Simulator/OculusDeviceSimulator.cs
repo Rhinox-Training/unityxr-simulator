@@ -22,6 +22,7 @@ namespace Rhinox.XR.UnityXR.Simulator
             _rig = FindObjectOfType<OVRCameraRig>();
             if (_rig == null)
                 Debug.LogError($"Failed to find {nameof(_controls)}.");
+            ResetControllers();
         }
 
         private void Start()
@@ -120,10 +121,52 @@ namespace Rhinox.XR.UnityXR.Simulator
                 #endregion
             }
 
-            state = _controls.ProcessAxis2DControlInput(state);
+            state = ProcessAxis2DControlInput(state);
 
             _updateMethod.Invoke(_controller, null);
             _controllerFieldInfo.SetValue(_controller, state);
+        }
+
+        public virtual OVRPlugin.ControllerState5 ProcessAxis2DControlInput(OVRPlugin.ControllerState5 controllerState)
+        {
+            if (_controls.ManipulationTarget == ManipulationTarget.Head || _controls.ManipulationTarget == ManipulationTarget.All)
+                return controllerState;
+
+            if ((_controls.axis2DTargets & Axis2DTargets.Primary2DAxis) != 0)
+            {
+                if (_controls.ManipulateRightControllerButtons)
+                {
+                    controllerState.RThumbstick.x = _controls.Axis2DInput.x;
+                    controllerState.RThumbstick.y = _controls.Axis2DInput.y;
+                }
+                else
+                {
+                    controllerState.LThumbstick.x = _controls.Axis2DInput.x;
+                    controllerState.LThumbstick.y = _controls.Axis2DInput.y;
+                }
+
+                if (_controls.RestingHandAxis2DInput != Vector2.zero || _controls.ManipulatedRestingHandAxis2D)
+                {
+                    if (_controls.ManipulateRightControllerButtons)
+                    {
+                        controllerState.RThumbstick.x = _controls.RestingHandAxis2DInput.x;
+                        controllerState.RThumbstick.y = _controls.RestingHandAxis2DInput.y;
+                    }
+                    else
+                    {
+                        controllerState.LThumbstick.x = _controls.RestingHandAxis2DInput.x;
+                        controllerState.LThumbstick.y = _controls.RestingHandAxis2DInput.y;
+                    }
+
+                    _controls.ManipulatedRestingHandAxis2D = _controls.RestingHandAxis2DInput != Vector2.zero;
+                }
+                else
+                {
+                    _controls.ManipulatedRestingHandAxis2D = false;
+                }
+            }
+
+            return controllerState;
         }
 
         protected override void UsePoseInput(Vector3 anglesDelta)
@@ -287,5 +330,24 @@ namespace Rhinox.XR.UnityXR.Simulator
             _rig.rightHandAnchor.localPosition = controllerPos;
             _rig.rightHandAnchor.localRotation = controllerRot;
         }
+
+
+        public void SetRigTransforms(Vector3 headPos, Quaternion headRot, Vector3 leftHandPos, Quaternion leftHandRot,
+            Vector3 rightHandPos, Quaternion rightHandRot)
+        {
+            _rig.centerEyeAnchor.position = headPos;
+            _rig.centerEyeAnchor.rotation = headRot;
+            _rig.leftHandAnchor.position = leftHandPos;
+            _rig.leftHandAnchor.rotation = leftHandRot;
+            _rig.rightHandAnchor.position = rightHandPos;
+            _rig.rightHandAnchor.rotation = rightHandRot;
+        }
+
+        public void PushControllerState(OVRPlugin.ControllerState5 state)
+        {
+            _updateMethod.Invoke(_controller, null);
+            _controllerFieldInfo.SetValue(_controller, state);
+        }
+
     }
 }
