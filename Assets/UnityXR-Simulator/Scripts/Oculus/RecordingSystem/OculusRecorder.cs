@@ -5,15 +5,23 @@ using UnityEngine;
 
 namespace Rhinox.XR.UnityXR.Simulator.Oculus
 {
+    /// <summary>
+    /// Recorder class for capturing Oculus input data.
+    /// </summary>
     public class OculusRecorder : BaseRecorder
     {
         private List<FrameInput> _currentFrameInput = new List<FrameInput>();
         private List<FrameInput> _previousFrameInput = new List<FrameInput>();
 
+        /// <summary>
+        /// Retrieves the frame inputs recorded by the OculusRecorder.
+        /// </summary>
+        /// <param name="clearInputsAfterwards">Whether to clear the inputs after retrieval.</param>
+        /// <returns>The list of FrameInput objects.</returns>
         protected override List<FrameInput> GetFrameInputs(bool clearInputsAfterwards = true)
         {
             _previousFrameInput = _currentFrameInput;
-            
+
             if (clearInputsAfterwards)
             {
                 var returnValue = new List<FrameInput>(_currentFrameInput);
@@ -25,27 +33,42 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
         }
 
         /// <summary>
-        /// Called every frame to capture Oculus input data and register it as a FrameInput object
+        /// Called every frame to capture Oculus input data and register it as a FrameInput object.
         /// </summary>
         private void Update()
         {
-            if(!IsRecording)
+            if (!IsRecording)
                 return;
 
-            // Capture input from this frame
+            CaptureButtonInputs();
+            CaptureAxis1DInputs();
+            CaptureAxis2DInputs();
+        }
 
+        /// <summary>
+        /// Captures button inputs from Oculus controllers.
+        /// </summary>
+        private void CaptureButtonInputs()
+        {
             // Iterate through all OVRInput.Button values
             foreach (OVRInput.Button inputButton in Enum.GetValues(typeof(OVRInput.Button)))
             {
                 // Ignore 'Any' and 'None' buttons
                 if (inputButton == OVRInput.Button.Any || inputButton == OVRInput.Button.None)
                     continue;
+
                 if (OVRInput.GetDown(inputButton))
                     RegisterFrameInput(inputButton, true);
                 else if (OVRInput.GetUp(inputButton))
                     RegisterFrameInput(inputButton, false);
             }
+        }
 
+        /// <summary>
+        /// Captures 1D axis inputs from Oculus controllers.
+        /// </summary>
+        private void CaptureAxis1DInputs()
+        {
             // Iterate through all OVRInput.Axis1D values
             foreach (OVRInput.Axis1D axis in Enum.GetValues(typeof(OVRInput.Axis1D)))
             {
@@ -85,18 +108,23 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
                     continue;
 
                 // Parse the previous frame input value as a float
-                float prevFrameAxisValue  = float.Parse(_previousFrameInput[previousFrameIdx].Value);
+                float prevFrameAxisValue = float.Parse(_previousFrameInput[previousFrameIdx].Value);
 
                 // Register the input if the previous frame input value is non-zero
-                if (!Mathf.Approximately(prevFrameAxisValue , 0))
+                if (!Mathf.Approximately(prevFrameAxisValue, 0))
                     RegisterFrameInput(axis, state.ToString());
             }
+        }
 
-
+        /// <summary>
+        /// Captures 2D axis inputs from Oculus controllers.
+        /// </summary>
+        private void CaptureAxis2DInputs()
+        {
             // Iterate through all OVRInput.Axis2D values
             foreach (OVRInput.Axis2D axis in Enum.GetValues(typeof(OVRInput.Axis2D)))
             {
-                if (axis == OVRInput.Axis2D.Any ||axis == OVRInput.Axis2D.None)
+                if (axis == OVRInput.Axis2D.Any || axis == OVRInput.Axis2D.None)
                     continue;
 
                 var axisValue = OVRInput.Get(axis);
@@ -126,7 +154,7 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
                 if (previousFrameIdx == -1)
                     continue;
 
-                //Get value and check if it's magnitude is 0
+                // Get value and check if its magnitude is 0
                 if (!SimulatorUtils.TryParseVector2(_previousFrameInput[previousFrameIdx].Value, out var inputValue))
                     continue;
 
@@ -136,19 +164,19 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
         }
 
         /// <summary>
-        /// Registers a button input as a FrameInput object
+        /// Registers a button input as a FrameInput object.
         /// </summary>
-        /// <param name="button">The input button to register</param>
-        /// <param name="isInputStart">Whether the input is a button press or release</param>
+        /// <param name="button">The input button to register.</param>
+        /// <param name="isInputStart">Whether the input is a button press or release.</param>
         private void RegisterFrameInput(OVRInput.Button button, bool isInputStart)
         {
-            if(!button.IsFromRightHand(out bool isFromRightHand))
+            if (!button.IsFromRightHand(out bool isFromRightHand))
                 return;
-            
+
             var buttonID = button.ToSimulatorInputID();
-            if(buttonID == SimulatorInputID.Invalid)
+            if (buttonID == SimulatorInputID.Invalid)
                 return;
-            
+
             FrameInput newInput = new FrameInput()
             {
                 InputActionID = buttonID,
@@ -156,15 +184,15 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
                 IsRightControllerInput = isFromRightHand,
                 IsInputStart = isInputStart,
             };
-            
+
             _currentFrameInput.Add(newInput);
         }
 
         /// <summary>
-        /// Registers a 2D axis input as a FrameInput object
+        /// Registers a 2D axis input as a FrameInput object.
         /// </summary>
-        /// <param name="axis">The input axis to register</param>
-        /// <param name="axisVal">The value of the input axis</param>
+        /// <param name="axis">The input axis to register.</param>
+        /// <param name="axisVal">The value of the input axis.</param>
         private void RegisterFrameInput(OVRInput.Axis2D axis, string axisVal)
         {
             if (!axis.IsFromRightHand(out bool isFromRightHand))
@@ -186,10 +214,10 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
         }
 
         /// <summary>
-        /// Registers a 1D axis input as a FrameInput object
+        /// Registers a 1D axis input as a FrameInput object.
         /// </summary>
-        /// <param name="axis">The input axis to register</param>
-        /// <param name="axisVal">The value of the input axis</param>
+        /// <param name="axis">The input axis to register.</param>
+        /// <param name="axisVal">The value of the input axis.</param>
         private void RegisterFrameInput(OVRInput.Axis1D axis, string axisVal)
         {
             if (!axis.IsFromRightHand(out bool isFromRightHand))
@@ -209,7 +237,5 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
 
             _currentFrameInput.Add(newInput);
         }
-        
     }
-    
 }

@@ -3,22 +3,32 @@ using UnityEngine;
 
 namespace Rhinox.XR.UnityXR.Simulator.Oculus
 {
+    /// <summary>
+    /// Handles playback of Oculus device inputs for simulation.
+    /// </summary>
     public class OculusPlayback : BasePlayback
     {
         private OculusDeviceSimulator _oculusDeviceSimulator;
-
         private OVRPlugin.ControllerState5 _playbackState = new OVRPlugin.ControllerState5();
 
+        /// <summary>
+        /// Initializes the OculusPlayback.
+        /// </summary>
         protected override void Initialize()
         {
             _oculusDeviceSimulator = Simulator as OculusDeviceSimulator;
+
             if (_oculusDeviceSimulator == null)
             {
                 Debug.LogWarning("_oculusDeviceSimulator was not found, disabling this object");
-                this.gameObject.SetActive(false);
+                gameObject.SetActive(false);
             }
         }
 
+        /// <summary>
+        /// Processes a frame of recorded data.
+        /// </summary>
+        /// <param name="frameData">The frame data to process.</param>
         protected override void ProcessFrame(FrameData frameData)
         {
             // Set the rig transforms
@@ -28,7 +38,6 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
 
             _oculusDeviceSimulator.PushControllerState(_playbackState);
 
-            
             // Process input
             foreach (FrameInput input in frameData.FrameInputs)
             {
@@ -66,7 +75,7 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
             if (!input.InputActionID.TryToOVRButton(input.IsRightControllerInput, out var button))
                 return;
 
-            // put it in the playback state
+            // Put it in the playback state
             if (input.IsInputStart)
                 _playbackState.Buttons |= (uint)button;
             else
@@ -79,8 +88,7 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
             if (!input.InputActionID.TryToOVRAxis1D(input.IsRightControllerInput, out var axis))
                 return;
 
-            var successful = float.TryParse(input.Value, out var result);
-            if (!successful)
+            if (!float.TryParse(input.Value, out var result))
                 return;
 
             switch (axis)
@@ -109,8 +117,7 @@ namespace Rhinox.XR.UnityXR.Simulator.Oculus
             if (!input.InputActionID.TryToOVRAxis2D(input.IsRightControllerInput, out var axis))
                 return;
 
-            bool successful = SimulatorUtils.TryParseVector2(input.Value, out var resultUnityVector2);
-            if (!successful)
+            if (!SimulatorUtils.TryParseVector2(input.Value, out var resultUnityVector2))
                 return;
 
             OVRPlugin.Vector2f resultOvrVector2 = new OVRPlugin.Vector2f
