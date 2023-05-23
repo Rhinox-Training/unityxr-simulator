@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 4933601114182918233}
   - component: {fileID: 5035337498474657565}
   m_Layer: 0
-  m_Name: OVRSimulatorRig
+  m_Name: OVR_SimulatorRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
