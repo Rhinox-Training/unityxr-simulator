@@ -240,11 +240,11 @@ namespace Rhinox.XR.UnityXR.Simulator
                     HMDState.deviceRotation = HMDState.centerEyeRotation;
                     break;
                 case ManipulationTarget.All:
+                    var matrixL = GetRelativeMatrixFromHead(ref LeftControllerState);
+                    var matrixR = GetRelativeMatrixFromHead(ref RightControllerState);
                     _centerEyeEuler += anglesDelta;
                     HMDState.centerEyeRotation = Quaternion.Euler(_centerEyeEuler);
                     HMDState.deviceRotation = HMDState.centerEyeRotation;
-                    var matrixL = GetRelativeMatrixFromHead(ref LeftControllerState);
-                    var matrixR = GetRelativeMatrixFromHead(ref RightControllerState);
                     PositionRelativeToHead(ref LeftControllerState, matrixL.GetColumn(3), matrixL.rotation);
                     PositionRelativeToHead(ref RightControllerState, matrixR.GetColumn(3), matrixR.rotation);
                     break;
