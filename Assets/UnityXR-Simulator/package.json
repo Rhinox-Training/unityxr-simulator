@@ -22,5 +22,16 @@
       "path": "Samples~/Demo Scenes",
       "description": "Contains demo scenes for both simulators and their corresponding recorder and playback."
     }
+  ],
+  "contributors": 
+  [
+    {
+      "name": "Tristan Wauthier",
+      "url": "tristanWauthier.com"
+    },
+    {
+      "name": "Glenn Quintynn",
+      "url": "glennquintyn.github.io/GlennQuintynPortfolio"
+    }
   ]
 }
