@@ -17,7 +17,7 @@ public class FileBrowserDrawer : PropertyDrawer
             EditorGUI.BeginChangeCheck();
             if (GUI.Button(buttonRect, "Browse"))
             {
-                string path = EditorUtility.OpenFilePanel("Select File", Application.dataPath, browserAttribute.Extension);
+                string path = EditorUtility.OpenFilePanel("Select File", property.stringValue ?? "", browserAttribute.Extension);
                 if (!string.IsNullOrEmpty(path))
                 {
                     property.stringValue = path;
@@ -27,6 +27,7 @@ public class FileBrowserDrawer : PropertyDrawer
             if (EditorGUI.EndChangeCheck())
             {
                 property.serializedObject.ApplyModifiedProperties();
+                GUIUtility.ExitGUI();
             }
         }
         else
