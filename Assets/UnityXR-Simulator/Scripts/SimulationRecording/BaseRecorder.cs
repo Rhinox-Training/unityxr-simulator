@@ -148,9 +148,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <param name="ctx">The input action callback context.</param>
         private void StartRecording(InputAction.CallbackContext ctx)
         {
-            if (!ctx.performed)
-                return;
-
             CurrentRecording = new SimulationRecording
             {
                 FrameRate = (int)(1f / Time.fixedDeltaTime)
@@ -167,9 +164,6 @@ namespace Rhinox.XR.UnityXR.Simulator
         /// <param name="ctx">The input action callback context.</param>
         private void EndRecording(InputAction.CallbackContext ctx)
         {
-            if (!IsRecording)
-                return;
-
             //----------------------------
             // CALCULATE LENGTH
             //----------------------------

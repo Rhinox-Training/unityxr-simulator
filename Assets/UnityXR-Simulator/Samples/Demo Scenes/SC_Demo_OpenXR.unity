@@ -432,6 +432,22 @@ PrefabInstance:
       propertyPath: Path
       value: C:/Users/TEST SSD/Desktop/Fork/unityxr-simulator/Assets/UnityXR-Simulator
       objectReference: {fileID: 0}
+    - target: {fileID: 787377595490741147, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: Simulator
+      value: 
+      objectReference: {fileID: 1908556132}
+    - target: {fileID: 787377595490741147, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: HeadTransform
+      value: 
+      objectReference: {fileID: 1908556133}
+    - target: {fileID: 787377595490741147, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: LeftHandTransform
+      value: 
+      objectReference: {fileID: 1908556135}
+    - target: {fileID: 787377595490741147, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
+      propertyPath: RightHandTransform
+      value: 
+      objectReference: {fileID: 1908556134}
     - target: {fileID: 787377595490741148, guid: d19ec498337735a48a346c18ccc8fe7f, type: 3}
       propertyPath: m_Name
       value: OpenXRRecorder
